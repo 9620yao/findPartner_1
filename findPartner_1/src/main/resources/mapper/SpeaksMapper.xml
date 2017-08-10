@@ -37,10 +37,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 
 	<insert id="addSpeaks" parameterType="Speaks">
-		insert into
-		speaks(sid,content,speakman,senddate)
-		values(last_insert_id(),#{content},#{speakman}
-		,now())
+	insert into
+	speaks(sid,content,speakman,senddate)
+	values(last_insert_id(),#{content},#{speakman}
+	,now())
 	</insert>
 
 	<select id="findSid" resultType="string">

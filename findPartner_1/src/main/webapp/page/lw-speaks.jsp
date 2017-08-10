@@ -5,7 +5,7 @@
 <html>
 <head>
 <base href="${deployName }">
-<jsp:include page="/include/Icon.jsp" /><!-- 加载公共图标 -->
+<jsp:include page="/include/Icon.jsp" /><!-- 公共图标 -->
 <link rel="stylesheet" href="assets/css/amazeui.min.css">
 <link rel="stylesheet" href="assets/css/app.css">
 <link rel="stylesheet" href="rel/css/speak.css">
@@ -13,7 +13,7 @@
 <link rel="stylesheet" href="rel/css/indexcss.css">
 </head>
 <body id="blog">
-	<jsp:include page="/include/header.jsp" /><!-- 加载公共头部 -->
+	<jsp:include page="/include/header.jsp" /><!-- 公共头部部分 -->
 
 	<!-- content srart -->
 	<!-- <!-- 添加说说 -->
@@ -109,11 +109,11 @@
 	</div>
 	<!--模态框 end reply -->
 
-	<!-- 加载公共foot start-->
-	<jsp:include page="/include/foot.jsp"></jsp:include>
-	<!-- 加载公共foot end-->
+	<jsp:include page="/include/foot.jsp" /><!-- 公共底部部分 -->
+	
 	<script src="assets/js/jquery.min.js"></script>
 	<script src="bootstrap/3.3.4/js/bootstrap.min.js"></script>
+
 	<script src="assets/js/amazeui.min.js"></script>
 	<script type="text/javascript" charset="utf-8"
 		src="rel/ueditor/ueditor.config.js"></script>

@@ -18,18 +18,17 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 public class ConnTest {
 	@Autowired
 	private DataSource dataSource;
-	
+
 	@Test
 	public void testDataSourceConn() throws SQLException {
 		assertNotNull(dataSource.getConnection());
 	}
 
-	
 	@Autowired
 	private SqlSessionFactory sqlSessionFactory;
-	
+
 	@Test
-	public void testSqlSessionFactoryConn(){
+	public void testSqlSessionFactoryConn() {
 		assertNotNull(sqlSessionFactory.openSession().getConnection());
 	}
 

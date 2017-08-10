@@ -9,10 +9,11 @@ import java.io.Serializable;
  *
  */
 public class Album implements Serializable {
+
 	private static final long serialVersionUID = 1L;
 	private String abid; // 相册编号
 	private String abname; // 相册名称
-	private String aaid; // 相册发表人编号
+	private String auid; // 相册发表人编号
 	private String alcontent; // 相册内容（相册描述）
 	private String allocation; // 相册上传位置
 	private String aldate; // 相册上传时间
@@ -21,11 +22,11 @@ public class Album implements Serializable {
 	public Album() {
 	}
 
-	public Album(String abid, String abname, String aaid, String alcontent, String allocation, String aldate,
+	public Album(String abid, String abname, String auid, String alcontent, String allocation, String aldate,
 			String aheader) {
 		this.abid = abid;
 		this.abname = abname;
-		this.aaid = aaid;
+		this.auid = auid;
 		this.alcontent = alcontent;
 		this.allocation = allocation;
 		this.aldate = aldate;
@@ -48,12 +49,12 @@ public class Album implements Serializable {
 		this.abname = abname;
 	}
 
-	public String getAaid() {
-		return aaid;
+	public String getAuid() {
+		return auid;
 	}
 
-	public void setAaid(String aaid) {
-		this.aaid = aaid;
+	public void setAuid(String auid) {
+		this.auid = auid;
 	}
 
 	public String getAlcontent() {
@@ -90,7 +91,7 @@ public class Album implements Serializable {
 
 	@Override
 	public String toString() {
-		return "\nAlbum [abid=" + abid + ", abname=" + abname + ", aaid=" + aaid + ", alcontent=" + alcontent
+		return "\nAlbum [abid=" + abid + ", abname=" + abname + ", auid=" + auid + ", alcontent=" + alcontent
 				+ ", allocation=" + allocation + ", aldate=" + aldate + ", aheader=" + aheader + "]";
 	}
 

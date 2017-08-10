@@ -105,6 +105,14 @@ public class LoginHandler {
 		}
 	}
 
+	/**
+	 * 邮箱
+	 * 
+	 * @param map
+	 * @param login
+	 * @param out
+	 * @param request
+	 */
 	@RequestMapping("sendForgetMail")
 	public void sendForgetMail(ModelMap map, Login login, PrintWriter out, HttpServletRequest request) {
 		LogManager.getLogger().debug(login);
@@ -117,6 +125,13 @@ public class LoginHandler {
 		out.close();
 	}
 
+	/**
+	 * 判断该邮箱是否注册
+	 * 
+	 * @param email：传入的邮箱
+	 * 
+	 * @return
+	 */
 	@RequestMapping("emailExist")
 	@ResponseBody
 	public boolean emailExist(String email) {

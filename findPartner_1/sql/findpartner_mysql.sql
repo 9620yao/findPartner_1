@@ -49,17 +49,6 @@ CREATE TABLE friends(
 );
 -- drop table friends;
 
--- select * from FRIENDS;暂时没有用到
--- 其他好友表（某用户和没关注的好友）--在两个好友没关注的时候，联系在一起
-CREATE TABLE friendothers(
-	uid VARCHAR(40),--用户编号
-	fid VARCHAR(40),--好友编号
-	othersure VARCHAR(40) default '-0' check(othersure in('-0','-1')),   -- 是否屏蔽，默认0为不屏蔽，1为屏蔽（屏蔽既加为黑名）
-	otherfriend VARCHAR(40) default '-0' check(otherfriend in('-0','-1')),-- 是否为陌生人，默认0为不是，1为陌生人
-	otherfriendsone VARCHAR(40),
-	otherfriendstwo VARCHAR(40)
-);
-
 -- select * from speaks;
 -- 说说表
 CREATE TABLE speaks(
@@ -146,9 +135,12 @@ create table replys(
 	otherreplysone VARCHAR(40),
 	otherreplystwo VARCHAR(40)
 );
-alter table comments AUTO_INCREMENT=1000;
+alter table replys AUTO_INCREMENT=1000;
 
 -- drop table replys;
+
+
+-- select * from homepage;
 --主页显示
 create table homepage(
 	hid int primary key auto_increment,-- 编号
@@ -158,8 +150,19 @@ create table homepage(
 	otherreplysone VARCHAR(40),
 	otherreplystwo VARCHAR(40)
 );
-alter table comments AUTO_INCREMENT=1000;
+alter table homepage AUTO_INCREMENT=1000;
 
+-- select * from userpower;
+-- 用户权限表
+create table userpower(
+	upid int primary key AUTO_INCREMENT,-- 权限表的编号
+	upuid varchar(20),-- 用户编号
+	upower varchar(100) default '-0' check(upower in('-0','-1')),-- 用户权限
+	updata varchar(40),-- 权限修改时间
+	otherbackadminone VARCHAR(40),
+	otherbackadmintwo varchar(40)
+);
+alter table userpower AUTO_INCREMENT=1000;
 --------------------------------------------------------------------
 --select * from homepage
 --select * from speaks

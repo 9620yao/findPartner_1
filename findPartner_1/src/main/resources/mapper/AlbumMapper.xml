@@ -6,7 +6,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<select id="listAlbum" parameterType="string" resultType="com.yc.ssm.entity.Album">
 		select
-		* from album where aaid = #{_parameter}
+		* from album where auid = #{_parameter}
 	</select>
 
 	<select id="fpByabid" parameterType="string" resultType="com.yc.ssm.entity.Album">
@@ -16,8 +16,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<insert id="addAlbum" parameterType="com.yc.ssm.entity.Album">
 		insert into
-		album(abname,aaid,alcontent,allocation,aldate,aheader,otheralbumone,otheralbumtwo)
-		values(#{abname},#{aaid},#{alcontent},
+		album(abname,auid,alcontent,allocation,aldate,aheader,otheralbumone,otheralbumtwo)
+		values(#{abname},#{auid},#{alcontent},
 		'',now(),'','','')
 	</insert>
 
@@ -59,21 +59,21 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<select id="findByName" parameterType="Album" resultType="Album">
 		select
-		* from album where aaid like '%'||#{aaid}||'%' or aldate like
-		'%'||#{aaid}||'%'
+		* from album where auid like '%'||#{auid}||'%' or aldate like
+		'%'||#{auid}||'%'
 	</select>
 
 	<select id="countAlbum" parameterType="string" resultMap="listmap">
-		select distinct aaid,count(1) counts from album
+		select distinct auid,count(1) counts from album
 		<where>
 			<if test="_parameter!=null">
-				aaid like '%'||#{_parameter}||'%'
+				auid like '%'||#{_parameter}||'%'
 			</if>
 		</where>
-		group by aaid
+		group by auid
 	</select>
 	<resultMap type="java.util.Map" id="listmap">
 		<result column="counts" property="counts" />
-		<result column="aaid" property="aaid" />
+		<result column="auid" property="auid" />
 	</resultMap>
 </mapper>

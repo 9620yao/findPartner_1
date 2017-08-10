@@ -4,8 +4,7 @@
 <html>
 <head>
 <base href="${deployName }">
-<meta charset="UTF-8">
-<title>忘记密码</title>
+<jsp:include page="/include/Icon.jsp" /><!-- 公共图标 -->
 <link type="text/css" rel="stylesheet" href="easyui/themes/icon.css">
 <link type="text/css" rel="stylesheet"
 	href="easyui/themes/default/easyui.css">
@@ -36,7 +35,7 @@
 			</p>
 		</form>
 	</div>
-	
+
 
 	<script type="text/javascript" src="easyui/jquery.min.js"></script>
 	<script type="text/javascript" src="easyui/jquery.easyui.min.js"></script>

@@ -4,15 +4,14 @@
 <html>
 <head>
 <base href="${deployName }">
-<jsp:include page="/include/Icon.jsp" /><!-- 加载公共图标 -->
+<jsp:include page="/include/Icon.jsp" /><!-- 公共图标 -->
 <link rel="stylesheet" href="assets/css/amazeui.min.css">
 <link rel="stylesheet" href="assets/css/app.css">
 <link rel="stylesheet" href="bootstrap/3.3.4/css/bootstrap.min.css">
 <link rel="stylesheet" href="rel/css/indexcss.css">
 </head>
-
 <body id="blog-article-sidebar">
-	<jsp:include page="/include/header.jsp" /><!-- 加载公共头部 -->
+	<jsp:include page="/include/header.jsp" /><!-- 公共头部部分 -->
 
 	<!-- Modal -->
 	<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
@@ -71,13 +70,11 @@
 	</div>
 	<!-- content end -->
 
-	<!-- 加载公共foot start-->
-	<jsp:include page="/include/foot.jsp"></jsp:include>
-	<!-- 加载公共foot end-->
-
+	<jsp:include page="/include/foot.jsp" /><!-- 公共底部部分 -->
 
 	<script src="assets/js/jquery.min.js"></script>
 	<script src="bootstrap/3.3.4/js/bootstrap.min.js"></script>
+
 	<script type="text/javascript" charset="utf-8"
 		src="rel/ueditor/ueditor.config.js"></script>
 	<script type="text/javascript" charset="utf-8"

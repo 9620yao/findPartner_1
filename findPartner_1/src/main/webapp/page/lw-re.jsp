@@ -36,10 +36,6 @@
 	content="assets/i/app-icon72x72@2x.png">
 <meta name="msapplication-TileColor" content="#0e90d2">
 
-<!-- SEO: If your mobile URL is different from the desktop URL, add a canonical link to the desktop page https://developers.google.com/webmasters/smartphone-sites/feature-phones -->
-<!--
-  <link rel="canonical" href="http://www.example.com/">
-  -->
 <link type="text/css" rel="stylesheet" href="easyui/themes/icon.css">
 <link type="text/css" rel="stylesheet"
 	href="easyui/themes/default/easyui.css">
@@ -67,7 +63,7 @@
 				id="log-register">
 				<h1 class="log-title am-animation-slide-top">findPartner</h1>
 				<br>
-				<form class="am-form" id="log-form" action="partner/register"
+				<form class="am-form" id="log-form" action="login/register"
 					method="post">
 					<p>
 						<label style="color: red;">${emailError}&nbsp;</label>
@@ -132,14 +128,13 @@
 		</div>
 	</div>
 
-	<!-- 加载公共foot start-->
-	<jsp:include page="/include/foot.jsp"></jsp:include>
-	<!-- 加载公共foot end-->
-
 	<script type="text/javascript" src="assets/js/jquery.min.js"></script>
-	<script src="assets/js/amazeui.min.js"></script>
+
 	<script type="text/javascript" src="easyui/jquery.easyui.min.js"></script>
 	<script type="text/javascript" src="easyui/locale/easyui-lang-zh_CN.js"></script>
+
+	<script src="assets/js/amazeui.min.js"></script>
+	<script type="text/javascript" src="rel/js/login/rel.js"></script>
 	<script src="assets/js/app.js"></script>
 </body>
 </html>

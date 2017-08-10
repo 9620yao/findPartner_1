@@ -64,13 +64,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		homepage
 		where
 		hpuseid in (
-		select distinct (aid)
+		select distinct (uid)
 		from friends
-		where aid in
+		where uid in
 		(select
-		fid from friends where aid = #{hpuseid})
+		fid from friends where uid = #{hpuseid})
 		and fid = #{hpuseid}
-		or aid =
+		or uid =
 		#{hpuseid}
 		)
 	</select>
@@ -82,11 +82,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select * from homepage where
 		hpuseid in (
 		select
-		distinct (aid)
+		distinct (uid)
 		from friends
-		where aid in
+		where uid in
 		(select fid from friends where
-		aid = #{hpuseid})
+		uid = #{hpuseid})
 		and fid = #{hpuseid}
 		) or hpuseid = #{hpuseid}
 		order by

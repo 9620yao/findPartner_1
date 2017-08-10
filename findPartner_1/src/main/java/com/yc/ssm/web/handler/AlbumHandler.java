@@ -49,11 +49,16 @@ public class AlbumHandler {
 		return albumService.listAllAlbums(page, rows);
 	}
 
+	/**
+	 * 
+	 * @param album
+	 * @return
+	 */
 	@RequestMapping(value = "findunclear", method = RequestMethod.POST)
 	@ResponseBody
 	public List<Album> findByUnclearNames(Album album) {
-		album.setAaid(album.getAaid());
-		album.setAldate(album.getAaid());
+		album.setAuid(album.getAuid());
+		album.setAldate(album.getAuid());
 		return albumService.findAlbumInfoByName(album);
 	}
 	

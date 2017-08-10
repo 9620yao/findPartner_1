@@ -40,9 +40,6 @@
 <!--
   <link rel="canonical" href="http://www.example.com/">
   -->
-<link type="text/css" rel="stylesheet" href="easyui/themes/icon.css">
-<link type="text/css" rel="stylesheet"
-	href="easyui/themes/default/easyui.css">
 <link rel="stylesheet" href="assets/css/amazeui.min.css">
 <link rel="stylesheet" href="assets/css/app.css">
 </head>
@@ -65,7 +62,7 @@
 				class="am-u-lg-3 am-u-md-6 am-u-sm-8 am-u-sm-centered log-content">
 				<h1 class="log-title am-animation-slide-top">Find Partner</h1>
 				<br>
-				<form class="am-form" id="log-form" action="partner/login"
+				<form class="am-form" id="log-form" action="login/login"
 					method="POST">
 					<p>
 						<label style="color: red;">${errorMsg}&nbsp;</label>
@@ -91,14 +88,14 @@
 						录</button>
 					<p class="am-animation-slide-bottom log-animation-delay">
 						<a href="page/forgetPassword.jsp">忘记密码?</a>
-						
+
 					</p>
 					<div
 						class="am-btn-group  am-animation-slide-bottom log-animation-delay-b">
 						<p>使用第三方登录</p>
 						<a href="#" class="am-btn am-btn-secondary am-btn-sm"><i
-							class="am-icon-github am-icon-sm"></i> QQ</a> 
-							 <a href="#" class="am-btn am-btn-primary am-btn-sm"><i
+							class="am-icon-github am-icon-sm"></i> QQ</a> <a href="#"
+							class="am-btn am-btn-primary am-btn-sm"><i
 							class="am-icon-stack-overflow am-icon-sm"></i> WeiXin</a>
 					</div>
 				</form>
@@ -108,17 +105,8 @@
 
 
 
-	<!--[if (gte IE 9)|!(IE)]><!-->
 	<script src="assets/js/jquery.min.js"></script>
-	<!--<![endif]-->
-	<!--[if lte IE 8 ]>
-<script src="http://libs.baidu.com/jquery/1.11.3/jquery.min.js"></script>
-<script src="http://cdn.staticfile.org/modernizr/2.8.3/modernizr.js"></script>
-<script src="assets/js/amazeui.ie8polyfill.min.js"></script>
-<![endif]-->
 
-<script type="text/javascript" src="easyui/jquery.easyui.min.js"></script>
-	<script type="text/javascript" src="easyui/locale/easyui-lang-zh_CN.js"></script>
 	<script src="assets/js/amazeui.min.js"></script>
 	<script src="assets/js/app.js"></script>
 </body>

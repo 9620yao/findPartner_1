@@ -19,12 +19,12 @@ public class AlbumServiceImplTest {
 	@Test
 	public void testAddAlbum() {
 		Album album = new Album();
-		album.setAaid("a10055");
+		album.setAuid("a10055");
 		album.setAbname("我是一个新相册");
 		album.setAlcontent("我是对新相册的描述..");
 		System.out.println(albumService.addAlbum(album));
 	}
-	
+
 	@Test
 	public void testfpByabid() {
 		System.out.println(albumService.fpByabid("ab10000"));

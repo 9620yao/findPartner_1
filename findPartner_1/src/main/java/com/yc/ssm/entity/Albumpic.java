@@ -9,7 +9,9 @@ import java.io.Serializable;
  *
  */
 public class Albumpic implements Serializable {
+
 	private static final long serialVersionUID = 1L;
+	private String apid; // 相片编号
 	private String abid; // 相册编号
 	private String apic; // 图片
 	private String apiccontent; // 图片描述
@@ -18,11 +20,20 @@ public class Albumpic implements Serializable {
 	public Albumpic() {
 	}
 
-	public Albumpic(String abid, String apic, String apiccontent, String apicdate) {
+	public Albumpic(String apid, String abid, String apic, String apiccontent, String apicdate) {
+		this.apid = apid;
 		this.abid = abid;
 		this.apic = apic;
 		this.apiccontent = apiccontent;
 		this.apicdate = apicdate;
+	}
+
+	public String getApid() {
+		return apid;
+	}
+
+	public void setApid(String apid) {
+		this.apid = apid;
 	}
 
 	public String getAbid() {
@@ -59,8 +70,8 @@ public class Albumpic implements Serializable {
 
 	@Override
 	public String toString() {
-		return "\nAlbumpic [abid=" + abid + ", apic=" + apic + ", apiccontent=" + apiccontent + ", apicdate=" + apicdate
-				+ "]";
+		return "\nAlbumpic [apid=" + apid + ", abid=" + abid + ", apic=" + apic + ", apiccontent=" + apiccontent
+				+ ", apicdate=" + apicdate + "]";
 	}
 
 }

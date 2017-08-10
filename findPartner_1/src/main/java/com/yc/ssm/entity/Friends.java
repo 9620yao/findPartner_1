@@ -11,26 +11,25 @@ import java.io.Serializable;
 public class Friends implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-	private String aid; // 用户编号
+	private String uid; // 用户编号
 	private String fid; // 好友编号
 	private String sure; // 屏蔽状态
 
 	public Friends() {
 	}
 
-	public Friends(String aid, String fid, String sure) {
-		super();
-		this.aid = aid;
+	public Friends(String uid, String fid, String sure) {
+		this.uid = uid;
 		this.fid = fid;
 		this.sure = sure;
 	}
 
-	public String getAid() {
-		return aid;
+	public String getUid() {
+		return uid;
 	}
 
-	public void setAid(String aid) {
-		this.aid = aid;
+	public void setUid(String uid) {
+		this.uid = uid;
 	}
 
 	public String getFid() {
@@ -51,7 +50,7 @@ public class Friends implements Serializable {
 
 	@Override
 	public String toString() {
-		return "\nFriends [aid=" + aid + ", fid=" + fid + ", sure=" + sure + "]";
+		return "\nFriends [uid=" + uid + ", fid=" + fid + ", sure=" + sure + "]";
 	}
 
 }

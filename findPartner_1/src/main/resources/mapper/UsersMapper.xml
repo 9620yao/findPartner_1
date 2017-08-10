@@ -80,14 +80,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			</if>
 		</trim>
 		<where>
-			aid=#{aid}
+			uid=#{uid}
 		</where>
 	</update>
 
 	<select id="findUsersInfoByAid" parameterType="string"
 		resultMap="UsersMap">
-		select * from users u ,logining l where u.aid=#{aid} and
-		u.alid = l.lid
+		select * from users u ,logining l where u.uid=#{uid} and
+		u.ulid = l.lid
 	</select>
 
 	<!-- 分页查询 -->
@@ -95,7 +95,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<id column="total" property="total"></id><!-- id表示主键 主键相同 结果相同 -->
 		<id column="totalPage" property="totalPage"></id>
 		<collection property="rows" ofType="Users">
-			<id column="aid" property="aid" />
+			<id column="uid" property="uid" />
 			<result column="nickname" property="nickname" />
 			<result column="age" property="age" />
 			<result column="birthday" property="birthday" />
@@ -103,7 +103,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			<result column="hobby" property="hobby" />
 			<result column="job" property="job" />
 			<result column="picture" property="picture" />
-			<association property="Login" column="alid" javaType="Login">
+			<association property="Login" column="ulid" javaType="Login">
 				<id column="ulid" property="lid" />
 				<result column="gender" property="gender" />
 				<result column="email" property="email" />
@@ -128,8 +128,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<select id="listUserByAid" parameterType="string" resultMap="UsersMap">
 		select * from users u ,logining l where u.aid like '%'||#{uid}||'%'
-		and
-		u.ulid = l.lid
+		and u.ulid = l.lid
 	</select>
 
 </mapper>

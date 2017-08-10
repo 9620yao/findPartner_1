@@ -4,61 +4,61 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.yc.ssm.mapper.FriendMapper">
 	<select id="listFriendsInfo" parameterType="string" resultType="Users">
-		select * from users u where u.aid in (select fid from FRIENDS where
-		aid=#{aid} and fid in(select aid from FRIENDS where fid=#{aid}))
+		select * from users u where u.uid in (select fid from FRIENDS where
+		uid=#{uid} and fid in(select uid from FRIENDS where fid=#{uid}))
 	</select>
 
 	<insert id="addFriend" parameterType="java.util.Map">
 		insert into
-		friends(aid,fid) values(#{aid},#{fid})
+		friends(uid,fid) values(#{uid},#{fid})
 	</insert>
 
 	<select id="findFriendReq" parameterType="string" resultType="Users">
-		select * from users u where u.uid in (select aid from FRIENDS f where
-		f.fid=#{aid} and aid not in (select fid from FRIENDS f where
-		f.aid=#{aid}))
+		select * from users u where u.uid in (select uid from FRIENDS f where
+		f.fid=#{uid} and uid not in (select uid from FRIENDS f where
+		f.uid=#{uid}))
 	</select>
 
 	<select id="findIntroFriend" parameterType="string" resultType="Users">
 		select * from users u where u.uid not in (select f.fid from friends f
-		where f.aid=#{aid}) and u.uid!=#{aid} and u.address like '%'||(select
-		u.address from users u where u.uid=#{aid})||'%'
+		where f.uid=#{uid}) and u.uid!=#{uid} and u.address like '%'||(select
+		u.address from users u where u.uid=#{uid})||'%'
 	</select>
 
 	<select id="listCountReq" parameterType="string" resultType="int">
-		select count(aid) from FRIENDS f where f.fid=#{aid} and aid not in
-		(select fid from FRIENDS f where f.aid=#{aid})
+		select count(uid) from FRIENDS f where f.fid=#{uid} and uid not in
+		(select fid from FRIENDS f where f.uid=#{uid})
 	</select>
 
 	<select id="findMaybeKnow" parameterType="string" resultType="map">
-		SELECT TB.aid,TB.C,u.nickname,u.picture FROM (SELECT A.aid
-		aid,COUNT(aid)
-		c FROM (SELECT aid
+		SELECT TB.uid,TB.C,u.nickname,u.picture FROM (SELECT A.uid
+		uid,COUNT(uid)
+		c FROM (SELECT uid
 		FROM FRIENDS
 		WHERE FID IN
 		(SELECT FID
 		FROM FRIENDS
-		WHERE AID = #{aid}
-		AND FID IN (SELECT AID FROM FRIENDS
-		WHERE FID = #{aid}))
-		AND AID IN
+		WHERE UID = #{uid}
+		AND FID IN (SELECT UID FROM FRIENDS
+		WHERE FID = #{uid}))
+		AND UID IN
 		(SELECT FID
 		FROM FRIENDS
-		WHERE AID IN
+		WHERE UID IN
 		(SELECT FID
 		FROM FRIENDS
-		WHERE AID = #{aid}
-		AND FID IN (SELECT AID FROM
-		FRIENDS WHERE FID = #{aid})))
-		AND AID != #{aid}
-		AND AID NOT IN
+		WHERE UID = #{uid}
+		AND FID IN (SELECT uid FROM
+		FRIENDS WHERE FID = #{uid})))
+		AND UID != #{uid}
+		AND uID NOT IN
 		(SELECT
 		FID
 		FROM FRIENDS
-		WHERE AID = #{aid}
-		AND FID IN (SELECT AID FROM FRIENDS
-		WHERE FID = #{aid}))) A GROUP BY
-		aid) TB,USERS u WHERE TB.aid=u.aid
+		WHERE UID = #{uid}
+		AND FID IN (SELECT UID FROM FRIENDS
+		WHERE FID = #{uid}))) A GROUP BY
+		uid) TB,USERS u WHERE TB.uid=u.uid
 	</select>
 
 </mapper>
