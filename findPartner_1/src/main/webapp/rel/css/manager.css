@@ -1,0 +1,42 @@
+@charset "utf-8";
+
+* {
+	color: #082C5A;
+	font-family: "宋体";
+}
+
+.treeNav li {
+	margin: 10px;
+}
+
+#footer {
+	clear: both;
+	width: 947px;
+	margin: 14px auto 0;
+	text-align: center;
+}
+
+#footer p.copyright {
+	font: 14px/24px Arial;
+	color: #999;
+	margin-top: 15px;
+}
+
+#modifyForm p {
+	text-align: right;
+	margin-right: 20px;
+}
+
+#modifyForm p a {
+	margin-right: 20px;
+}
+
+.dialog-button {
+	background-color: white;
+	border-top-color: white;
+}
+
+.messager-body {
+	font-size: 18px;
+	padding-top: 40px;
+}

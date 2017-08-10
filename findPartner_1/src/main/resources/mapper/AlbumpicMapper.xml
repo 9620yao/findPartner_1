@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yc.ssm.mapper.AlbumpicMapper">
+	<select id="listApic" parameterType="string" resultType="com.yc.ssm.entity.Albumpic">
+		select *
+		from albumpic where abid = #{_parameter}
+	</select>
+
+	<insert id="addpic" parameterType="com.yc.ssm.entity.Albumpic">
+		insert into albumpic
+		values(last_insert_id(),#{apic},'',#{apicdate},'')
+	</insert>
+
+	<select id="HpAlbumpic" parameterType="com.yc.ssm.entity.Albumpic"
+		resultType="com.yc.ssm.entity.Albumpic">
+		select *
+		from albumpic where abid = #{abid} and
+		apicdate =
+		#{apicdate}
+	</select>
+
+	<select id="findAlbumpic" parameterType="string"
+		resultType="com.yc.ssm.entity.Albumpic">
+		select *
+		from albumpic
+		where abid = #{_parameter}
+	</select>
+
+</mapper>

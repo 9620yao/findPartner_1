@@ -1,0 +1,15 @@
+#builtimgs span{
+	margin-left: 5%;
+}
+
+#builtimgs input{
+	border-style:double;
+	border-left: hidden;
+	border-top: hidden;
+	border-right: hidden;
+	width: 39%;
+}
+
+#builtimgs textarea{
+	border-style:double;
+}

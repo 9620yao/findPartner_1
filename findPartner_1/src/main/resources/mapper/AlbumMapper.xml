@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yc.ssm.mapper.AlbumMapper">
+
+	<select id="listAlbum" parameterType="string" resultType="com.yc.ssm.entity.Album">
+		select
+		* from album where aaid = #{_parameter}
+	</select>
+
+	<select id="fpByabid" parameterType="string" resultType="com.yc.ssm.entity.Album">
+		select *
+		from album where abid = #{_parameter}
+	</select>
+
+	<insert id="addAlbum" parameterType="com.yc.ssm.entity.Album">
+		insert into
+		album(abname,aaid,alcontent,allocation,aldate,aheader,otheralbumone,otheralbumtwo)
+		values(#{abname},#{aaid},#{alcontent},
+		'',now(),'','','')
+	</insert>
+
+	<update id="updateAheader" parameterType="java.util.Map">
+		update
+		album set aheader
+		= #{picPath} where abid = #{abid}
+	</update>
+
+	<update id="updateAldate" parameterType="java.util.Map">
+		update
+		album set aldate =
+		#{aldate} where abid = #{abid}
+	</update>
+
+	<resultMap type="PaginationBean" id="PBMap">
+		<collection property="rows"
+			column="{pageSize=pageSize,currPage=currPage}" ofType="com.yc.ssm.entity.Album"
+			select="GetAllAlbums" />
+	</resultMap>
+	<select id="showAlbum" parameterType="PaginationBean" resultMap="PBMap"
+		useCache="false" flushCache="true">
+		select count(1) total,
+		ceil(count(1)/${pageSize}) totalPage
+		,${pageSize} pageSize ,${currPage}
+		currPage from album
+	</select>
+	<select id="GetAllAlbums" resultType="com.yc.ssm.entity.Album">
+		select t.* from (
+		select
+		n.*,rownum rn from (
+		select * from album) n
+		where ${currPage} *
+		${pageSize} >= rownum) t where
+		rn > (${currPage}-1)
+		* ${pageSize}
+	</select>
+
+
+	<select id="findByName" parameterType="Album" resultType="Album">
+		select
+		* from album where aaid like '%'||#{aaid}||'%' or aldate like
+		'%'||#{aaid}||'%'
+	</select>
+
+	<select id="countAlbum" parameterType="string" resultMap="listmap">
+		select distinct aaid,count(1) counts from album
+		<where>
+			<if test="_parameter!=null">
+				aaid like '%'||#{_parameter}||'%'
+			</if>
+		</where>
+		group by aaid
+	</select>
+	<resultMap type="java.util.Map" id="listmap">
+		<result column="counts" property="counts" />
+		<result column="aaid" property="aaid" />
+	</resultMap>
+</mapper>

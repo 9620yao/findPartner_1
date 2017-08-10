@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yc.ssm.mapper.SpeaksMapper">
+	<resultMap type="PaginationBean" id="PaginationBeanMap">
+		<result property="currPage" column="currPage" />
+		<result property="pageSize" column="pageSize" />
+		<collection property="rows"
+			column="{pageSize=pageSize,currPage=currPage,speakman=speakman}"
+			ofType="com.yc.ssm.entity.Speaks" select="GetPartTea" />
+	</resultMap>
+
+	<select id="PbeanSpeaks" parameterType="java.util.Map"
+		resultMap="PaginationBeanMap" useCache="false" flushCache="true">
+		select
+		count(1) total,ceil(count(1) / ${pBean.pageSize})
+		totalPage,${pBean.currPage}
+		currPage,${pBean.pageSize}
+		pageSize,#{speakman} speakman
+		from
+		speaks where
+		speakman=#{speakman}
+	</select>
+	<select id="GetPartTea" resultType="com.yc.ssm.entity.Speaks">
+		select t.* from (
+		select
+		n.*,rownum rn from (
+		select * from speaks where
+		speakman=#{speakman}
+		order by senddate desc) n
+		where ${currPage} *
+		${pageSize} >= rownum) t
+		where
+		rn > (${currPage}-1)
+		* ${pageSize}
+	</select>
+
+	<insert id="addSpeaks" parameterType="Speaks">
+		insert into
+		speaks(sid,content,speakman,senddate)
+		values(last_insert_id(),#{content},#{speakman}
+		,now())
+	</insert>
+
+	<select id="findSid" resultType="string">
+		select max(sid) sid from speaks
+	</select>
+
+	<select id="findSpeaks" parameterType="java.util.Map"
+		resultType="com.yc.ssm.entity.Speaks">
+		select * from speaks where
+		sid = #{sid} and
+		speakman=#{speakman}
+	</select>
+
+	<resultMap type="PaginationBean" id="PBMap">
+		<collection property="rows"
+			column="{pageSize=pageSize,currPage=currPage}" ofType="com.yc.ssm.entity.Speaks"
+			select="GetAllSpeaks" />
+	</resultMap>
+	<select id="showSpeaks" parameterType="PaginationBean"
+		resultMap="PBMap" useCache="false" flushCache="true">
+		select count(1) total,
+		ceil(count(1)/${pageSize}) totalPage
+		,${pageSize} pageSize ,${currPage}
+		currPage from speaks
+	</select>
+	<select id="GetAllSpeaks" resultType="com.yc.ssm.entity.Speaks">
+		select t.* from (
+		select
+		n.*,rownum rn from (
+		select * from speaks) n
+		where ${currPage} *
+		${pageSize} >= rownum) t where
+		rn > (${currPage}-1)
+		* ${pageSize}
+	</select>
+
+	<select id="findByName" parameterType="Speaks" resultType="Speaks">
+		select * from speaks where speakman like '%'||#{speakman}||'%' or
+		senddate like '%'||#{speakman}||'%'
+	</select>
+
+	<select id="countSpeaks" parameterType="string" resultMap="listmap">
+		select distinct speakman,count(1) counts from speaks
+		<where>
+			<if test="_parameter!=null">
+				speakman like '%'||#{_parameter}||'%'
+			</if>
+		</where>
+		group by speakman
+	</select>
+	<resultMap type="java.util.Map" id="listmap">
+		<result column="counts" property="counts" />
+		<result column="speakman" property="speakman" />
+	</resultMap>
+</mapper>

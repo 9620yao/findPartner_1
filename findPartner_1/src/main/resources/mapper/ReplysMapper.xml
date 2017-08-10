@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yc.ssm.mapper.ReplysMapper">
+	<select id="listreplys" parameterType="string" resultType="com.yc.ssm.entity.Replys">
+		select * from replys where rcid = #{_parameter}
+	</select>
+
+	<insert id="addReplys" parameterType="com.yc.ssm.entity.Replys">
+		insert into replys
+		values(last_insert_id(),#{rcid},#{ruserid},#{rtargetid},#{rcontent},
+		now(),'','')
+	</insert>
+</mapper>

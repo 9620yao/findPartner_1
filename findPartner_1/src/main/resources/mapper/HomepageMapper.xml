@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yc.ssm.mapper.HomepageMapper">
+	<insert id="addhomepage" parameterType="com.yc.ssm.entity.Homepage">
+		insert into homepage
+		values(last_insert_id(),#{hpid},#{hpuseid},#{hpdate},'','')
+	</insert>
+
+	<resultMap type="PaginationBean" id="PaginationBeanMap">
+		<result property="currPage" column="currPage" />
+		<result property="pageSize" column="pageSize" />
+		<collection property="rows"
+			column="{pageSize=pageSize,currPage=currPage,hpuseid=hpuseid}"
+			ofType="com.yc.ssm.entity.Homepage" select="GetPartTea" />
+	</resultMap>
+
+	<select id="pblist" parameterType="java.util.Map" resultMap="PaginationBeanMap"
+		useCache="false" flushCache="true">
+		select
+		count(1) total,ceil(count(1) /
+		${pBean.pageSize})
+		totalPage,${pBean.currPage}
+		currPage,${pBean.pageSize}
+		pageSize,#{hpuseid} hpuseid
+		from
+		homepage
+		where
+		hpuseid=#{hpuseid}
+	</select>
+
+	<select id="GetPartTea" resultType="com.yc.ssm.entity.Homepage">
+		select t.* from (
+		select
+		n.*,rownum rn from (
+		select * from homepage where
+		hpuseid=#{hpuseid}
+		order by hpdate desc) n
+		where ${currPage} *
+		${pageSize} >= rownum) t
+		where
+		rn > (${currPage}-1)
+		* ${pageSize}
+	</select>
+
+	<resultMap type="PaginationBean" id="selfPaginationBeanMap">
+		<result property="currPage" column="currPage" />
+		<result property="pageSize" column="pageSize" />
+		<collection property="rows"
+			column="{pageSize=pageSize,currPage=currPage,hpuseid=hpuseid}"
+			ofType="com.yc.ssm.entity.Homepage" select="selfGetPartTea" />
+	</resultMap>
+
+	<select id="selflist" parameterType="java.util.Map" resultMap="selfPaginationBeanMap"
+		useCache="false" flushCache="true">
+		select
+		count(1) total,ceil(count(1) /
+		${pBean.pageSize})
+		totalPage,${pBean.currPage}
+		currPage,${pBean.pageSize}
+		pageSize,#{hpuseid} hpuseid
+		from
+		homepage
+		where
+		hpuseid in (
+		select distinct (aid)
+		from friends
+		where aid in
+		(select
+		fid from friends where aid = #{hpuseid})
+		and fid = #{hpuseid}
+		or aid =
+		#{hpuseid}
+		)
+	</select>
+
+	<select id="selfGetPartTea" resultType="com.yc.ssm.entity.Homepage">
+		select t.* from (
+		select
+		n.*,rownum rn from (
+		select * from homepage where
+		hpuseid in (
+		select
+		distinct (aid)
+		from friends
+		where aid in
+		(select fid from friends where
+		aid = #{hpuseid})
+		and fid = #{hpuseid}
+		) or hpuseid = #{hpuseid}
+		order by
+		hpdate desc) n
+		where ${currPage} *
+		${pageSize} >= rownum) t
+		where
+		rn >
+		(${currPage}-1)
+		* ${pageSize}
+	</select>
+
+</mapper>

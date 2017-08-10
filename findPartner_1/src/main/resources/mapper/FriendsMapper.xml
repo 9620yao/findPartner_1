@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yc.ssm.mapper.FriendMapper">
+	<select id="listFriendsInfo" parameterType="string" resultType="Users">
+		select * from users u where u.aid in (select fid from FRIENDS where
+		aid=#{aid} and fid in(select aid from FRIENDS where fid=#{aid}))
+	</select>
+
+	<insert id="addFriend" parameterType="java.util.Map">
+		insert into
+		friends(aid,fid) values(#{aid},#{fid})
+	</insert>
+
+	<select id="findFriendReq" parameterType="string" resultType="Users">
+		select * from users u where u.uid in (select aid from FRIENDS f where
+		f.fid=#{aid} and aid not in (select fid from FRIENDS f where
+		f.aid=#{aid}))
+	</select>
+
+	<select id="findIntroFriend" parameterType="string" resultType="Users">
+		select * from users u where u.uid not in (select f.fid from friends f
+		where f.aid=#{aid}) and u.uid!=#{aid} and u.address like '%'||(select
+		u.address from users u where u.uid=#{aid})||'%'
+	</select>
+
+	<select id="listCountReq" parameterType="string" resultType="int">
+		select count(aid) from FRIENDS f where f.fid=#{aid} and aid not in
+		(select fid from FRIENDS f where f.aid=#{aid})
+	</select>
+
+	<select id="findMaybeKnow" parameterType="string" resultType="map">
+		SELECT TB.aid,TB.C,u.nickname,u.picture FROM (SELECT A.aid
+		aid,COUNT(aid)
+		c FROM (SELECT aid
+		FROM FRIENDS
+		WHERE FID IN
+		(SELECT FID
+		FROM FRIENDS
+		WHERE AID = #{aid}
+		AND FID IN (SELECT AID FROM FRIENDS
+		WHERE FID = #{aid}))
+		AND AID IN
+		(SELECT FID
+		FROM FRIENDS
+		WHERE AID IN
+		(SELECT FID
+		FROM FRIENDS
+		WHERE AID = #{aid}
+		AND FID IN (SELECT AID FROM
+		FRIENDS WHERE FID = #{aid})))
+		AND AID != #{aid}
+		AND AID NOT IN
+		(SELECT
+		FID
+		FROM FRIENDS
+		WHERE AID = #{aid}
+		AND FID IN (SELECT AID FROM FRIENDS
+		WHERE FID = #{aid}))) A GROUP BY
+		aid) TB,USERS u WHERE TB.aid=u.aid
+	</select>
+
+</mapper>
