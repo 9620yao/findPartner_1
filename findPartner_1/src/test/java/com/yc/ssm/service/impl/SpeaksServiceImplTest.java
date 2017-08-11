@@ -42,5 +42,10 @@ public class SpeaksServiceImplTest {
 		System.out.println("查找后speaks:"+speaks);
 		homepageService.addhompage(speaks.getSid(), speaks.getSpeakman(), speaks.getSenddate());
 	}
+	
+	@Test
+	public void CountSpeaks() {
+		System.out.println(speaksService.countSpeaks("3"));
+	}
 
 }

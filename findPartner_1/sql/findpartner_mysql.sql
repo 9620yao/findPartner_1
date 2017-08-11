@@ -17,6 +17,7 @@ alter table logining AUTO_INCREMENT=1000;
 -- select * from users
 -- drop table users
 --delete from users
+
 --个人信息表
 CREATE TABLE users(
 	uid int PRIMARY KEY auto_increment,-- 用户编号
@@ -71,12 +72,13 @@ CREATE TABLE album(
 	auid int, -- 相册发表人
 	alcontent VARCHAR(500),-- 相册内容（相册描述）
 	allocation VARCHAR(100),-- 相册上传位置
-	aldate VARCHAR(20), -- 相册上传时间
+	aldate VARCHAR(100), -- 相册上传时间
 	aheader VARCHAR(500),-- 相册最外面显示的图片（可以是该相册下的图片，也可以使用户自定义的图片）
 	otheralbumone VARCHAR(40),
 	otheralbumtwo VARCHAR(40)
 );
 alter table album AUTO_INCREMENT=1000;
+
 -- select * from albumpic;
 -- drop table album
 -- 相册-图片（某相册下的所有图片）
@@ -85,7 +87,7 @@ create table albumpic(
 	abid int,-- 相册编号
 	apic VARCHAR(500),-- 图片   （多图片）
 	apiccontent VARCHAR(500),-- 图片描述
-	apicdate VARCHAR(40),-- 修改为 图片上传时间
+	apicdate VARCHAR(100),-- 修改为 图片上传时间
 	otheralbumpictwo VARCHAR(40)
 );
 alter table albumpic AUTO_INCREMENT=1000;
@@ -103,7 +105,6 @@ CREATE TABLE words(
 );
 -- drop table words
 alter table words AUTO_INCREMENT=1000;
-
 -- select * from comments
 -- 评论表（只包括 说说/相册/相片/留言 的单一评论）
 CREATE table comments(
@@ -160,10 +161,10 @@ create table userpower(
 );
 alter table userpower AUTO_INCREMENT=1000;
 --------------------------------------------------------------------
---select * from homepage
---select * from speaks
---select * from album
---insert into homepage values('ab10000','a10056','2017-04-07 12:21:20','','')
+-- select * from homepage
+-- select * from speaks
+-- select * from album
+
 
 --auid 用户编号 a10056 a10057 a10055
 
@@ -178,4 +179,4 @@ create table backadmin(
 );
 		
 -- select * from logining limit 1,20;
--- select * from friends;
+-- select * from homepage;

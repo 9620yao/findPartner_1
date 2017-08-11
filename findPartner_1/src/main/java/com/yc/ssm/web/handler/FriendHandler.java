@@ -23,28 +23,47 @@ import com.yc.ssm.util.ServletUtil;
 @Controller("friendHandler")
 @RequestMapping("friend")
 public class FriendHandler {
+
 	@Autowired
 	private FriendService friendService;
+	
 	@Autowired
 	private UsersService userService;
 
+	/**
+	 * 显示用户的好友
+	 * 
+	 * @param session
+	 * @return
+	 */
 	@RequestMapping(value = "list", method = RequestMethod.GET)
 	@ResponseBody
 	public List<Users> listFriends(HttpSession session) {
 		LogManager.getLogger().debug("我进来了 listFriends");
-		String aid = (String) session.getAttribute(ServletUtil.USERAID);
-		return friendService.listFriends(aid);
+		String uid = (String) session.getAttribute(ServletUtil.USERAID);
+		return friendService.listFriends(uid);
 	}
 
-	// 查找好友
+	/**
+	 * 查找好友
+	 * 
+	 * @param uid
+	 * @return
+	 */
 	@RequestMapping(value = "findFriend", method = RequestMethod.POST)
 	@ResponseBody
-	public Users findFriendsById(String aid) {
-		LogManager.getLogger().debug("我进来了 findFriendsById aid===>" + aid);
-		return userService.listUsersInfoByAid(aid);
+	public Users findFriendsById(String uid) {
+		LogManager.getLogger().debug("我进来了 findFriendsById uid===>" + uid);
+		return userService.listUsersInfoByAid(uid);
 	}
 
-	// 添加好友
+	/**
+	 * 添加好友
+	 * 
+	 * @param aid
+	 * @param session
+	 * @return
+	 */
 	@RequestMapping(value = "add", method = RequestMethod.POST)
 	@ResponseBody
 	public boolean insertFriend(String aid, HttpSession session) {
@@ -53,22 +72,32 @@ public class FriendHandler {
 		return friendService.insertFriend(uid, aid);
 	}
 
-	// 好友请求
+	/**
+	 * 好友请求
+	 * 
+	 * @param session
+	 * @return
+	 */
 	@RequestMapping(value = "reqAdd", method = RequestMethod.GET)
 	@ResponseBody
 	public List<Users> friendReq(HttpSession session) {
 		LogManager.getLogger().debug("我进来了 friendReq ");
-		String aid = (String) session.getAttribute(ServletUtil.USERAID);
-		return friendService.listFrienfReq(aid);
+		String uid = (String) session.getAttribute(ServletUtil.USERAID);
+		return friendService.listFrienfReq(uid);
 	}
 
-	// 系统推荐好友
+	/**
+	 * 系统推荐好友
+	 * 
+	 * @param session
+	 * @return
+	 */
 	@RequestMapping(value = "introFriend", method = RequestMethod.GET)
 	@ResponseBody
 	public List<Users> listIntroFriend(HttpSession session) {
 		LogManager.getLogger().debug("我进来了 listIntroFriend");
-		String aid = (String) session.getAttribute(ServletUtil.USERAID);
-		return friendService.listIntroFriend(aid);
+		String uid = (String) session.getAttribute(ServletUtil.USERAID);
+		return friendService.listIntroFriend(uid);
 	}
 
 	/**
@@ -100,22 +129,32 @@ public class FriendHandler {
 
 	}
 
-	// 取到请求添加你为好友的人数
+	/**
+	 * 取到请求添加你为好友的人数
+	 * 
+	 * @param session
+	 * @return
+	 */
 	@RequestMapping(value = "reqCount", method = RequestMethod.GET)
 	@ResponseBody
 	public int reqCount(HttpSession session) {
 		LogManager.getLogger().debug("我进来了 friendReq ");
-		String aid = (String) session.getAttribute(ServletUtil.USERAID);
-		return friendService.countReq(aid);
+		String uid = (String) session.getAttribute(ServletUtil.USERAID);
+		return friendService.countReq(uid);
 	}
 
-	// 可能认识的人
+	/**
+	 * 可能认识的人
+	 * 
+	 * @param session
+	 * @return
+	 */
 	@RequestMapping(value = "friendKnow", method = RequestMethod.GET)
 	@ResponseBody
 	public List<Map<String, Object>> listFriendKnow(HttpSession session) {
 		LogManager.getLogger().debug("我进来了 listFriendKnow");
-		String aid = (String) session.getAttribute(ServletUtil.USERAID);
-		return friendService.listMaybeKnow(aid);
+		String uid = (String) session.getAttribute(ServletUtil.USERAID);
+		return friendService.listMaybeKnow(uid);
 	}
 
 }

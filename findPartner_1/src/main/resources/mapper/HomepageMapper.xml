@@ -12,8 +12,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<resultMap type="PaginationBean" id="PaginationBeanMap">
 		<result property="currPage" column="currPage" />
 		<result property="pageSize" column="pageSize" />
-		<collection property="rows"
-			column="{pageSize=pageSize,currPage=currPage,hpuseid=hpuseid}"
+		<collection property="rows" column="{min=min,max=max,hpuseid=hpuseid}"
 			ofType="com.yc.ssm.entity.Homepage" select="GetPartTea" />
 	</resultMap>
 
@@ -24,7 +23,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		${pBean.pageSize})
 		totalPage,${pBean.currPage}
 		currPage,${pBean.pageSize}
-		pageSize,#{hpuseid} hpuseid
+		pageSize,#{hpuseid}
+		hpuseid,${pBean.currPage} *
+		${pBean.pageSize} max,(${pBean.currPage}-1)
+		* ${pBean.pageSize} min
 		from
 		homepage
 		where
@@ -32,24 +34,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 
 	<select id="GetPartTea" resultType="com.yc.ssm.entity.Homepage">
-		select t.* from (
-		select
-		n.*,rownum rn from (
 		select * from homepage where
 		hpuseid=#{hpuseid}
-		order by hpdate desc) n
-		where ${currPage} *
-		${pageSize} >= rownum) t
-		where
-		rn > (${currPage}-1)
-		* ${pageSize}
+		order by hpdate desc limit #{min},#{max}
 	</select>
 
 	<resultMap type="PaginationBean" id="selfPaginationBeanMap">
 		<result property="currPage" column="currPage" />
 		<result property="pageSize" column="pageSize" />
-		<collection property="rows"
-			column="{pageSize=pageSize,currPage=currPage,hpuseid=hpuseid}"
+		<collection property="rows" column="{max=max,min=min,hpuseid=hpuseid}"
 			ofType="com.yc.ssm.entity.Homepage" select="selfGetPartTea" />
 	</resultMap>
 
@@ -60,16 +53,21 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		${pBean.pageSize})
 		totalPage,${pBean.currPage}
 		currPage,${pBean.pageSize}
-		pageSize,#{hpuseid} hpuseid
+		pageSize,#{hpuseid}
+		hpuseid,${pBean.currPage} *
+		${pBean.pageSize} max,(${pBean.currPage}-1)
+		* ${pBean.pageSize} min
 		from
 		homepage
 		where
 		hpuseid in (
-		select distinct (uid)
+		select distinct
+		(uid)
 		from friends
 		where uid in
 		(select
-		fid from friends where uid = #{hpuseid})
+		fid from friends where uid =
+		#{hpuseid})
 		and fid = #{hpuseid}
 		or uid =
 		#{hpuseid}
@@ -77,27 +75,21 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 
 	<select id="selfGetPartTea" resultType="com.yc.ssm.entity.Homepage">
-		select t.* from (
-		select
-		n.*,rownum rn from (
-		select * from homepage where
+		select * from homepage
+		where
 		hpuseid in (
 		select
 		distinct (uid)
 		from friends
 		where uid in
-		(select fid from friends where
+		(select
+		fid from friends where
 		uid = #{hpuseid})
 		and fid = #{hpuseid}
-		) or hpuseid = #{hpuseid}
+		) or
+		hpuseid = #{hpuseid}
 		order by
-		hpdate desc) n
-		where ${currPage} *
-		${pageSize} >= rownum) t
-		where
-		rn >
-		(${currPage}-1)
-		* ${pageSize}
+		hpdate desc limit #{min},#{max}
 	</select>
 
 </mapper>

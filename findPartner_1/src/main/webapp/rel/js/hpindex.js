@@ -7,10 +7,6 @@ function GetFinallyAid() {
 		"faid" : faid
 	},
 	function(data) {
-		// alert(data);
-		// alert(JSON.stringify(data)); //JSON.stringify()
-		// ,把json对象转换成json字符串
-		// alert(data.finalaid);
 		if (data.faid == "-1") {
 			$("#myfriend").show();
 			$(".updatepwd").show();
@@ -28,7 +24,7 @@ function GetFinallyAid() {
 			$(".myalbum").attr("href", "page/lw-img.jsp?aid=" + faid);
 			$(".updatepwd").attr("href",
 					"page/lw-modifyPwd.jsp?aid=" + faid);
-			//selfhomepage(currPage);// 是自己页面的时候显示个人中心
+			selfhomepage(currPage);// 是自己页面的时候显示个人中心
 		} else {
 			$("#myfriend").hide();
 			$(".updatepwd").hide();
@@ -48,7 +44,7 @@ function GetFinallyAid() {
 					"page/lw-img.jsp?aid=" + data.faid);
 			$(".updatepwd").attr("href",
 					"page/lw-modifyPwd.jsp?aid=" + data.faid);
-			//showhomepage(currPage);// 是好友页面的时候显示他的主页
+			showhomepage(currPage);// 是好友页面的时候显示他的主页
 		}
 	}, "json")
 }
@@ -96,9 +92,7 @@ function selfhomepage(currPage) {
 					return false;
 				}
 				homepage(data);
-				// alert(JSON.stringify(data));
 				var pagination = "";
-				// console.info(data.currPage+"|"+data.totalPage);
 				if (data.currPage == data.totalPage) {
 					pagination += '<div><a class="addmore" href="javascript:void(0)">已经到底部</a></div>';
 				} else {
@@ -106,7 +100,6 @@ function selfhomepage(currPage) {
 						+ (data.currPage + 1)
 						+ ')">点击加载更多</a></div>';
 				}
-				// alert(pagination);
 				$("#page")[0].innerHTML = pagination;
 			}, "json");
 }
@@ -361,11 +354,11 @@ function openPicture(aid) {
 		}
 		// alert(JSON.stringify(data));
 		// alert($(".uname"+data.aid).val(data.nickname));
-		$(".uPic" + data.aid).attr(
+		$(".uPic" + data.uid).attr(
 				"src",
 				data.picture == null || data.picture == "" ? "images/timg.jpg"
 						: data.picture);
-		$(".uname" + data.aid).html(data.nickname);
+		$(".uname" + data.uid).html(data.nickname);
 	}, "JSON")
 }
 

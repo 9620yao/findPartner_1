@@ -58,8 +58,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="countSpeaks" parameterType="string" resultMap="listmap">
 		select distinct speakman,count(1) counts from speaks
 		<where>
-			<if test="_parameter!=null">
-				speakman like '%'||#{_parameter}||'%'
+			<if test="_parameter!=null and _parameter!=''">
+				speakman = #{_parameter}
 			</if>
 		</where>
 		group by speakman

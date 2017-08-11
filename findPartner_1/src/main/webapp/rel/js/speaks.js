@@ -191,8 +191,8 @@ function openPicture(aid){
 		if(data==null||data==""){
 			return false;
 		}
-		$(".uPic"+data.aid).attr("src",data.picture==null||data.picture==""?"images/timg.jpg":data.picture);
-		$(".uname"+data.aid).html(data.nickname);
+		$(".uPic"+data.uid).attr("src",data.picture==null||data.picture==""?"images/timg.jpg":data.picture);
+		$(".uname"+data.uid).html(data.nickname);
 	},"JSON")
 }
 

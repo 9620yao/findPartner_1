@@ -10,6 +10,11 @@ import com.yc.ssm.entity.Homepage;
 import com.yc.ssm.entity.PaginationBean;
 import com.yc.ssm.service.HomepageService;
 
+/**
+ * 
+ * @author 姚秋林
+ *
+ */
 @Controller("homepageHandler")
 @RequestMapping("homepage")
 public class HomepageHandler {

@@ -23,7 +23,6 @@ public class FriendServiceTest {
 		List<Users> users=friendService.listFriends("10000");
 		System.out.println(users);
 		assertNotNull(users);
-		
 	}
 	
 	@Test

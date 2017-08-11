@@ -46,6 +46,9 @@ function GetFinallyAid(){
 wordcount();
 function wordcount(){
 	$.post("words/countWords",{"waid":faid},function(data){
+		if(data==null || data==""){
+			return false;
+		}
 		$(".spcount").html(data[0].counts);
 	},"json");
 }
@@ -54,9 +57,9 @@ var currPage = 1;
 listWords(currPage);
 function listWords(currPage){
 	$.post("words/list",{"currPage":currPage,"faid":faid}, function(data){
-		// alert(data);
-		// alert(JSON.stringify(data)); //JSON.stringify() ,把json对象转换成json字符串
-		//alert(JSON.stringify(data.rows));
+		if(data==null || data==""){
+			return false;
+		}
 		var wordsStr = "";
 		for (var i = 0; i < data.rows.length; i++) {
 			wordsStr+='<div style="margin-left: 2%;margin-top: 3%;">';
@@ -190,8 +193,8 @@ function openPicture(aid){
 		}
 		//alert(JSON.stringify(data));
 		//alert($(".uname"+data.aid).val(data.nickname));
-		$(".uPic"+data.aid).attr("src",data.picture==null||data.picture==""?"images/timg.jpg":data.picture);
-		$(".uname"+data.aid).html(data.nickname);
+		$(".uPic"+data.uid).attr("src",data.picture==null||data.picture==""?"images/timg.jpg":data.picture);
+		$(".uname"+data.uid).html(data.nickname);
 	},"JSON")
 }
 

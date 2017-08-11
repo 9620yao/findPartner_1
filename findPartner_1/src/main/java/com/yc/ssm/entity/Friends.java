@@ -13,7 +13,7 @@ public class Friends implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private String uid; // 用户编号
 	private String fid; // 好友编号
-	private String sure; // 屏蔽状态
+	private String sure; // 状态
 
 	public Friends() {
 	}

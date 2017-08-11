@@ -16,9 +16,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<insert id="addAlbum" parameterType="com.yc.ssm.entity.Album">
 		insert into
-		album(abname,auid,alcontent,allocation,aldate,aheader,otheralbumone,otheralbumtwo)
-		values(#{abname},#{auid},#{alcontent},
-		'',now(),'','','')
+		album(abname,auid,alcontent,aldate)
+		values(#{abname},#{auid},#{alcontent},now())
 	</insert>
 
 	<update id="updateAheader" parameterType="java.util.Map">
@@ -34,26 +33,24 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</update>
 
 	<resultMap type="PaginationBean" id="PBMap">
-		<collection property="rows"
-			column="{pageSize=pageSize,currPage=currPage}" ofType="com.yc.ssm.entity.Album"
-			select="GetAllAlbums" />
+		<collection property="rows" column="{min=min,max=max}"
+			ofType="com.yc.ssm.entity.Album" select="GetAllAlbums" />
 	</resultMap>
 	<select id="showAlbum" parameterType="PaginationBean" resultMap="PBMap"
 		useCache="false" flushCache="true">
 		select count(1) total,
 		ceil(count(1)/${pageSize}) totalPage
 		,${pageSize} pageSize ,${currPage}
-		currPage from album
+		currPage,${currPage} *
+		${pageSize} max,(${currPage}-1)
+		* ${pageSize} min
+		from album
 	</select>
 	<select id="GetAllAlbums" resultType="com.yc.ssm.entity.Album">
-		select t.* from (
-		select
-		n.*,rownum rn from (
-		select * from album) n
-		where ${currPage} *
-		${pageSize} >= rownum) t where
-		rn > (${currPage}-1)
-		* ${pageSize}
+		select * from album
+		limit
+		order by aldate desc
+		#{min},#{max}
 	</select>
 
 

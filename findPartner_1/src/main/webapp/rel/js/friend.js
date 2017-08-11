@@ -17,7 +17,7 @@ function loadFriendsInfo(){
 		var friendList="";
 		for (var i = 0; i < data.length; i++) {
 			friendList+='<div style="width:300px;float:left;margin-top:10px;"><div class="testdiv" style="float:left;margin-left:20px;">';
-			friendList+=data[i].picture==null?'<img style="width:100px;height:100px;border:none;" onclick="showuser(\''+data[i].aid+'\')" src="images/not_pic.jpg">':'<img style="width:100px;height:100px;border:none;" onclick="showuser(\''+data[i].aid+'\')" src="'+data[i].picture+'">';
+			friendList+=data[i].picture==null?'<img style="width:100px;height:100px;border:none;" onclick="showuser(\''+data[i].uid+'\')" src="images/not_pic.jpg">':'<img style="width:100px;height:100px;border:none;" onclick="showuser(\''+data[i].uid+'\')" src="'+data[i].picture+'">';
 			friendList+='</div><div style="float:left;margin-left:5px;width:150px;"><h3 style="color:green;">'+data[i].nickname+'</h3>';
 			friendList+='<span style="display:block;">'+data[i].address+'</span><span style="display:block;margin-left:3px;">'+data[i].star+'</span></div></div>'
 		}

@@ -25,6 +25,13 @@ public class AlbumHandler {
 	@Autowired
 	private AlbumService albumService;
 
+	/**
+	 * 显示相册
+	 * 
+	 * @param faid当前用户
+	 * @param session
+	 * @return
+	 */
 	@RequestMapping("list")
 	@ResponseBody
 	public List<Album> list(String faid, HttpSession session) {
@@ -32,14 +39,20 @@ public class AlbumHandler {
 		return albumService.listAlbum(faid);
 	}
 
+	/**
+	 * 添加相册
+	 * @param strimg
+	 * @param Album
+	 * @param session
+	 * @return
+	 */
 	@RequestMapping("newimgs")
 	public String NewImgs(@RequestParam("strimg") String strimg, Album Album, HttpSession session) {
-		String aaid = (String) session.getAttribute(ServletUtil.FINALAID);
-		LogManager.getLogger().debug("我是Album list() 我进来了 aaid:" + aaid);
-		if (albumService.addAlbum(Album)) {
-			return "redirect:" + strimg.split("/findPartner")[1];
-		}
-		return "redirect:/page/lw-log.jsp";// 取不到返回地址的时候 回到登录界面
+		String auid = (String) session.getAttribute(ServletUtil.USERAID);
+		LogManager.getLogger().debug("我是Album list() 我进来了 aaid:" + auid);
+		Album.setAuid(auid);
+		albumService.addAlbum(Album);
+		return "redirect:" + strimg.split("/findPartner")[1];
 	}
 
 	@RequestMapping(value = "showAlbums", method = RequestMethod.POST)
@@ -61,19 +74,18 @@ public class AlbumHandler {
 		album.setAldate(album.getAuid());
 		return albumService.findAlbumInfoByName(album);
 	}
-	
+
 	@RequestMapping(value = "countAlbum", method = RequestMethod.POST)
 	@ResponseBody
 	public List<Map<String, Object>> countAlbum(String aaid) {
 		LogManager.getLogger().debug("我进来了countSpeaks：" + aaid);
 		return albumService.countAlbum(aaid);
 	}
-	
+
 	@RequestMapping(value = "findunclearing", method = RequestMethod.POST)
 	@ResponseBody
 	public List<Map<String, Object>> findByUnclearNames(String aaid) {
-		return albumService.countAlbum(aaid);	
+		return albumService.countAlbum(aaid);
 	}
-
 
 }

@@ -7,6 +7,7 @@
 <jsp:include page="/include/Icon.jsp" /><!-- 公共图标 -->
 <link rel="stylesheet" href="assets/css/amazeui.min.css">
 <link rel="stylesheet" href="assets/css/app.css">
+<link rel="stylesheet" href="bootstrap/3.3.4/css/bootstrap.min.css">
 <link rel="stylesheet" href="rel/css/indexcss.css">
 </head>
 <body id="blog-article-sidebar">
@@ -23,6 +24,8 @@
 	<jsp:include page="/include/foot.jsp" /><!-- 公共底部部分 -->
 
 	<script src="assets/js/jquery.min.js"></script>
+	<script src="bootstrap/3.3.4/js/bootstrap.min.js"></script>
+	
 	<script src="assets/js/amazeui.min.js"></script>
 	<script src="assets/js/pinto.min.js"></script>
 	<script src="assets/js/img.js"></script>
