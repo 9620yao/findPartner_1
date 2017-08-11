@@ -169,14 +169,14 @@ alter table userpower AUTO_INCREMENT=1000;
 --auid 用户编号 a10056 a10057 a10055
 
 create table backadmin(
-	buid VARCHAR(20),--管理员编号
-	baemail VARCHAR(20),--管理员邮箱
-	baname VARCHAR(40),--管理员姓名
-	bapwd VARCHAR(40),--管理员密码
-	badate VARCHAR(100), --注册时间
+	buid int primary key AUTO_INCREMENT,-- 管理员编号
+	baemail VARCHAR(20),-- 管理员邮箱
+	baname VARCHAR(40),-- 管理员姓名
+	bapwd VARCHAR(40),-- 管理员密码
+	badate VARCHAR(100), -- 注册时间
 	otherbackadminone VARCHAR(40),
 	otherbackadmintwo VARCHAR(40)
 );
-		
+alter table backadmin AUTO_INCREMENT=1000;		
 -- select * from logining limit 1,20;
 -- select * from homepage;

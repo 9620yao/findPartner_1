@@ -37,6 +37,6 @@
 			</p>
 		</form>
 	</div>
-	<script type="text/javascript" src="rel/js/speaks_info.js"></script>
+	<script type="text/javascript" src="rel/js/back/speaks_info.js"></script>
 </body>
 </html>

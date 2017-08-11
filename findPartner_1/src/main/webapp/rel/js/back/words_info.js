@@ -1,5 +1,5 @@
 $('#wordsInfo').datagrid({    
-	url:'words/showWords',  
+	url:'words/list', 
 	fitColumns:true,
 	//fit:true,
 	singleSelect:true,

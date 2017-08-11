@@ -18,6 +18,6 @@
 	<br>
 	<div id="wordsDetail"></div>
 	<br><br>
-	<script type="text/javascript" src="rel/js/words_count.js"></script>
+	<script type="text/javascript" src="rel/js/back/words_count.js"></script>
 </body>
 </html>

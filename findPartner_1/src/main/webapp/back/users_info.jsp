@@ -51,6 +51,6 @@
 			</p>
 			<p><a class="closeBtn" href="javascript:void(0)">关闭</a>&nbsp;&nbsp;
 	</div>
-	<script type="text/javascript" src="rel/js/users_info.js"></script>
+	<script type="text/javascript" src="rel/js/back/users_info.js"></script>
 </body>
 </html>

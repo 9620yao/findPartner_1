@@ -8,6 +8,6 @@
 </head>
 <body>
 	<table id="powerInfo"></table>
-	<script type="text/javascript" src="rel/js/users_power.js"></script>
+	<script type="text/javascript" src="rel/js/back/users_power.js"></script>
 </body>
 </html>

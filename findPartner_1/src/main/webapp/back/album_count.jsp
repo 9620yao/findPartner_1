@@ -15,6 +15,6 @@
 	<table id="albumInfo"></table>
 	<div id="albumDetail">
 	</div>
-	<script type="text/javascript" src="rel/js/album_count.js"></script>
+	<script type="text/javascript" src="rel/js/back/album_count.js"></script>
 </body>
 </html>

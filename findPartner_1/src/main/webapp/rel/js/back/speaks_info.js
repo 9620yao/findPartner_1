@@ -1,5 +1,5 @@
 $('#speaksInfo').datagrid({    
-	url:'speaks/showSpeaks',  
+	url:'speaks/list',  
 	fitColumns:true,
 	//fit:true,
 	singleSelect:true,

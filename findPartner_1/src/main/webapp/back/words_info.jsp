@@ -39,6 +39,6 @@
 		</form>
 	</div>
 	<br><br>
-	<script type="text/javascript" src="rel/js/words_info.js"></script>
+	<script type="text/javascript" src="rel/js/back/words_info.js"></script>
 </body>
 </html>

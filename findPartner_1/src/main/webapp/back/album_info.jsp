@@ -43,6 +43,6 @@
 			</p>
 		</form>
 	</div>
-	<script type="text/javascript" src="rel/js/album_info.js"></script>
+	<script type="text/javascript" src="rel/js/back/album_info.js"></script>
 </body>
 </html>

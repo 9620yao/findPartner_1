@@ -17,6 +17,6 @@
 	<table id="speaksCountInfo"></table>
 	<div id="speaksCount">
 	</div>
-	<script type="text/javascript" src="rel/js/speaks_count.js"></script>
+	<script type="text/javascript" src="rel/js/back/speaks_count.js"></script>
 </body>
 </html>
