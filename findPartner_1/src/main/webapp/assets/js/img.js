@@ -1,3 +1,1 @@
-$(function(){
-      $('#container').pinto();
-    });
+$(function(){$("#container").pinto()});

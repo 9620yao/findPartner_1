@@ -1,6 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"
-	isELIgnored="false"%>
-<!DOCTYPE html>
+	isELIgnored="false"%><!DOCTYPE html>
 <html>
 <head>
 <base href="${deployName }">
@@ -17,7 +16,6 @@
 			</h1>
 		</div>
 	</header>
-
 	<div class="log">
 		<div class="am-g">
 			<div
@@ -32,7 +30,7 @@
 					<div class="am-input-group am-radius am-animation-slide-left">
 						<input type="email" id="doc-vld-email-2-1" name="baemail"
 							class="am-radius" data-validation-message="请输入正确邮箱地址"
-							placeholder="邮箱" required /> <span
+							placeholder="邮箱" required /><span
 							class="am-input-group-label log-icon am-radius"><i
 							class="am-icon-user am-icon-sm am-icon-fw"></i></span>
 					</div>
@@ -40,7 +38,7 @@
 					<div
 						class="am-input-group am-animation-slide-left log-animation-delay">
 						<input type="password" class="am-form-field am-radius log-input"
-							name="bapwd" placeholder="密码" minlength="1" required> <span
+							name="bapwd" placeholder="密码" minlength="1" required><span
 							class="am-input-group-label log-icon am-radius"><i
 							class="am-icon-lock am-icon-sm am-icon-fw"></i></span>
 					</div>
@@ -56,9 +54,7 @@
 			</div>
 		</div>
 	</div>
-
 	<script src="assets/js/jquery.min.js"></script>
-
 	<script src="assets/js/amazeui.min.js"></script>
 	<script src="assets/js/app.js"></script>
 </body>
