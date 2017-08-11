@@ -9,8 +9,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 
 	<insert id="addComments">
-		insert into comments
-		values(last_insert_id(),#{callid},#{detail},#{comuserid},
-		now(),'','')
+		insert into
+		comments(callid,detail,comuserid,comTime)
+		values(#{callid},#{detail},#{comuserid},now())
 	</insert>
 </mapper>

@@ -14,8 +14,6 @@ public interface WordsService {
 
 	PaginationBean<Words> listWords(String waid, String page, String rows);
 
-	PaginationBean<Words> listAllWords(String page, String rows);
-
 	List<Words> findWordsInfoByName(Words words);
 
 	List<Map<String, Object>> countWords(String waid);

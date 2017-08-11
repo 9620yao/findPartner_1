@@ -6,9 +6,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<resultMap type="PaginationBean" id="PaginationBeanMap">
 		<result property="currPage" column="currPage" />
 		<result property="pageSize" column="pageSize" />
-		<collection property="rows"
-			column="{pageSize=pageSize,currPage=currPage,waid=waid}" ofType="com.yc.ssm.entity.Words"
-			select="GetPartTea" />
+		<collection property="rows" column="{min=min,max=max,waid=waid}"
+			ofType="com.yc.ssm.entity.Words" select="GetPartTea" />
 	</resultMap>
 
 	<select id="PbeanWords" parameterType="java.util.Map" resultMap="PaginationBeanMap"
@@ -18,62 +17,33 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		${pBean.pageSize})
 		totalPage,${pBean.currPage}
 		currPage,${pBean.pageSize}
-		pageSize,#{waid} waid
+		pageSize,#{waid}
+		waid,${pBean.currPage}*${pBean.pageSize}
+		max,(${pBean.currPage}-1)*${pBean.pageSize} min
 		from
-		words where
-		waid=#{waid}
+		words
+		<where>
+			<if test="waid!=null and waid!=''">
+				waid=#{waid}
+			</if>
+		</where>
 	</select>
 
 	<select id="GetPartTea" resultType="com.yc.ssm.entity.Words">
-		select t.* from (
-		select
-		n.*,rownum rn from (
-		select * from words where
-		waid=#{waid} order by
-		wdate desc) n
-		where
-		${currPage} *
-		${pageSize} >= rownum) t where
-		rn >
-		(${currPage}-1)
-		*
-		${pageSize}
+		select * from words
+		<where>
+			<if test="waid!=null and waid!=''">
+				waid=#{waid}
+			</if>
+		</where>
+		order by wdate desc limit #{min},#{max}
 	</select>
 
 	<insert id="addWords" parameterType="Words">
-		insert into Words
-		values(last_insert_id(),#{waid},#{wfrendid},#{wcontent},'',now(),'','')
+		insert into
+		Words(waid,wfrendid,wcontent,wdate)
+		values(#{waid},#{wfrendid},#{wcontent},now())
 	</insert>
-
-	<resultMap type="PaginationBean" id="PBMap">
-		<collection property="rows"
-			column="{pageSize=pageSize,currPage=currPage}" ofType="com.yc.ssm.entity.Words"
-			select="GetPartWords" />
-	</resultMap>
-
-	<select id="showWords" parameterType="PaginationBean" resultMap="PBMap"
-		useCache="false" flushCache="true">
-		select
-		count(1) total,ceil(count(1) /
-		${pageSize})
-		totalPage,${currPage}
-		currPage,${pageSize}
-		pageSize
-		from
-		words
-	</select>
-
-	<select id="GetPartWords" resultType="com.yc.ssm.entity.Words">
-		select t.* from (
-		select
-		n.*,rownum rn from (
-		select * from words) n
-		where
-		${currPage} *
-		${pageSize} >= rownum) t
-		where rn > (${currPage}-1)*${pageSize}
-	</select>
-
 
 	<select id="findByName" parameterType="Words" resultType="Words">
 		select

@@ -34,9 +34,12 @@ public class WordsServiceTest {
 		assertNotNull(words);
 	}
 	
+	/**
+	 * 分页测试数据
+	 */
 	@Test
 	public void testListAllWords(){
-		PaginationBean<Words> ss=wordsService.listAllWords("1", "5");
+		PaginationBean<Words> ss=wordsService.listWords(null,"1", "5");
 		System.out.println(ss);
 		assertNotNull(ss);
 	}

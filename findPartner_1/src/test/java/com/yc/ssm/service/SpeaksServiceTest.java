@@ -1,6 +1,6 @@
 package com.yc.ssm.service;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertNotNull;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -10,7 +10,6 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.yc.ssm.entity.PaginationBean;
 import com.yc.ssm.entity.Speaks;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -44,13 +43,6 @@ public class SpeaksServiceTest {
 		assertNotNull(speaks);
 	}
 
-	@Test
-	public void testListSpeaks() {
-		PaginationBean<Speaks> ss = speaksService.listAllSpeaks("1", "5");
-		System.out.println(ss);
-		assertNotNull(ss);
-	}
-	
 	@Test
 	public void testFindSpeaks() {
 		@SuppressWarnings("resource")

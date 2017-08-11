@@ -24,6 +24,13 @@ public class CommentsHandler {
 	@Autowired
 	private CommentsService commentsService;
 
+	/**
+	 * 
+	 * @param sid
+	 *            说说或者留言编号
+	 * @param request
+	 * @return
+	 */
 	@RequestMapping(value = "list", method = RequestMethod.POST)
 	@ResponseBody
 	public List<Comments> listComments(String sid, HttpServletRequest request) {
@@ -34,7 +41,8 @@ public class CommentsHandler {
 	/**
 	 * 添加评论
 	 * 
-	 * @param strcomment 页面的请求地址
+	 * @param strcomment
+	 *            页面的请求地址
 	 * @param comments
 	 * @param sesssion
 	 * @return
@@ -46,10 +54,7 @@ public class CommentsHandler {
 		String comuserid = (String) sesssion.getAttribute(ServletUtil.USERAID);
 		comments.setComuserid(comuserid);
 		commentsService.addComments(comments);// 添加评论
-		if (strcomment != null) {
-			return "redirect:" + strcomment.split("/findPartner")[1];// 根据传过来的添加界面，然后返回什么界面
-		}
-		return "redirect:/page/lw-index.jsp";
+		return "redirect:" + strcomment.split("/findPartner")[1];// 根据传过来的添加界面，然后返回什么界面
 	}
 
 }

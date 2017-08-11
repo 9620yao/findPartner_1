@@ -6,8 +6,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<resultMap type="PaginationBean" id="PaginationBeanMap">
 		<result property="currPage" column="currPage" />
 		<result property="pageSize" column="pageSize" />
-		<collection property="rows"
-			column="{pageSize=pageSize,currPage=currPage,speakman=speakman}"
+		<collection property="rows" column="{min=min,max=max,speakman=speakman}"
 			ofType="com.yc.ssm.entity.Speaks" select="GetPartTea" />
 	</resultMap>
 
@@ -17,30 +16,32 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		count(1) total,ceil(count(1) / ${pBean.pageSize})
 		totalPage,${pBean.currPage}
 		currPage,${pBean.pageSize}
-		pageSize,#{speakman} speakman
+		pageSize,(${pBean.currPage}-1)*${pBean.pageSize}
+		min,${pBean.currPage}*${pBean.pageSize}
+		max,#{speakman} speakman
 		from
-		speaks where
-		speakman=#{speakman}
+		speaks
+		<where>
+			<if test="speakman!=null and speakman!=''">
+				speakman=#{speakman}
+			</if>
+		</where>
 	</select>
 	<select id="GetPartTea" resultType="com.yc.ssm.entity.Speaks">
-		select t.* from (
-		select
-		n.*,rownum rn from (
-		select * from speaks where
-		speakman=#{speakman}
-		order by senddate desc) n
-		where ${currPage} *
-		${pageSize} >= rownum) t
-		where
-		rn > (${currPage}-1)
-		* ${pageSize}
+		select * from speaks
+		<where>
+			<if test="speakman!=null and speakman!=''">
+				speakman=#{speakman}
+			</if>
+		</where>
+		order by senddate desc limit ${min} ,${max}
 	</select>
 
-	<insert id="addSpeaks" parameterType="Speaks">
-	insert into
-	speaks(sid,content,speakman,senddate)
-	values(last_insert_id(),#{content},#{speakman}
-	,now())
+	<insert id="addSpeaks" parameterType="Speaks" useGeneratedKeys="true"
+		keyProperty="sid">
+		insert into
+		speaks(content,speakman,senddate)
+		values(#{content},#{speakman} ,now())
 	</insert>
 
 	<select id="findSid" resultType="string">
@@ -52,34 +53,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select * from speaks where
 		sid = #{sid} and
 		speakman=#{speakman}
-	</select>
-
-	<resultMap type="PaginationBean" id="PBMap">
-		<collection property="rows"
-			column="{pageSize=pageSize,currPage=currPage}" ofType="com.yc.ssm.entity.Speaks"
-			select="GetAllSpeaks" />
-	</resultMap>
-	<select id="showSpeaks" parameterType="PaginationBean"
-		resultMap="PBMap" useCache="false" flushCache="true">
-		select count(1) total,
-		ceil(count(1)/${pageSize}) totalPage
-		,${pageSize} pageSize ,${currPage}
-		currPage from speaks
-	</select>
-	<select id="GetAllSpeaks" resultType="com.yc.ssm.entity.Speaks">
-		select t.* from (
-		select
-		n.*,rownum rn from (
-		select * from speaks) n
-		where ${currPage} *
-		${pageSize} >= rownum) t where
-		rn > (${currPage}-1)
-		* ${pageSize}
-	</select>
-
-	<select id="findByName" parameterType="Speaks" resultType="Speaks">
-		select * from speaks where speakman like '%'||#{speakman}||'%' or
-		senddate like '%'||#{speakman}||'%'
 	</select>
 
 	<select id="countSpeaks" parameterType="string" resultMap="listmap">

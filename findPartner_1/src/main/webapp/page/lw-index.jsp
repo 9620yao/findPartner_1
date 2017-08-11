@@ -110,9 +110,7 @@
 							<h1 id="opt_type">修改个人信息</h1>
 							<form action="user/update" id="updateUserInfo" method="post"
 								enctype="multipart/form-data">
-								<span style="margin-left: 3%;">个人信息：</span> <input id="aid"
-									name="aid" type="text" style="display: block; margin-left: 3%;"
-									readonly="readonly" />
+								<input id="uid" name="uid" type="hidden" />
 								<ul>
 									<li><input id="pictrue" type="file" name="picData"
 										onchange="chgPic(this)" /><br> <img
@@ -227,10 +225,12 @@
 	<script src="assets/js/jquery.min.js"></script>
 	<script src="bootstrap/3.3.4/js/bootstrap.min.js"></script>
 	<script src="assets/js/amazeui.min.js"></script>
-	<script src="rel/layer/jquery.js?v=1.83.min"></script>
+	<!-- <script src="rel/layer/jquery.js?v=1.83.min"></script> -->
 	<script src="rel/layer/layer.min.js"></script>
+
 	<script type="text/javascript" src="rel/js/hpindex.js"></script>
-	<script type="text/javascript" src="rel/js/index.js"></script>
+	<script type="text/javascript" src="rel/js/index/index.js"></script>
+	
 	<script type="text/javascript" src="rel/js/indexpic.js"></script>
 	<script type="text/javascript" src="rel/js/indexcss.js"></script>
 	<script type="text/javascript" src="My97DatePicker/WdatePicker.js"></script>

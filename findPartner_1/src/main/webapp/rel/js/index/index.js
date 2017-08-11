@@ -1,8 +1,9 @@
 function loadAdminInfo() {
 	// 以异步的方式取到个人的信息
-	$.get("user/getByid",{"faid":faid}, function(data) {
-		// alert("请求响应成功。。"+data);
-		// alert(JSON.stringify(data)); //JSON.stringify() ,把json对象转换成json字符串
+	$.get("user/getByid", {
+		"faid" : faid
+	}, function(data) {
+		//alert(JSON.stringify(data)); //JSON.stringify() ,把json对象转换成json字符串
 
 		showUserInfo(data);
 		showUser(data);
@@ -21,7 +22,7 @@ function showUserInfo(data) {
 	$("#inickname").append(data.nickname);
 	$("#iage").append(data.age);
 	$("#ibirthday").append(data.birthday);
-	$("#igender").append(data.partner.gender);
+	$("#igender").append(data.login.gender);
 	$("#istar").append(data.star);
 	$("#ihobby").append(data.hobby);
 	$("#ijob").append(data.job);
@@ -33,7 +34,7 @@ function showUserInfo(data) {
 	$("#iastate").append(data.astate);
 }
 
-// 显示个人信息
+// 显示模态框的个人信息
 function showUser(data) {
 	$("#pictrue").val("");
 	if (data.picture) {
@@ -42,7 +43,7 @@ function showUser(data) {
 		$(".pic").attr("src", "images/not_pic.jpg");
 	}
 	// alert(data.aid)
-	$("#aid").val(data.aid);
+	$("#uid").val(data.uid);
 	$("#nickname").val(data.nickname);
 	$("#age").val(data.age);
 	$("#birthday").val(data.birthday);
@@ -68,12 +69,12 @@ $(function() {
 	})
 });
 
-function updateInfo(){
-	var age=$("#age").val();
-	//alert(age);
-	if((age>=6 && age<=100)||age==""||age==null){
+function updateInfo() {
+	var age = $("#age").val();
+	// alert(age);
+	if ((age >= 6 && age <= 100) || age == "" || age == null) {
 		$("#updateUserInfo").submit();
-	}else{
+	} else {
 		$("#errAge").html("年龄限制6-100");
 	}
 }

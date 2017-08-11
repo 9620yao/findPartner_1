@@ -6,10 +6,10 @@
 <head>
 <base href="${deployName}">
 <jsp:include page="/include/Icon.jsp" /><!-- 公共图标 -->
-<link rel="stylesheet" href="rel/css/message.css">
-<link rel="stylesheet" href="bootstrap/3.3.4/css/bootstrap.min.css">
 <link rel="stylesheet" href="assets/css/amazeui.min.css">
 <link rel="stylesheet" href="assets/css/app.css">
+<link rel="stylesheet" href="bootstrap/3.3.4/css/bootstrap.min.css">
+<link rel="stylesheet" href="rel/css/message.css">
 <link rel="stylesheet" href="rel/css/indexcss.css">
 </head>
 <body>

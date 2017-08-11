@@ -40,9 +40,17 @@ public class UsersHandler {
 		return usersService.listUsersInfoByAid(faid);
 	}
 
+	/**
+	 * 修改个人信息
+	 * 
+	 * @param picData 图片
+	 * @param users	修改得user对象
+	 * @param session
+	 * @return
+	 */
 	@RequestMapping(value = "update", method = RequestMethod.POST)
 	public String modify(@RequestParam("picData") MultipartFile picData, Users users, HttpSession session) {
-		LogManager.getLogger().debug("picData==>" + picData, "user==>" + users);
+		LogManager.getLogger().debug("picData==>" + picData, "，user==>" + users);
 		if (picData != null && !picData.isEmpty()) {
 			String picPath = null;
 			try {

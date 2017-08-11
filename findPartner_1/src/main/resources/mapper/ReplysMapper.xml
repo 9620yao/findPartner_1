@@ -8,8 +8,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 
 	<insert id="addReplys" parameterType="com.yc.ssm.entity.Replys">
-		insert into replys
-		values(last_insert_id(),#{phone},#{rcid},#{ruserid},#{rtargetid},#{rcontent},
-		now(),'','')
+		insert into
+		replys(rcid,ruserid,rtargetid,rcontent,rtime)
+		values(#{rcid},#{ruserid},#{rtargetid},#{rcontent},now())
 	</insert>
 </mapper>

@@ -1,7 +1,7 @@
 var url = window.location.href;
 var faid = url.split('?')[1].split('=')[1];
 
-GetFinallyAid();
+GetFinallyAid();//判断当前用户是自己还是好友
 function GetFinallyAid() {
 	$.post("friend/finalAid", {
 		"faid" : faid
@@ -28,7 +28,7 @@ function GetFinallyAid() {
 			$(".myalbum").attr("href", "page/lw-img.jsp?aid=" + faid);
 			$(".updatepwd").attr("href",
 					"page/lw-modifyPwd.jsp?aid=" + faid);
-			selfhomepage(currPage);// 是自己页面的时候显示个人中心
+			//selfhomepage(currPage);// 是自己页面的时候显示个人中心
 		} else {
 			$("#myfriend").hide();
 			$(".updatepwd").hide();
@@ -48,7 +48,7 @@ function GetFinallyAid() {
 					"page/lw-img.jsp?aid=" + data.faid);
 			$(".updatepwd").attr("href",
 					"page/lw-modifyPwd.jsp?aid=" + data.faid);
-			showhomepage(currPage);// 是好友页面的时候显示他的主页
+			//showhomepage(currPage);// 是好友页面的时候显示他的主页
 		}
 	}, "json")
 }

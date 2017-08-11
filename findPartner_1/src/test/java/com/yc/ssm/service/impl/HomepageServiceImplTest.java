@@ -22,7 +22,7 @@ public class HomepageServiceImplTest {
 
 	@Test
 	public void testselflist() {
-		System.out.println(homepageService.selflist("a10056", "1", "10"));
+		System.out.println(homepageService.selflist("1", "1", "10"));
 	}
 
 }

@@ -61,12 +61,7 @@ function listSpeaks(currPage) {
 				if(data==null||data==""){
 					return false;
 				}
-				// alert(data);
-				// alert(JSON.stringify(data)); //JSON.stringify()
-				// ,把json对象转换成json字符串
-				// alert(JSON.stringify(data.rows));
 				var speaksStr = "";
-				/* var speaksStr2 = ""; */
 				for (var i = 0; i < data.rows.length; i++) {
 					speaksStr+='<div><img onclick="showuser(\''+data.rows[i].speakman+'\')" class="picture uPic'+data.rows[i].speakman+'" src="images/timg.jpg">';
 					speaksStr+='<a onclick="showuser(\''+data.rows[i].speakman+'\')" class="uname'+data.rows[i].speakman+'" href="javascript:void(0)" style="margin-left: 1%;">'+data.rows[i].speakman+'</a>';
@@ -95,15 +90,12 @@ function listSpeaks(currPage) {
 listSpeaks(currPage);
 //根据说说编号去查说说下的评论
 function comments(sid) {
-	// alert(sid);
 	$.post("comments/list", {
 		"sid" : sid
 	}, function(data) {
 		if (data == null || data == "") {
 			return false;
 		}
-		// alert(data);
-		// alert(JSON.stringify(data)); //JSON.stringify() ,把json对象转换成json字符串
 		var commentStr = "";
 		for (var i = 0; i < data.length; i++) {
 			commentStr += '<div><img onclick="showuser(\''+data[i].comuserid+'\')" class="picture uPic'+data[i].comuserid+'" src="images/timg.jpg">';
@@ -130,7 +122,6 @@ function replys(cid) {
 		if (data == null || data == "") {
 			return false;
 		}
-		// alert(JSON.stringify(data)); //JSON.stringify() ,把json对象转换成json字符串
 		var replysStr = "";
 		for (var i = 0; i < data.length; i++) {
 			replysStr += '<div><img onclick="showuser(\''+data[i].ruserid+'\')" class="picture uPic'+data[i].ruserid+'"  src="images/timg.jpg">';
@@ -153,7 +144,6 @@ var ue = UE.getEditor('ueditor');
 
 //点击添加说说
 function addSpeak() {
-	// alert(ue.getContentTxt());
 	$("#content").val(ue.getContentTxt());
 	$("#strspeaks").val(url);
 	$("#myspeak").submit();
@@ -177,7 +167,6 @@ function Getdetail(){
 
 //点击评论的回复
 function addcr(cid,comuserid){
-	//alert(JSON.stringify(obj)); //JSON.stringify() ,把json对象转换成json字符串
 	$(".rcid").val(cid);
 	$(".strreplys").val(url);
 	$(".rtargetid").val(comuserid);
@@ -185,7 +174,6 @@ function addcr(cid,comuserid){
 
 //点击回复的回复
 function addreplys(rid,ruserid){
-	//alert(JSON.stringify(obj)); //JSON.stringify() ,把json对象转换成json字符串
 	$(".rcid").val(rid);
 	$(".strreplys").val(url);
 	$(".rtargetid").val(ruserid);
@@ -193,20 +181,16 @@ function addreplys(rid,ruserid){
 //回复点击提交
 function Getrcontent(){
 	var text = $(".democomment").text();
-	//alert(text);
 	$(".rcontent").val(text);
 	$("#rform").submit();
 }
 
 //获取用户头像，昵称
 function openPicture(aid){
-	//alert(date);
 	$.post("user/aid",{"aid":aid},function(data){
 		if(data==null||data==""){
 			return false;
 		}
-		//alert(JSON.stringify(data));
-		//alert($(".uname"+data.aid).val(data.nickname));
 		$(".uPic"+data.aid).attr("src",data.picture==null||data.picture==""?"images/timg.jpg":data.picture);
 		$(".uname"+data.aid).html(data.nickname);
 	},"JSON")

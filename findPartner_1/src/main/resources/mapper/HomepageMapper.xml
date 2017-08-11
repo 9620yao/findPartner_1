@@ -4,8 +4,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.yc.ssm.mapper.HomepageMapper">
 	<insert id="addhomepage" parameterType="com.yc.ssm.entity.Homepage">
-		insert into homepage
-		values(last_insert_id(),#{hpid},#{hpuseid},#{hpdate},'','')
+		insert into
+		homepage(hpid,hpuseid,hpdate)
+		values(#{hpid},#{hpuseid},#{hpdate})
 	</insert>
 
 	<resultMap type="PaginationBean" id="PaginationBeanMap">

@@ -10,16 +10,12 @@ public interface SpeaksService {
 
 	boolean add(Speaks speaks);
 
-	// List<Speaks> listSpeaks(String speakman);
-
 	PaginationBean<Speaks> listSpeaks(String speakman, String page, String rows);
 
 	Speaks findSpeaks(String sid, String speakman);
 
 	String findSid();
 
-	PaginationBean<Speaks> listAllSpeaks(String page, String rows);
-	
 	List<Speaks> findSpeaksInfoByName(Speaks speaks);
 	
 	List<Map<String, Object>> countSpeaks(String speakman);

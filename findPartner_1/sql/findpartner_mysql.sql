@@ -13,7 +13,7 @@ CREATE TABLE logining(
 	otherlogone varchar(40),
 	otherlogtwo varchar(40)
 );
-
+alter table logining AUTO_INCREMENT=1000;
 -- select * from users
 -- drop table users
 --delete from users
@@ -38,6 +38,7 @@ CREATE TABLE users(
 	otheradminstwo VARCHAR(40),
 	FOREIGN KEY (ulid) REFERENCES logining(lid)
 );
+alter table users AUTO_INCREMENT=1000;
 -- select * from friends;
 -- 好友关注表（某用户下的所有好友）
 CREATE TABLE friends(
@@ -92,7 +93,7 @@ alter table albumpic AUTO_INCREMENT=1000;
 -- 留言表
 CREATE TABLE words(
 	wid int PRIMARY KEY AUTO_INCREMENT,-- 留言编号
-	wuid int, -- 用户编号
+	waid int, -- 用户编号
 	wfrendid int, -- 留言人(谁在留言)
 	wcontent VARCHAR(500),-- 留言内容
 	waddress VARCHAR(50),-- 留言人所在位置
@@ -116,11 +117,6 @@ CREATE table comments(
 );
 alter table comments AUTO_INCREMENT=1000;
 -- drop table comments
-
-
--- alter table words modify( wdate VARCHAR(100));
--- alter table comments modify( comTime VARCHAR(100));
--- alter table replys modify( rtime VARCHAR(100))
 
 
 -- select * from replys;
@@ -180,5 +176,6 @@ create table backadmin(
 	otherbackadminone VARCHAR(40),
 	otherbackadmintwo VARCHAR(40)
 );
-
-
+		
+-- select * from logining limit 1,20;
+-- select * from friends;

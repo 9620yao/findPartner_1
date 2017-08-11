@@ -15,10 +15,10 @@ import com.yc.ssm.service.WordsService;
 
 @Service("wordsService")
 public class WordsServiceImpl implements WordsService {
-	
+
 	@Autowired
 	private WordsMapper wordsMapper;
-	
+
 	public void setWordsMapper(WordsMapper wordsMapper) {
 		this.wordsMapper = wordsMapper;
 	}
@@ -41,18 +41,6 @@ public class WordsServiceImpl implements WordsService {
 		map.put("waid", waid);
 		map.put("pBean", pBean);
 		return wordsMapper.PbeanWords(map);
-	}
-
-	@Override
-	public PaginationBean<Words> listAllWords(String page, String rows) {
-		PaginationBean<Words> pBean=new PaginationBean<Words>();
-		if(page!=null){
-			pBean.setCurrPage(Integer.parseInt(page));
-		}
-		if(rows!=null){
-			pBean.setPageSize(Integer.parseInt(rows));
-		}
-		return wordsMapper.showWords(pBean);
 	}
 
 	@Override

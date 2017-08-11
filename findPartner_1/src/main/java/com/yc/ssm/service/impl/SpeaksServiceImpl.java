@@ -50,17 +50,6 @@ public class SpeaksServiceImpl implements SpeaksService {
 		return speaksMapper.findSpeaks(map);
 	}
 
-	public PaginationBean<Speaks> listAllSpeaks(String page, String rows) {
-		PaginationBean<Speaks> pBean = new PaginationBean<Speaks>();
-		if (page != null) {
-			pBean.setCurrPage(Integer.parseInt(page));
-		}
-		if (rows != null) {
-			pBean.setPageSize(Integer.parseInt(rows));
-		}
-		return speaksMapper.showSpeaks(pBean);
-	}
-
 	@Override
 	public List<Speaks> findSpeaksInfoByName(Speaks speaks) {
 		return speaksMapper.findByName(speaks);

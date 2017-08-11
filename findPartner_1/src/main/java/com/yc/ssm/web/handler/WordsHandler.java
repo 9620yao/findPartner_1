@@ -22,9 +22,18 @@ import com.yc.ssm.util.ServletUtil;
 @Controller("wordsHandler")
 @RequestMapping("words")
 public class WordsHandler {
+	
 	@Autowired
 	private WordsService wordsService;
 
+	/**
+	 * 分页显示留言,记得修改后台显示数据 showWords
+	 * @param faid 当前用户编号
+	 * @param currPage 当前页
+	 * @param rows 行数
+	 * @param request
+	 * @return
+	 */
 	@RequestMapping("list")
 	@ResponseBody
 	public PaginationBean<Words> listWords(String faid, Integer currPage, String rows, HttpServletRequest request) {
@@ -32,24 +41,20 @@ public class WordsHandler {
 		return wordsService.listWords(faid, String.valueOf(currPage), "5");
 	}
 
-	@RequestMapping(value = "showWords", method = RequestMethod.POST)
-	@ResponseBody
-	public PaginationBean<Words> showAllWords(String page, String rows) {
-		LogManager.getLogger().debug("我进来了 showAllWords==>currPage=" + page);
-		return wordsService.listAllWords(page, rows);
-	}
-
+	/**
+	 * 添加留言
+	 * @param strword
+	 * @param words
+	 * @param session
+	 * @return
+	 */
 	@RequestMapping(value = "add", method = RequestMethod.POST)
 	public String addWords(@RequestParam("strword") String strword, Words words, HttpSession session) {
 		LogManager.getLogger().debug("我进来了 addWords==>words:" + words);
-		// 评论人为登录用户
-		String wfrendid = (String) session.getAttribute(ServletUtil.USERAID);
+		String wfrendid = (String) session.getAttribute(ServletUtil.USERAID);// 评论人为登录用户
 		words.setWfrendid(wfrendid);
 		wordsService.add(words);
-		if (strword != null) {
-			return "redirect:" + strword.split("/findPartner")[1];
-		}
-		return "redirect:/page/lw-log.jsp";
+		return "redirect:" + strword.split("/findPartner")[1];
 	}
 
 	@RequestMapping(value = "findunclear", method = RequestMethod.POST)
