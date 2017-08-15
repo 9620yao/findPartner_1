@@ -1,6 +1,7 @@
 package com.yc.ssm.entity;
 
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * 回复：回复评论，或者针对回复进行回复
@@ -18,6 +19,7 @@ public class Replys implements Serializable {
 	private String rtargetid; // 目标用户编号
 	private String rcontent; // 回复内容
 	private String rtime; // 回复时间
+	private List<Replys> replys; // 回复时间
 
 	public Replys() {
 	}
@@ -79,10 +81,18 @@ public class Replys implements Serializable {
 		this.rtime = rtime;
 	}
 
+	public List<Replys> getReplys() {
+		return replys;
+	}
+
+	public void setReplys(List<Replys> replys) {
+		this.replys = replys;
+	}
+
 	@Override
 	public String toString() {
 		return "\nReplys [rid=" + rid + ", rcid=" + rcid + ", ruserid=" + ruserid + ", rtargetid=" + rtargetid
-				+ ", rcontent=" + rcontent + ", rtime=" + rtime + "]";
+				+ ", rcontent=" + rcontent + ", rtime=" + rtime + ", replys=" + replys + "]";
 	}
 
 }

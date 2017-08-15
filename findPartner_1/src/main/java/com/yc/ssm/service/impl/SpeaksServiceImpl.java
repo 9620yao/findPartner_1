@@ -60,4 +60,9 @@ public class SpeaksServiceImpl implements SpeaksService {
 		return speaksMapper.countSpeaks(speakman);
 	}
 
+	@Override
+	public List<Speaks> lists(String speakman) {
+		return speaksMapper.listSpeaks(speakman);
+	}
+
 }

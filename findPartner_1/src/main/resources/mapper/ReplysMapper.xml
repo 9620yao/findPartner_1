@@ -12,4 +12,18 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		replys(rcid,ruserid,rtargetid,rcontent,rtime)
 		values(#{rcid},#{ruserid},#{rtargetid},#{rcontent},now())
 	</insert>
+
+	<select id="getreplys" resultMap="RepandRep">
+		select *,rid from replys where
+		rcid = #{rcid}
+	</select>
+	<select id="getRR" resultType="Replys">
+		select *,rid from replys where
+		rcid = #{rid}
+	</select>
+	<resultMap type="Replys" id="RepandRep">
+		<id property="rid" column="rid" />
+		<collection property="replys" column="rid" select="getRR"
+			ofType="Replys"></collection>
+	</resultMap>
 </mapper>

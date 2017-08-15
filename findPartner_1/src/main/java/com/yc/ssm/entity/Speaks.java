@@ -1,6 +1,7 @@
 package com.yc.ssm.entity;
 
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * 说说
@@ -15,6 +16,8 @@ public class Speaks implements Serializable {
 	private String speakman; // 说说发表人编号
 	private String files; // 上传文件，视频，音乐等
 	private String senddate; // 发说说时间
+	private List<Comments> comments;// 评论
+	private Users user;// 回复
 
 	public Speaks() {
 	}
@@ -67,10 +70,26 @@ public class Speaks implements Serializable {
 		this.senddate = senddate;
 	}
 
+	public Users getUser() {
+		return user;
+	}
+
+	public void setUser(Users user) {
+		this.user = user;
+	}
+
+	public List<Comments> getComments() {
+		return comments;
+	}
+
+	public void setComments(List<Comments> comments) {
+		this.comments = comments;
+	}
+
 	@Override
 	public String toString() {
 		return "\nSpeaks [sid=" + sid + ", content=" + content + ", speakman=" + speakman + ", files=" + files
-				+ ", senddate=" + senddate + "]";
+				+ ", senddate=" + senddate + ", comments=" + comments + ", user=" + user + "]";
 	}
 
 }

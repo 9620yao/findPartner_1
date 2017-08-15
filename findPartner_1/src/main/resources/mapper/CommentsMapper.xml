@@ -13,4 +13,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		comments(callid,detail,comuserid,comTime)
 		values(#{callid},#{detail},#{comuserid},now())
 	</insert>
+
+	<select id="getcom" resultMap="ComandRel">
+		select *,cid from comments where
+		callid = #{callid} order by comTime desc
+	</select>
+	
+	<resultMap type="Comments" id="ComandRel">
+		<id property="cid" column="cid" />
+		<collection property="replys" column="{rcid=cid}"
+			select="com.yc.ssm.mapper.ReplysMapper.getreplys" ofType="Replys"></collection>
+	</resultMap>
 </mapper>

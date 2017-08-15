@@ -1,4 +1,5 @@
 package com.yc.ssm.util;
+import java.io.Serializable;
 import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -8,7 +9,10 @@ import java.security.NoSuchAlgorithmException;
  * md5加密出来的长度是32位
  * sha加密出来的长度是40位
  */
-public class Encrypt {
+public class Encrypt implements Serializable {
+
+	private static final long serialVersionUID = 1L;
+
 	/**
 	 * 测试
 	 */

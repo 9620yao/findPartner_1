@@ -17,6 +17,8 @@ public interface SpeaksService {
 	String findSid();
 
 	List<Speaks> findSpeaksInfoByName(Speaks speaks);
-	
+
 	List<Map<String, Object>> countSpeaks(String speakman);
+
+	List<Speaks> lists(String speakman);
 }

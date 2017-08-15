@@ -42,18 +42,28 @@ CREATE TABLE friends(
 	otherfriendstwo VARCHAR(40)
 );
  
- 
+
 CREATE TABLE speaks(
 	sid  int PRIMARY KEY auto_increment, 
 	content VARCHAR(500), 
 	speakman int, 
 	files VARCHAR(500), 
-	senddate VARCHAR(20), 
+	senddate VARCHAR(40), 
 	otherspeaksone VARCHAR(40),
 	otherspeakstwo VARCHAR(40)
 );
 alter table speaks AUTO_INCREMENT=1000;
 
+-- 日志
+CREATE TABLE journal(
+	jid  int PRIMARY KEY auto_increment, 
+	content VARCHAR(500), 
+	uid int, 
+	jdate VARCHAR(40), 
+	otherspeaksone VARCHAR(40),
+	otherspeakstwo VARCHAR(40)
+);
+alter table journal AUTO_INCREMENT=1000;
 
 CREATE TABLE album(
 	abid int PRIMARY KEY auto_increment, 
@@ -104,7 +114,6 @@ CREATE table comments(
 );
 alter table comments AUTO_INCREMENT=1000;
 
- 
 create table replys(
 	rid int primary key auto_increment, 
 	rcid int, 
@@ -116,8 +125,8 @@ create table replys(
 	otherreplystwo VARCHAR(40)
 );
 alter table replys AUTO_INCREMENT=1000;
-
  
+
 create table homepage(
 	hid int primary key auto_increment,  
 	hpid int, 

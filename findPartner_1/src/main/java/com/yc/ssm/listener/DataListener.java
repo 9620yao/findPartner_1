@@ -1,6 +1,5 @@
 package com.yc.ssm.listener;
 
-
 import java.io.File;
 
 import javax.servlet.ServletContextEvent;
@@ -12,14 +11,17 @@ import com.yc.ssm.util.ServletUtil;
 @WebListener
 public class DataListener implements ServletContextListener {
 
-	public void contextDestroyed(ServletContextEvent sce)  { 
-
+	public void contextDestroyed(ServletContextEvent sce) {
 	}
-	public void contextInitialized(ServletContextEvent sce)  {
-		String deployName=sce.getServletContext().getContextPath();
-		ServletUtil.DEPLOY_NAME=deployName+"/";
+
+	public void contextInitialized(ServletContextEvent sce) {
+		// 取到项目名
+		String deployName = sce.getServletContext().getContextPath();
+		ServletUtil.DEPLOY_NAME = deployName + "/";
 		sce.getServletContext().setAttribute("deployName", ServletUtil.DEPLOY_NAME);
-		ServletUtil.UPLOAD_DIR=sce.getServletContext().getRealPath(ServletUtil.VIRTUAL_UPLOAD_DIR).replace(deployName.substring(1)+File.separator, "");//文件上传目录
+		// 取到项目的绝对路径
+		ServletUtil.UPLOAD_DIR = sce.getServletContext().getRealPath(ServletUtil.VIRTUAL_UPLOAD_DIR)
+				.replace(deployName.substring(1) + File.separator, "");// 文件上传目录
 	}
 
 }

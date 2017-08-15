@@ -1,6 +1,7 @@
 package com.yc.ssm.entity;
 
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * 评论表
@@ -17,6 +18,7 @@ public class Comments implements Serializable {
 	private String comuserid;// 评论用户编号
 	private String comTime;// 评论时间
 	private Users users;
+	private List<Replys> Replys;
 
 	public Comments() {
 	}
@@ -78,10 +80,18 @@ public class Comments implements Serializable {
 		this.users = users;
 	}
 
+	public List<Replys> getReplys() {
+		return Replys;
+	}
+
+	public void setReplys(List<Replys> replys) {
+		Replys = replys;
+	}
+
 	@Override
 	public String toString() {
 		return "\nComments [cid=" + cid + ", callid=" + callid + ", detail=" + detail + ", comuserid=" + comuserid
-				+ ", comTime=" + comTime + ", users=" + users + "]";
+				+ ", comTime=" + comTime + ", users=" + users + ", Replys=" + Replys + "]";
 	}
 
 }

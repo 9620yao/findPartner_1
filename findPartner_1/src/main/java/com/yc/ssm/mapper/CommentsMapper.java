@@ -10,4 +10,6 @@ public interface CommentsMapper {
 
 	int addComments(Comments comments);
 
+	List<Comments> getcom();
+
 }

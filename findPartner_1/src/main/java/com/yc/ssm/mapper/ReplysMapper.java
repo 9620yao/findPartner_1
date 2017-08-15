@@ -10,4 +10,8 @@ public interface ReplysMapper {
 
 	int addReplys(Replys replys);
 
+	List<Replys> getreplys();
+	
+	List<Replys> getRR();
+
 }

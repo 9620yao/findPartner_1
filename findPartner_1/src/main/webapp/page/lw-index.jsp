@@ -39,51 +39,51 @@
 					<!--个人简介 -->
 					<table style="margin-left: 10px;">
 						<tr>
-							<td>昵&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;称&nbsp;&nbsp;：</td>
+							<td>昵称：</td>
 							<td id="inickname"></td>
 						</tr>
 						<tr>
-							<td>年&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;龄&nbsp;&nbsp;：</td>
+							<td>年龄：</td>
 							<td id="iage"></td>
 						</tr>
 						<tr>
-							<td>生&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;日&nbsp;&nbsp;：</td>
+							<td>生日：</td>
 							<td id="ibirthday"></td>
 						</tr>
 						<tr>
-							<td>性&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;别&nbsp;&nbsp;：</td>
+							<td>性别：</td>
 							<td id="igender"></td>
 						</tr>
 						<tr>
-							<td>星&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;座&nbsp;&nbsp;：</td>
+							<td>星座：</td>
 							<td id="istar"></td>
 						</tr>
 						<tr>
-							<td>爱&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;好&nbsp;&nbsp;：</td>
+							<td>爱好：</td>
 							<td id="ihobby"></td>
 						</tr>
 						<tr>
-							<td>工&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;作&nbsp;&nbsp;：</td>
+							<td>工作：</td>
 							<td id="ijob"></td>
 						</tr>
 						<tr>
-							<td>公&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;司&nbsp;&nbsp;：</td>
+							<td>公司：</td>
 							<td id="icompany"></td>
 						</tr>
 						<tr>
-							<td>学&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;校&nbsp;&nbsp;：</td>
+							<td>学校：</td>
 							<td id="ischool"></td>
 						</tr>
 						<tr>
-							<td>国&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;籍&nbsp;&nbsp;：</td>
+							<td>国籍：</td>
 							<td id="iastate"></td>
 						</tr>
 						<tr>
-							<td>现居地址：</td>
+							<td>住址：</td>
 							<td id="iaddress"></td>
 						</tr>
 						<tr>
-							<td>家&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;乡&nbsp;&nbsp;：</td>
+							<td>家乡：</td>
 							<td id="ihometown"></td>
 						</tr>
 					</table>
@@ -115,29 +115,20 @@
 									<li><input id="pictrue" type="file" name="picData"
 										onchange="chgPic(this)" /><br> <img
 										src="images/not_pic.jpg" class="pic" width="100" height="100"></li>
-									<li>昵&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;称&nbsp;&nbsp;：<input
-										type="text" id="nickname" name="nickname"></li>
-									<li>年&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;龄&nbsp;&nbsp;：<input
-										type="text" id="age" name="age"><label id="errAge"
-										style="color: red;"></label></li>
-									<li>生&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;日&nbsp;&nbsp;：<input
-										type="text" id="birthday" name="birthday" class="Wdate"
+									<li>昵称：<input type="text" id="nickname" name="nickname"></li>
+									<li>年龄：<input type="text" id="age" name="age"><label
+										id="errAge" style="color: red;"></label></li>
+									<li>生日：<input type="text" id="birthday" name="birthday"
+										class="Wdate"
 										onfocus="WdatePicker({lang:'zh-cn',dateFmt:'yyyyMMdd'})" /></li>
-									<li>星&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;座&nbsp;&nbsp;：<input
-										type="text" id="star" name="star"></li>
-									<li>爱&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;好&nbsp;&nbsp;：<input
-										type="text" id="hobby" name="hobby"></li>
-									<li>工&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;作&nbsp;&nbsp;：<input
-										type="text" id="job" name="job"></li>
-									<li>公&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;司&nbsp;&nbsp;：<input
-										type="text" id="company" name="company"></li>
-									<li>学&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;校&nbsp;&nbsp;：<input
-										type="text" id="school" name="school"></li>
+									<li>星座：<input type="text" id="star" name="star"></li>
+									<li>爱好：<input type="text" id="hobby" name="hobby"></li>
+									<li>工作：<input type="text" id="job" name="job"></li>
+									<li>公司：<input type="text" id="company" name="company"></li>
+									<li>学&nbsp;校：<input type="text" id="school" name="school"></li>
 									<li>现居地址：<input type="text" id="address" name="address"></li>
-									<li>家&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;乡&nbsp;&nbsp;：<input
-										type="text" id="hometown" name="hometown"></li>
-									<li>国&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;籍&nbsp;&nbsp;：<input
-										type="text" id="astate" name="astate"></li>
+									<li>家乡：<input type="text" id="hometown" name="hometown"></li>
+									<li>国籍：<input type="text" id="astate" name="astate"></li>
 								</ul>
 								<!-- <a class="updateBtn" href="javascript:void(0)">修改</a> -->
 								<a onclick="updateInfo()" href="javascript:void(0)">修改</a>
@@ -230,7 +221,7 @@
 
 	<script type="text/javascript" src="rel/js/hpindex.js"></script>
 	<script type="text/javascript" src="rel/js/index/index.js"></script>
-	
+
 	<script type="text/javascript" src="rel/js/indexpic.js"></script>
 	<script type="text/javascript" src="rel/js/indexcss.js"></script>
 	<script type="text/javascript" src="My97DatePicker/WdatePicker.js"></script>

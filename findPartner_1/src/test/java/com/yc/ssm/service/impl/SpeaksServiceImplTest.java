@@ -1,5 +1,7 @@
 package com.yc.ssm.service.impl;
 
+import java.util.List;
+import static org.junit.Assert.*;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +18,7 @@ public class SpeaksServiceImplTest {
 
 	@Autowired
 	private SpeaksService speaksService;
-	
+
 	@Autowired
 	private HomepageService homepageService;
 
@@ -25,7 +27,7 @@ public class SpeaksServiceImplTest {
 	 */
 	@Test
 	public void testListSpeaks() {
-		System.out.println(speaksService.listSpeaks(null, "1", "5"));
+		System.out.println(speaksService.listSpeaks("3", "2", "1"));
 	}
 
 	/**
@@ -37,15 +39,22 @@ public class SpeaksServiceImplTest {
 		speaks.setSpeakman("3");
 		speaks.setContent("我是来测试的23333...");
 		speaksService.add(speaks);
-		System.out.println("添加的speaks:"+speaks);
+		System.out.println("添加的speaks:" + speaks);
 		speaks = speaksService.findSpeaks(speaks.getSid(), speaks.getSpeakman());
-		System.out.println("查找后speaks:"+speaks);
+		System.out.println("查找后speaks:" + speaks);
 		homepageService.addhompage(speaks.getSid(), speaks.getSpeakman(), speaks.getSenddate());
 	}
-	
+
 	@Test
 	public void CountSpeaks() {
 		System.out.println(speaksService.countSpeaks("3"));
+	}
+
+	@Test
+	public void listSpeaks() {
+		List<Speaks> lss = speaksService.lists("3");
+		System.out.println(lss);
+		assertNotNull(lss);
 	}
 
 }

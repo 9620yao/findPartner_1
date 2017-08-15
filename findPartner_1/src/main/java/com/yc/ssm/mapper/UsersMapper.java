@@ -10,7 +10,9 @@ public interface UsersMapper {
 
 	/**
 	 * 传入登录用户，并创建个人信息user
-	 * @param login 传入登录用户
+	 * 
+	 * @param login
+	 *            传入登录用户
 	 * @return
 	 */
 	int insertUsers(Login login);
@@ -24,4 +26,6 @@ public interface UsersMapper {
 	PaginationBean<Users> partUsers(PaginationBean<Users> pb);
 
 	List<Users> listUserByAid(String aid);
+
+	Users getuser();
 }

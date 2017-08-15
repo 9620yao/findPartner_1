@@ -1,8 +1,12 @@
 package com.yc.ssm.util;
 
 import java.io.File;
+import java.io.Serializable;
 
-public class ServletUtil {
+public class ServletUtil implements Serializable {
+	
+	private static final long serialVersionUID = 1L;
+	
 	public static final String LOGIN_USER = "loginUser";// 登录用户
 	public static final String ERROR_MESSAGE = "errorMsg";
 	public static String DEPLOY_NAME;
