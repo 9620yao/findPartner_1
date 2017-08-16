@@ -53,6 +53,7 @@ CREATE TABLE speaks(
 	otherspeakstwo VARCHAR(40)
 );
 alter table speaks AUTO_INCREMENT=1000;
+select * from  speaks;
 
 -- 日志
 CREATE TABLE journal(
@@ -116,7 +117,7 @@ alter table comments AUTO_INCREMENT=1000;
 
 create table replys(
 	rid int primary key auto_increment, 
-	rcid int, 
+	rcid varchar(20), 
 	ruserid int ,   
 	rtargetid int, 
 	rcontent VARCHAR(500), 
@@ -125,7 +126,7 @@ create table replys(
 	otherreplystwo VARCHAR(40)
 );
 alter table replys AUTO_INCREMENT=1000;
- 
+
 
 create table homepage(
 	hid int primary key auto_increment,  
@@ -158,4 +159,6 @@ create table backadmin(
 	otherbackadminone VARCHAR(40),
 	otherbackadmintwo VARCHAR(40)
 );
-alter table backadmin AUTO_INCREMENT=1000;		
+alter table backadmin AUTO_INCREMENT=1000;
+
+alter table replys modify rcid varchar(20);

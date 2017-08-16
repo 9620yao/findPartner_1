@@ -110,7 +110,7 @@
 	<!--模态框 end reply -->
 
 	<jsp:include page="/include/foot.jsp" /><!-- 公共底部部分 -->
-	
+
 	<script src="assets/js/jquery.min.js"></script>
 	<script src="bootstrap/3.3.4/js/bootstrap.min.js"></script>
 
@@ -121,7 +121,9 @@
 		src="rel/ueditor/ueditor.all.min.js"></script>
 	<script type="text/javascript" charset="utf-8"
 		src="rel/ueditor/lang/zh-cn/zh-cn.js"></script>
+
 	<script type="text/javascript" src="rel/js/speaks.js"></script>
 	<script type="text/javascript" src="rel/js/indexcss.js"></script>
+	<jsp:include page="/include/injs.jsp"></jsp:include>
 </body>
 </html>

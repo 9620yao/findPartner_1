@@ -134,7 +134,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<select id="getuser" resultType="com.yc.ssm.entity.Users">
 		select
-		uid,photo,nickname from
+		uid,nickname,picture from
 		users where uid = #{uid}
 	</select>
 

@@ -225,5 +225,6 @@
 	<script type="text/javascript" src="rel/js/indexpic.js"></script>
 	<script type="text/javascript" src="rel/js/indexcss.js"></script>
 	<script type="text/javascript" src="My97DatePicker/WdatePicker.js"></script>
+	<%-- <jsp:include page="/include/injs.jsp"></jsp:include> --%>
 </body>
 </html>

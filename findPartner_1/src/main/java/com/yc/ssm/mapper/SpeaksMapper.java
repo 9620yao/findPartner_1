@@ -20,6 +20,6 @@ public interface SpeaksMapper {
 
 	List<Map<String, Object>> countSpeaks(String speakman);
 
-	List<Speaks> listSpeaks(String speakman);
+	List<Speaks> listSpeaks(String speakman);// 多余的测试查询
 
 }

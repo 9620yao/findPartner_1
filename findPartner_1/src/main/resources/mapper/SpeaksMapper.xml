@@ -29,7 +29,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 
 	<select id="GetPartTea" resultMap="listS">
-		select *,sid from speaks
+		select speakman uid,sid,s.* from speaks s
 		<where>
 			<if test="speakman!=null and speakman!=''">
 				speakman=#{speakman}
@@ -71,7 +71,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</resultMap>
 
 	<select id="listSpeaks" parameterType="string" resultMap="listS">
-		select *,sid from speaks
+		select *,speakman uid,sid from speaks
 		<where>
 			<if test="_parameter!=null and _parameter!=''">
 				speakman = #{_parameter}
@@ -82,6 +82,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<resultMap type="Speaks" id="listS">
 		<id property="sid" column="sid" />
+		<collection property="user" column="{uid=uid}"
+			select="com.yc.ssm.mapper.UsersMapper.getuser" ofType="Users"></collection>
 		<collection property="comments" column="{callid=sid}"
 			select="com.yc.ssm.mapper.CommentsMapper.getcom" ofType="Comments"></collection>
 	</resultMap>

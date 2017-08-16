@@ -14,16 +14,33 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</insert>
 
 	<select id="getreplys" resultMap="RepandRep">
-		select *,rid from replys where
+		select *,rid,ruserid
+		uid,rtargetid puid
+		from replys where
 		rcid = #{rcid}
 	</select>
-	<select id="getRR" resultType="Replys">
-		select *,rid from replys where
-		rcid = #{rid}
+	<select id="getRR" resultMap="RepandUs">
+		select *,rid,ruserid uid,rtargetid
+		puid
+		from replys
+		where
+		rcid =
+		#{rid}
 	</select>
 	<resultMap type="Replys" id="RepandRep">
 		<id property="rid" column="rid" />
 		<collection property="replys" column="rid" select="getRR"
 			ofType="Replys"></collection>
+		<collection property="user" column="{uid=uid}"
+			select="com.yc.ssm.mapper.UsersMapper.getuser" ofType="Users"></collection>
+		<collection property="puser" column="{uid=puid}"
+			select="com.yc.ssm.mapper.UsersMapper.getuser" ofType="Users"></collection>
+	</resultMap>
+	
+	<resultMap type="Replys" id="RepandUs">
+		<collection property="user" column="{uid=uid}"
+			select="com.yc.ssm.mapper.UsersMapper.getuser" ofType="Users"></collection>
+		<collection property="puser" column="{uid=puid}"
+			select="com.yc.ssm.mapper.UsersMapper.getuser" ofType="Users"></collection>
 	</resultMap>
 </mapper>

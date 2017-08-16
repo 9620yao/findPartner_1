@@ -14,11 +14,13 @@ public class Replys implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	private String rid; // 回复编号
-	private String rcid; // 评论编号
+	private String rcid; // 评论编号和回复编号
 	private String ruserid; // 当前回复用户的编号
 	private String rtargetid; // 目标用户编号
 	private String rcontent; // 回复内容
 	private String rtime; // 回复时间
+	private Users user;
+	private Users puser;
 	private List<Replys> replys; // 回复时间
 
 	public Replys() {
@@ -89,10 +91,27 @@ public class Replys implements Serializable {
 		this.replys = replys;
 	}
 
+	public Users getUser() {
+		return user;
+	}
+
+	public void setUser(Users user) {
+		this.user = user;
+	}
+
+	public Users getPuser() {
+		return puser;
+	}
+
+	public void setPuser(Users puser) {
+		this.puser = puser;
+	}
+
 	@Override
 	public String toString() {
 		return "\nReplys [rid=" + rid + ", rcid=" + rcid + ", ruserid=" + ruserid + ", rtargetid=" + rtargetid
-				+ ", rcontent=" + rcontent + ", rtime=" + rtime + ", replys=" + replys + "]";
+				+ ", rcontent=" + rcontent + ", rtime=" + rtime + ", user=" + user + ", puser=" + puser + ", replys="
+				+ replys + "]";
 	}
 
 }

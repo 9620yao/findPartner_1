@@ -50,6 +50,9 @@ public class SpeaksServiceImplTest {
 		System.out.println(speaksService.countSpeaks("3"));
 	}
 
+	/**
+	 * 测试加载所有的信息，一次加载
+	 */
 	@Test
 	public void listSpeaks() {
 		List<Speaks> lss = speaksService.lists("3");

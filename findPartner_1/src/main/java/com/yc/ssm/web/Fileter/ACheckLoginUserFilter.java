@@ -16,7 +16,7 @@ import org.apache.logging.log4j.LogManager;
 import com.yc.ssm.entity.Login;
 import com.yc.ssm.util.ServletUtil;
 
-@WebFilter("/page/*")
+//@WebFilter("/page/*")
 public class ACheckLoginUserFilter extends AbstractFilter {
 
 	@Override

@@ -31,10 +31,12 @@ public class SpeaksHandler {
 	private HomepageService homepageService;
 
 	/**
-	 * 分页显示说说,记得把后天显示说说，修改该请求中来
+	 * 分页显示说说,记得把后面显示说说，修改该请求中来
 	 * 
-	 * @param faid 用户编号
-	 * @param currPage 当前页
+	 * @param faid
+	 *            用户编号
+	 * @param currPage
+	 *            当前页
 	 * @param request
 	 * @return
 	 */
@@ -86,7 +88,9 @@ public class SpeaksHandler {
 
 	/**
 	 * 取到该说说的总数，可以在分页取数据的时候，返回总数到页面，后期调整
-	 * @param speakman 说说发表人，及用户编号
+	 * 
+	 * @param speakman
+	 *            说说发表人，及用户编号
 	 * @return
 	 */
 	@RequestMapping(value = "countSpeaks", method = RequestMethod.POST)

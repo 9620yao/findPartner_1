@@ -43,8 +43,10 @@ public class UsersHandler {
 	/**
 	 * 修改个人信息
 	 * 
-	 * @param picData 图片
-	 * @param users	修改得user对象
+	 * @param picData
+	 *            图片
+	 * @param users
+	 *            修改得user对象
 	 * @param session
 	 * @return
 	 */
@@ -63,10 +65,17 @@ public class UsersHandler {
 			System.out.println("上传图片==》" + users);
 		}
 		usersService.modifyUserInfo(users);
-		return "redirect:/page/lw-index.jsp?aid=" + users.getUid();
+		return "/page/lw-index.jsp?aid=" + users.getUid();
 	}
 
-	// 修改密码
+	/**
+	 * 修改密码
+	 * @param strmdpwd
+	 * @param newPassword
+	 * @param partner
+	 * @param request
+	 * @return
+	 */
 	@RequestMapping(value = "mofifyPwd", method = RequestMethod.POST)
 	public String modifyPwd(@RequestParam("strmdpwd") String strmdpwd, @RequestParam("newPassword") String newPassword,
 			Login partner, HttpServletRequest request) {
@@ -74,13 +83,13 @@ public class UsersHandler {
 				.debug("partner====>" + partner + ",newPassword==>" + newPassword + ",strmdpwd=" + strmdpwd);
 		if (partnerService.login(partner) == null) {
 			request.setAttribute(ServletUtil.MODIF_ERROR, "用户名或密码错误！！！");
-			return "redirect:" + strmdpwd.split("/findPartner")[1];
+			return strmdpwd.split("/findPartner")[1];
 		} else {
 			partner.setPassword(newPassword);
 			String lid = (String) request.getSession().getAttribute(ServletUtil.LOGINING_ID);
 			partner.setLid(lid);
 			partnerService.updatePwd(partner);
-			return "redirect:/page/lw-log.jsp";
+			return "/page/lw-log.jsp";
 		}
 
 	}

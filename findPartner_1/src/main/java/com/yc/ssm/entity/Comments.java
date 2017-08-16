@@ -17,19 +17,19 @@ public class Comments implements Serializable {
 	private String detail;// 评论内容
 	private String comuserid;// 评论用户编号
 	private String comTime;// 评论时间
-	private Users users;
+	private Users user;
 	private List<Replys> Replys;
 
 	public Comments() {
 	}
 
-	public Comments(String cid, String callid, String detail, String comuserid, String comTime, Users users) {
+	public Comments(String cid, String callid, String detail, String comuserid, String comTime, Users user) {
 		this.cid = cid;
 		this.callid = callid;
 		this.detail = detail;
 		this.comuserid = comuserid;
 		this.comTime = comTime;
-		this.users = users;
+		this.user = user;
 	}
 
 	public String getCid() {
@@ -72,12 +72,12 @@ public class Comments implements Serializable {
 		this.comTime = comTime;
 	}
 
-	public Users getUsers() {
-		return users;
+	public Users getUser() {
+		return user;
 	}
 
-	public void setUsers(Users users) {
-		this.users = users;
+	public void setUser(Users user) {
+		this.user = user;
 	}
 
 	public List<Replys> getReplys() {
@@ -91,7 +91,7 @@ public class Comments implements Serializable {
 	@Override
 	public String toString() {
 		return "\nComments [cid=" + cid + ", callid=" + callid + ", detail=" + detail + ", comuserid=" + comuserid
-				+ ", comTime=" + comTime + ", users=" + users + ", Replys=" + Replys + "]";
+				+ ", comTime=" + comTime + ", user=" + user + ", Replys=" + Replys + "]";
 	}
 
 }
