@@ -22,19 +22,17 @@
 		<div class="am-u-md-12 am-u-sm-12">
 			<div>
 				<article class="am-g blog-entry-article">
-					<div style="margin-left: 2.5%; width: 60%;">
+					<div class="countdiv">
 						<span><span class="spanspeak">我的</span>说说(<a
 							href="javascript:void(0)" class="spcount">0</a>)</span>
 						<hr
 							style="height: 1px; border: none; border-top: 1px solid #555555;" />
 					</div>
-					<div class="editdiv" style="width: 60%; margin-left: 2.5%;">
-						<form id="myspeak" action="speaks/insert" method="post">
+					<div class="editdiv">
+						<form id="myspeak">
 							<textarea id="ueditor" name="ueditor" rows="4" cols="39"
 								placeholder="发表一个说说"></textarea>
-							<input name="content" id="content" type="hidden"> <input
-								name="strspeaks" id="strspeaks" type="hidden"> <a
-								href="javascript:void(0)" onclick="return addSpeak()">发表</a>
+							<a href="javascript:void(0)" onclick="return addSpeak();">发表</a>
 						</form>
 					</div>
 				</article>
@@ -44,7 +42,17 @@
 			<div id="speaksInfo"></div>
 			<!-- 显示说说 end -->
 		</div>
-		<div id="page"></div>
+		<!-- 分页 -->
+		<div id="page">
+			<div>
+				<label>当前第<sapn class="currPage">1</sapn>页，共<span
+					class="totalPage">1</span> 页
+				</label> <a href="javascript:void(0)" onclick="listSpeaks(1)">首页</a> <a
+					href="javascript:void(0)" class="last">上一页</a> <a
+					href="javascript:void(0)" class="next">下一页</a> <a
+					href="javascript:void(0)" calss="totalPage">尾页</a>
+			</div>
+		</div>
 	</div>
 	<!-- content end -->
 

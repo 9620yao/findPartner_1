@@ -47,7 +47,7 @@ public class LoginHandler {
 		LogManager.getLogger().debug("login====>" + login);
 		if (login == null) {
 			request.setAttribute(ServletUtil.ERROR_MESSAGE, "用户名或密码错误！！！");
-			return "/page/lw-log.jsp";
+			return "lw-log";
 		} else {
 			request.getSession().setAttribute(ServletUtil.LOGIN_USER, login);
 			request.getSession().setAttribute(ServletUtil.LOGINING_ID, login.getLid());
@@ -57,7 +57,7 @@ public class LoginHandler {
 				aid = users.getUid();
 				request.getSession().setAttribute(ServletUtil.USERAID, aid);
 			}
-			return "redirect:/page/lw-index.jsp?aid=" + aid;
+			return "redirect:/page/lw-index.jsp?aid=" + aid;// "redirect:/page/lw-index.jsp?aid="
 		}
 	}
 

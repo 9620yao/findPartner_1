@@ -22,6 +22,8 @@ public class Replys implements Serializable {
 	private Users user;
 	private Users puser;
 	private List<Replys> replys; // 回复时间
+	private String r_uuido; // 标识符
+	private String r_uuidt; // 存储标识符
 
 	public Replys() {
 	}
@@ -107,11 +109,27 @@ public class Replys implements Serializable {
 		this.puser = puser;
 	}
 
+	public String getR_uuido() {
+		return r_uuido;
+	}
+
+	public void setR_uuido(String r_uuido) {
+		this.r_uuido = r_uuido;
+	}
+
+	public String getR_uuidt() {
+		return r_uuidt;
+	}
+
+	public void setR_uuidt(String r_uuidt) {
+		this.r_uuidt = r_uuidt;
+	}
+
 	@Override
 	public String toString() {
 		return "\nReplys [rid=" + rid + ", rcid=" + rcid + ", ruserid=" + ruserid + ", rtargetid=" + rtargetid
 				+ ", rcontent=" + rcontent + ", rtime=" + rtime + ", user=" + user + ", puser=" + puser + ", replys="
-				+ replys + "]";
+				+ replys + ", r_uuido=" + r_uuido + ", r_uuidt=" + r_uuidt + "]";
 	}
 
 }

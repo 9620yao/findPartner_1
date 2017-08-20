@@ -10,8 +10,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<insert id="addpic" parameterType="com.yc.ssm.entity.Albumpic">
 		insert into
-		albumpic(abid,apic,apicdate)
-		values(#{abid},#{apic},now())
+		albumpic(abid,apic,apicdate,ap_uuid)
+		values(#{abid},#{apic},now(),UUID())
 	</insert>
 
 	<select id="HpAlbumpic" parameterType="com.yc.ssm.entity.Albumpic"

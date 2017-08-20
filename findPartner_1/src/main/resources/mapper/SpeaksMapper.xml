@@ -41,8 +41,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<insert id="addSpeaks" parameterType="Speaks" useGeneratedKeys="true"
 		keyProperty="sid">
 		insert into
-		speaks(content,speakman,senddate)
-		values(#{content},#{speakman} ,now())
+		speaks(content,speakman,senddate,s_uuid)
+		values(#{content},#{speakman} ,now(),UUID())
 	</insert>
 
 	<select id="findSid" resultType="string">

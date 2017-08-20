@@ -23,8 +23,15 @@
 	<!-- 文件上传处理器配制 -->
 	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver" />
 	
-	<!-- <bean id="internalResourceViewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-		<property name="prefix" value="redirect:/page/"/>
-		<property name="order" value="10"/>设定优先级
-	</bean> -->
+	<bean id="ViewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/page/"/>
+		<property name="suffix" value=".jsp"/>
+	</bean>
+	
+	 <bean class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+        <!-- 指定所有没有指定的异常,都跳转到该页面 -->
+        <property name="defaultErrorView" value="error" />
+        <!-- 跳转时携带异常对象 -->
+        <property name="exceptionAttribute" value="ex"></property>
+    </bean> 
 </beans>

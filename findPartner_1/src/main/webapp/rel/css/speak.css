@@ -1,1 +1,42 @@
-.democomment{border:1px solid #ddd;width:500px;min-height:40px;_height:40px;outline:0;overflow-x:hidden;overflow-y:auto;_overflow-y:visible;margin-left:5%}.demoEdit{border:1px solid #ddd;width:400px;min-height:20px;_height:20px;outline:0;overflow-x:hidden;overflow-y:auto;_overflow-y:visible;margin-left:5%}.demoEdit p{margin:0;padding:0}.picture{width:50px;height:50px;border-radius:50%}
+.democomment {
+	border: 1px solid #ddd;
+	width: 500px;
+	min-height: 40px;
+	_height: 40px;
+	outline: 0;
+	overflow-x: hidden;
+	overflow-y: auto;
+	_overflow-y: visible;
+	margin-left: 5%
+}
+
+.demoEdit {
+	border: 1px solid #ddd;
+	width: 400px;
+	min-height: 20px;
+	_height: 20px;
+	outline: 0;
+	overflow-x: hidden;
+	overflow-y: auto;
+	_overflow-y: visible;
+	margin-left: 5%
+}
+
+.demoEdit p {
+	margin: 0;
+	padding: 0
+}
+
+.picture {
+	width: 50px;
+	height: 50px;
+	border-radius: 50%
+}
+.countdiv{
+	margin-left: 2.5%; 
+	width: 60%;
+}
+.editdiv{
+	width: 60%; 
+	margin-left: 2.5%;
+}

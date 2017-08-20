@@ -5,8 +5,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="com.yc.ssm.mapper.HomepageMapper">
 	<insert id="addhomepage" parameterType="com.yc.ssm.entity.Homepage">
 		insert into
-		homepage(hpid,hpuseid,hpdate)
-		values(#{hpid},#{hpuseid},#{hpdate})
+		homepage(hpid,hpuseid,hpdate,h_uuid)
+		values(#{hpid},#{hpuseid},#{hpdate},#{h_uuid})
 	</insert>
 
 	<resultMap type="PaginationBean" id="PaginationBeanMap">

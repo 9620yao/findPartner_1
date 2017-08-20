@@ -11,7 +11,6 @@ CREATE TABLE logining(
 );
 alter table logining AUTO_INCREMENT=1000;
 
-
 CREATE TABLE users(
 	uid int PRIMARY KEY auto_increment,	
 	ulid int,	
@@ -49,11 +48,10 @@ CREATE TABLE speaks(
 	speakman int, 
 	files VARCHAR(500), 
 	senddate VARCHAR(40), 
-	otherspeaksone VARCHAR(40),
+	s_uuid VARCHAR(40),
 	otherspeakstwo VARCHAR(40)
 );
 alter table speaks AUTO_INCREMENT=1000;
-select * from  speaks;
 
 -- 日志
 CREATE TABLE journal(
@@ -86,7 +84,7 @@ create table albumpic(
 	apic VARCHAR(500), 
 	apiccontent VARCHAR(500), 
 	apicdate VARCHAR(100), 
-	otheralbumpictwo VARCHAR(40)
+	ap_uuid VARCHAR(40)
 );
 alter table albumpic AUTO_INCREMENT=1000;
 
@@ -98,7 +96,7 @@ CREATE TABLE words(
 	wcontent VARCHAR(500), 
 	waddress VARCHAR(50), 
 	wdate VARCHAR(100),  
-	otheralbumone VARCHAR(40),
+	w_uuid VARCHAR(40),
 	otheralbumtwo VARCHAR(40)
 );
 alter table words AUTO_INCREMENT=1000;
@@ -110,11 +108,12 @@ CREATE table comments(
 	detail VARCHAR(200), 
 	comuserid  int, 
 	comTime VARCHAR(100), 
-	othercommentsone VARCHAR(40),
+	c_uuid VARCHAR(40),
 	othercommentstwo VARCHAR(40)     
 );
 alter table comments AUTO_INCREMENT=1000;
 
+select * from replys;
 create table replys(
 	rid int primary key auto_increment, 
 	rcid varchar(20), 
@@ -122,23 +121,12 @@ create table replys(
 	rtargetid int, 
 	rcontent VARCHAR(500), 
 	rtime VARCHAR(100), 
-	otherreplysone VARCHAR(40),
-	otherreplystwo VARCHAR(40)
+	r_uuido VARCHAR(40),
+	r_uuidt VARCHAR(40)
 );
 alter table replys AUTO_INCREMENT=1000;
 
 
-create table homepage(
-	hid int primary key auto_increment,  
-	hpid int, 
-	hpuseid int, 
-	hpdate VARCHAR(100), 
-	otherreplysone VARCHAR(40),
-	otherreplystwo VARCHAR(40)
-);
-alter table homepage AUTO_INCREMENT=1000;
- 
- 
 create table userpower(
 	upid int primary key AUTO_INCREMENT, 
 	upuid varchar(20), 
@@ -148,7 +136,6 @@ create table userpower(
 	otherbackadmintwo varchar(40)
 );
 alter table userpower AUTO_INCREMENT=1000;
- 
 
 create table backadmin(
 	buid int primary key AUTO_INCREMENT, 
@@ -161,4 +148,20 @@ create table backadmin(
 );
 alter table backadmin AUTO_INCREMENT=1000;
 
-alter table replys modify rcid varchar(20);
+-- create table homepage(
+--	hid int primary key auto_increment,  
+--	hpid int, 
+--	hpuseid int, 
+--	hpdate VARCHAR(100), 
+--	h_uuid VARCHAR(40),
+--	otherreplystwo VARCHAR(40)
+-- );
+
+create or replace view homepage as
+select sid hpid,speakman hpuserid,s_uuid h_uuid,senddate hpdate from speaks union
+select apid hpid,(select auid from album where abid = abid) hpuserid,
+ap_uuid h_uuid,apicdate hpdate from albumpic;
+
+
+select * from homepage order by hpdate desc;
+

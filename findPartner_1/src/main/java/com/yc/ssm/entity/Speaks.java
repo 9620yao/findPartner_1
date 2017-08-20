@@ -18,6 +18,7 @@ public class Speaks implements Serializable {
 	private String senddate; // 发说说时间
 	private List<Comments> comments;// 评论
 	private Users user;// 回复
+	private String s_uuid; // 标识幅
 
 	public Speaks() {
 	}
@@ -86,10 +87,18 @@ public class Speaks implements Serializable {
 		this.comments = comments;
 	}
 
+	public String getS_uuid() {
+		return s_uuid;
+	}
+
+	public void setS_uuid(String s_uuid) {
+		this.s_uuid = s_uuid;
+	}
+
 	@Override
 	public String toString() {
 		return "\nSpeaks [sid=" + sid + ", content=" + content + ", speakman=" + speakman + ", files=" + files
-				+ ", senddate=" + senddate + ", comments=" + comments + ", user=" + user + "]";
+				+ ", senddate=" + senddate + ", comments=" + comments + ", user=" + user + ", s_uuid=" + s_uuid + "]";
 	}
 
 }

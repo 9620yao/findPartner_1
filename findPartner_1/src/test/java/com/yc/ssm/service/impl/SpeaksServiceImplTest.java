@@ -1,7 +1,10 @@
 package com.yc.ssm.service.impl;
 
+import static org.junit.Assert.assertNotEquals;
+import static org.junit.Assert.assertNotNull;
+
 import java.util.List;
-import static org.junit.Assert.*;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,7 +12,6 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.yc.ssm.entity.Speaks;
-import com.yc.ssm.service.HomepageService;
 import com.yc.ssm.service.SpeaksService;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -18,9 +20,6 @@ public class SpeaksServiceImplTest {
 
 	@Autowired
 	private SpeaksService speaksService;
-
-	@Autowired
-	private HomepageService homepageService;
 
 	/**
 	 * 分页显示测试
@@ -42,7 +41,6 @@ public class SpeaksServiceImplTest {
 		System.out.println("添加的speaks:" + speaks);
 		speaks = speaksService.findSpeaks(speaks.getSid(), speaks.getSpeakman());
 		System.out.println("查找后speaks:" + speaks);
-		homepageService.addhompage(speaks.getSid(), speaks.getSpeakman(), speaks.getSenddate());
 	}
 
 	@Test
@@ -58,6 +56,19 @@ public class SpeaksServiceImplTest {
 		List<Speaks> lss = speaksService.lists("3");
 		System.out.println(lss);
 		assertNotNull(lss);
+	}
+
+	/**
+	 * 添加说说测试
+	 */
+	@Test
+	public void testAdd() {
+		Speaks speaks = new Speaks();
+		speaks.setContent("我是用户3，我发表了一篇说说");
+		speaks.setSpeakman("3");
+		boolean ss = speaksService.add(speaks);
+		System.out.println("sid=" + speaks.getSid() + ",uuid=" + speaks.getS_uuid());
+		assertNotEquals(ss, false);
 	}
 
 }

@@ -10,14 +10,13 @@ import org.apache.logging.log4j.LogManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.yc.ssm.entity.PaginationBean;
 import com.yc.ssm.entity.Speaks;
-import com.yc.ssm.service.HomepageService;
 import com.yc.ssm.service.SpeaksService;
 import com.yc.ssm.util.ServletUtil;
 
@@ -27,8 +26,6 @@ public class SpeaksHandler {
 	@Autowired
 	private SpeaksService speaksService;
 
-	@Autowired
-	private HomepageService homepageService;
 
 	/**
 	 * 分页显示说说,记得把后面显示说说，修改该请求中来
@@ -50,25 +47,24 @@ public class SpeaksHandler {
 	/**
 	 * 添加说说
 	 * 
-	 * @param strspeaks
-	 *            返回地址
+	 * 
 	 * @param speaks
 	 *            说说发表人
 	 * @param session
 	 * @return
 	 */
-	@RequestMapping(value = "insert", method = RequestMethod.POST)
+	@RequestMapping(value = "{id}", method = RequestMethod.POST)
 	@Transactional
-	public String insertSpeaks(@RequestParam("strspeaks") String strspeaks, Speaks speaks, HttpSession session) {
-		LogManager.getLogger().debug("insertSpeaks ==要插入一条说说:" + speaks + ",strspeaks=" + strspeaks);
+	@ResponseBody
+	public boolean add(@PathVariable("id") int id, Speaks speaks, HttpSession session) {
+		LogManager.getLogger().debug("add ==要插入一条说说:" + speaks + ",id=" + id);
+
 		String speakman = (String) session.getAttribute(ServletUtil.USERAID);// 从session中取到用户编号（说说发表人）
 		speaks.setSpeakman(speakman);// 将说说发表人存到speak对象中
-		if (speaksService.add(speaks)) {// 添加说说成功，添加该数据到主业表用
-			speaks = speaksService.findSpeaks(speaks.getSid(), speakman);// 取到刚刚添加的说说信息
-			homepageService.addhompage(speaks.getSid(), speakman, speaks.getSenddate());// 添加该条记录到主页数据中
-			return "redirect:" + strspeaks.split("/findPartner")[1];// 然后再返回回去
+		if (speaksService.add(speaks)) {// 添加说说成功
+			return true;
 		}
-		return "redirect:" + strspeaks.split("/findPartner")[1];
+		return false;
 	}
 
 	@RequestMapping(value = "hpspeaks", method = RequestMethod.POST)

@@ -10,6 +10,12 @@ public interface SpeaksMapper {
 
 	PaginationBean<Speaks> PbeanSpeaks(Map<String, Object> map);
 
+	/**
+	 * 添加说说
+	 * 
+	 * @param speaks
+	 * @return
+	 */
 	int addSpeaks(Speaks speaks);
 
 	Speaks findSpeaks(Map<String, String> map);

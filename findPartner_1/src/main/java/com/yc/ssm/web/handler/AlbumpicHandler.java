@@ -21,7 +21,6 @@ import com.yc.ssm.entity.Album;
 import com.yc.ssm.entity.Albumpic;
 import com.yc.ssm.service.AlbumService;
 import com.yc.ssm.service.AlbumpicService;
-import com.yc.ssm.service.HomepageService;
 import com.yc.ssm.util.ServletUtil;
 
 @Controller("albumpicHandler")
@@ -34,9 +33,6 @@ public class AlbumpicHandler {
 	@Autowired
 	private AlbumService albumService;
 
-	@Autowired
-	private HomepageService homepageService;
-
 	@RequestMapping("list")
 	@ResponseBody
 	public List<Albumpic> listAlbumpic(HttpSession session) {
@@ -45,6 +41,14 @@ public class AlbumpicHandler {
 		return albumpicService.listApic(abid);
 	}
 
+	/**
+	 * 图片添加，未修改。
+	 * 
+	 * @param picData
+	 * @param strpic
+	 * @param session
+	 * @return
+	 */
 	@RequestMapping(value = "newpic", method = RequestMethod.POST)
 	@Transactional
 	public String newpic(@RequestParam("picData") MultipartFile picData, @RequestParam("strpic") String strpic,
@@ -66,8 +70,6 @@ public class AlbumpicHandler {
 			if (albumpicService.newpic(abid, picPath, date)) {// 添加成功
 				Album Album = albumService.fpByabid(abid);// 根据相册编号去取该相册
 				if (Album != null) {
-					// 把该图片的相册编号，以及用户编号，还有图片上传时间存到主页表中
-					homepageService.addhompage(abid, Album.getAuid(), date);
 					String aheader = Album.getAheader();
 					// 当刚上传的图片的相册没有头图片的话上传该图片为相册头图片
 					if (aheader == null) {

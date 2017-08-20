@@ -19,6 +19,7 @@ public class Comments implements Serializable {
 	private String comTime;// 评论时间
 	private Users user;
 	private List<Replys> Replys;
+	private String c_uuid;// 标识符
 
 	public Comments() {
 	}
@@ -88,10 +89,18 @@ public class Comments implements Serializable {
 		Replys = replys;
 	}
 
+	public String getC_uuid() {
+		return c_uuid;
+	}
+
+	public void setC_uuid(String c_uuid) {
+		this.c_uuid = c_uuid;
+	}
+
 	@Override
 	public String toString() {
 		return "\nComments [cid=" + cid + ", callid=" + callid + ", detail=" + detail + ", comuserid=" + comuserid
-				+ ", comTime=" + comTime + ", user=" + user + ", Replys=" + Replys + "]";
+				+ ", comTime=" + comTime + ", user=" + user + ", Replys=" + Replys + ", c_uuid=" + c_uuid + "]";
 	}
 
 }

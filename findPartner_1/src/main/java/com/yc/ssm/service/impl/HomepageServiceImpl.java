@@ -19,15 +19,6 @@ public class HomepageServiceImpl implements HomepageService {
 	private HomepageMapper homepageMapper;
 
 	@Override
-	public void addhompage(String hpid, String hpuseid, String hpdate) {
-		Homepage Homepage = new Homepage();
-		Homepage.setHpid(hpid);
-		Homepage.setHpuseid(hpuseid);
-		Homepage.setHpdate(hpdate);
-		homepageMapper.addhomepage(Homepage);
-	}
-
-	@Override
 	public PaginationBean<Homepage> pbHomepage(String hpuseid, String currPage, String pageSize) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		PaginationBean<Speaks> pBean = new PaginationBean<Speaks>();

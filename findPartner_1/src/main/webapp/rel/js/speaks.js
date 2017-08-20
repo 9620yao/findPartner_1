@@ -77,22 +77,39 @@ function listSpeaks(currPage) {
 		"faid" : faid
 	},
 	function(data) {
-		if (data == null || data == "" ||JSON.stringify(data)=="{}") {
+		if (data == null || data == ""
+			|| JSON.stringify(data) == "{}") {
 			return false;
 		}
 		for (var i = 0; i < data.rows.length; i++) {
-			div.append('<div><img onclick="showuser(\''+ data.rows[i].speakman+ '\')" class="picture" '
-				+ '" src="'+(data.rows[i].user.picture == null || data.rows[i].user.picture == "" ? "images/timg.jpg": data.rows[i].user.picture)+'"> '
-				+'<a onclick="showuser(\''+ data.rows[i].speakman+'\')" class="uname" href="javascript:void(0)" style="margin-left: 1%;">'
-				+ data.rows[i].user.nickname + '</a><br><span style="margin-left: 5%;">'+ data.rows[i].senddate + '</span>'
-				+ '<div value="onfocus=this.blur()" onfocus="this.blur()" class="demoEdit" contenteditable="true">'
-				+ data.rows[i].content + '</div><a style="margin-left: 23%;" href="javascript:void(0)"> </a>'
-				+'<a onclick="addcomment(\''+ data.rows[i].sid+ '\')" href="javascript:void(0)" style="margin-left: 5%;" '
-				+'data-toggle="modal" data-target="#addcoment">评论</a></p></div><div class="comment'+ data.rows[i].sid
-				+ '" style="margin-left: 5%;"></div>');
-			comments(data.rows[i].comments);//取到该说说下的所有评论
+			div
+			.append('<div><img onclick="showuser(\''
+					+ data.rows[i].speakman
+					+ '\')" class="picture" '
+					+ '" src="'
+					+ (data.rows[i].user.picture == null
+							|| data.rows[i].user.picture == "" ? "images/timg.jpg"
+									: data.rows[i].user.picture)
+									+ '"> '
+									+ '<a onclick="showuser(\''
+									+ data.rows[i].speakman
+									+ '\')" class="uname" href="javascript:void(0)" style="margin-left: 1%;">'
+									+ data.rows[i].user.nickname
+									+ '</a><br><span style="margin-left: 5%;">'
+									+ data.rows[i].senddate
+									+ '</span>'
+									+ '<div value="onfocus=this.blur()" onfocus="this.blur()" class="demoEdit" contenteditable="true">'
+									+ data.rows[i].content
+									+ '</div><a style="margin-left: 23%;" href="javascript:void(0)"> </a>'
+									+ '<a onclick="addcomment(\''
+									+ data.rows[i].sid
+									+ '\')" href="javascript:void(0)" style="margin-left: 5%;" '
+									+ 'data-toggle="modal" data-target="#addcoment">评论</a></p></div><div class="comment'
+									+ data.rows[i].sid
+									+ '" style="margin-left: 5%;"></div>');
+			comments(data.rows[i].comments);// 取到该说说下的所有评论
 		}
-		
+
 		var pagination = "";
 		pagination += '<label>当前第' + currPage + ' 页，共'
 		+ data.totalPage + ' 页</label>';
@@ -114,9 +131,15 @@ var ue = UE.getEditor('ueditor');
 
 //点击添加说说
 function addSpeak() {
-	$("#content").val(ue.getContentTxt());
-	$("#strspeaks").val(url);
-	$("#myspeak").submit();
+	var content = ue.getContentTxt();
+	alert(content);
+	$.post("speaks/" + faid, {
+		"content" : content
+	}, function(data) {
+		if (data) {
+			alert(data);
+		}
+	}, "json")
 }
 
 //点击说说的评论
