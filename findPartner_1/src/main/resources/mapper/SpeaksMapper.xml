@@ -6,8 +6,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<resultMap type="PaginationBean" id="PaginationBeanMap">
 		<result property="currPage" column="currPage" />
 		<result property="pageSize" column="pageSize" />
-		<collection property="rows" column="{min=min,max=max,speakman=speakman}"
-			ofType="com.yc.ssm.entity.Speaks" select="GetPartTea" />
+		<collection property="rows"
+			column="{min=min,pageSize=pageSize,speakman=speakman}" ofType="com.yc.ssm.entity.Speaks"
+			select="GetPartTea" />
 	</resultMap>
 
 	<select id="PbeanSpeaks" parameterType="java.util.Map"
@@ -17,8 +18,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		totalPage,${pBean.currPage}
 		currPage,${pBean.pageSize}
 		pageSize,(${pBean.currPage}-1)*${pBean.pageSize}
-		min,${pBean.currPage}*${pBean.pageSize}
-		max,#{speakman} speakman
+		min,${pBean.pageSize}
+		pageSize,#{speakman} speakman
 		from
 		speaks
 		<where>
@@ -28,14 +29,19 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		</where>
 	</select>
 
-	<select id="GetPartTea" resultMap="listS">
+	<select id="GetPartTea" resultMap="listS" useCache="false"
+		flushCache="true">
 		select speakman uid,sid,s.* from speaks s
 		<where>
 			<if test="speakman!=null and speakman!=''">
 				speakman=#{speakman}
 			</if>
 		</where>
-		order by senddate desc limit ${min} ,${max}
+		order by senddate desc limit
+		<if test="min==1">
+			0,${pageSize}
+		</if>
+		${min} ,${pageSize}
 	</select>
 
 	<insert id="addSpeaks" parameterType="Speaks" useGeneratedKeys="true"

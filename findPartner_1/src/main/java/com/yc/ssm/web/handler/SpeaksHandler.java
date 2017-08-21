@@ -58,7 +58,6 @@ public class SpeaksHandler {
 	@ResponseBody
 	public boolean add(@PathVariable("id") int id, Speaks speaks, HttpSession session) {
 		LogManager.getLogger().debug("add ==要插入一条说说:" + speaks + ",id=" + id);
-
 		String speakman = (String) session.getAttribute(ServletUtil.USERAID);// 从session中取到用户编号（说说发表人）
 		speaks.setSpeakman(speakman);// 将说说发表人存到speak对象中
 		if (speaksService.add(speaks)) {// 添加说说成功

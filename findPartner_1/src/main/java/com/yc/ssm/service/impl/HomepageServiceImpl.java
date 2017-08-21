@@ -19,7 +19,7 @@ public class HomepageServiceImpl implements HomepageService {
 	private HomepageMapper homepageMapper;
 
 	@Override
-	public PaginationBean<Homepage> pbHomepage(String hpuseid, String currPage, String pageSize) {
+	public PaginationBean<Homepage> pbHomepage(String hpuserid, String currPage, String pageSize) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		PaginationBean<Speaks> pBean = new PaginationBean<Speaks>();
 		if (currPage != null) {
@@ -28,13 +28,13 @@ public class HomepageServiceImpl implements HomepageService {
 		if (pageSize != null) {
 			pBean.setPageSize(Integer.parseInt(pageSize));
 		}
-		map.put("hpuseid", hpuseid);
+		map.put("hpuserid", hpuserid);
 		map.put("pBean", pBean);
 		return homepageMapper.pblist(map);
 	}
 
 	@Override
-	public PaginationBean<Homepage> selflist(String hpuseid, String currPage, String pageSize) {
+	public PaginationBean<Homepage> selflist(String hpuserid, String currPage, String pageSize) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		PaginationBean<Speaks> pBean = new PaginationBean<Speaks>();
 		if (currPage != null) {
@@ -43,7 +43,7 @@ public class HomepageServiceImpl implements HomepageService {
 		if (pageSize != null) {
 			pBean.setPageSize(Integer.parseInt(pageSize));
 		}
-		map.put("hpuseid", hpuseid);
+		map.put("hpuserid", hpuserid);
 		map.put("pBean", pBean);
 		return homepageMapper.selflist(map);
 	}

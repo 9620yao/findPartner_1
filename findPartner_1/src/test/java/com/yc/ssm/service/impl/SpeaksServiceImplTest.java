@@ -26,7 +26,7 @@ public class SpeaksServiceImplTest {
 	 */
 	@Test
 	public void testListSpeaks() {
-		System.out.println(speaksService.listSpeaks("3", "2", "1"));
+		System.out.println(speaksService.listSpeaks("3", "4", "5"));
 	}
 
 	/**

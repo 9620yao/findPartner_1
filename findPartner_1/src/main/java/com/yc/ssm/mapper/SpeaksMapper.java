@@ -8,6 +8,11 @@ import com.yc.ssm.entity.Speaks;
 
 public interface SpeaksMapper {
 
+	/**
+	 * 分页取到说说
+	 * @param map
+	 * @return
+	 */
 	PaginationBean<Speaks> PbeanSpeaks(Map<String, Object> map);
 
 	/**

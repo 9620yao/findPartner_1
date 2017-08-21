@@ -43,16 +43,7 @@
 			<!-- 显示说说 end -->
 		</div>
 		<!-- 分页 -->
-		<div id="page">
-			<div>
-				<label>当前第<sapn class="currPage">1</sapn>页，共<span
-					class="totalPage">1</span> 页
-				</label> <a href="javascript:void(0)" onclick="listSpeaks(1)">首页</a> <a
-					href="javascript:void(0)" class="last">上一页</a> <a
-					href="javascript:void(0)" class="next">下一页</a> <a
-					href="javascript:void(0)" calss="totalPage">尾页</a>
-			</div>
-		</div>
+		<ul id="page"><ul>
 	</div>
 	<!-- content end -->
 
@@ -121,6 +112,7 @@
 
 	<script src="assets/js/jquery.min.js"></script>
 	<script src="bootstrap/3.3.4/js/bootstrap.min.js"></script>
+	<script src="bootstrap-paginator/bootstrap-paginator.js"></script>
 
 	<script src="assets/js/amazeui.min.js"></script>
 	<script type="text/javascript" charset="utf-8"
@@ -130,6 +122,7 @@
 	<script type="text/javascript" charset="utf-8"
 		src="rel/ueditor/lang/zh-cn/zh-cn.js"></script>
 
+	<script type="text/javascript" src="rel/js/uedit/uedit.js"></script>
 	<script type="text/javascript" src="rel/js/speaks.js"></script>
 	<script type="text/javascript" src="rel/js/indexcss.js"></script>
 	<jsp:include page="/include/injs.jsp"></jsp:include>

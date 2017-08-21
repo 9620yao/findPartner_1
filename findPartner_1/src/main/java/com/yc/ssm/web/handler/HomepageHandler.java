@@ -22,6 +22,13 @@ public class HomepageHandler {
 	@Autowired
 	private HomepageService homepageService;
 
+	/**
+	 * 取数据有问题
+	 * 
+	 * @param faid
+	 * @param currPage
+	 * @return
+	 */
 	@RequestMapping("list")
 	@ResponseBody
 	public PaginationBean<Homepage> list(String faid, Integer currPage) {
@@ -29,6 +36,12 @@ public class HomepageHandler {
 		return homepageService.pbHomepage(faid, String.valueOf(currPage), "10");
 	}
 
+	/**
+	 * 
+	 * @param faid
+	 * @param currPage
+	 * @return
+	 */
 	@RequestMapping("selflist")
 	@ResponseBody
 	public PaginationBean<Homepage> selflist(String faid, Integer currPage) {

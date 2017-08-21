@@ -3,16 +3,10 @@
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.yc.ssm.mapper.HomepageMapper">
-	<insert id="addhomepage" parameterType="com.yc.ssm.entity.Homepage">
-		insert into
-		homepage(hpid,hpuseid,hpdate,h_uuid)
-		values(#{hpid},#{hpuseid},#{hpdate},#{h_uuid})
-	</insert>
-
 	<resultMap type="PaginationBean" id="PaginationBeanMap">
 		<result property="currPage" column="currPage" />
 		<result property="pageSize" column="pageSize" />
-		<collection property="rows" column="{min=min,max=max,hpuseid=hpuseid}"
+		<collection property="rows" column="{min=min,max=max,hpuserid=hpuserid}"
 			ofType="com.yc.ssm.entity.Homepage" select="GetPartTea" />
 	</resultMap>
 
@@ -23,26 +17,26 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		${pBean.pageSize})
 		totalPage,${pBean.currPage}
 		currPage,${pBean.pageSize}
-		pageSize,#{hpuseid}
-		hpuseid,${pBean.currPage} *
+		pageSize,#{hpuserid}
+		hpuserid,${pBean.currPage} *
 		${pBean.pageSize} max,(${pBean.currPage}-1)
 		* ${pBean.pageSize} min
 		from
 		homepage
 		where
-		hpuseid=#{hpuseid}
+		hpuserid=#{hpuserid}
 	</select>
 
 	<select id="GetPartTea" resultType="com.yc.ssm.entity.Homepage">
 		select * from homepage where
-		hpuseid=#{hpuseid}
+		hpuserid=#{hpuserid}
 		order by hpdate desc limit #{min},#{max}
 	</select>
 
 	<resultMap type="PaginationBean" id="selfPaginationBeanMap">
 		<result property="currPage" column="currPage" />
 		<result property="pageSize" column="pageSize" />
-		<collection property="rows" column="{max=max,min=min,hpuseid=hpuseid}"
+		<collection property="rows" column="{max=max,min=min,hpuserid=hpuserid}"
 			ofType="com.yc.ssm.entity.Homepage" select="selfGetPartTea" />
 	</resultMap>
 
@@ -53,41 +47,41 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		${pBean.pageSize})
 		totalPage,${pBean.currPage}
 		currPage,${pBean.pageSize}
-		pageSize,#{hpuseid}
-		hpuseid,${pBean.currPage} *
+		pageSize,#{hpuserid}
+		hpuserid,${pBean.currPage} *
 		${pBean.pageSize} max,(${pBean.currPage}-1)
 		* ${pBean.pageSize} min
 		from
 		homepage
 		where
-		hpuseid in (
+		hpuserid in (
 		select distinct
 		(uid)
 		from friends
 		where uid in
 		(select
 		fid from friends where uid =
-		#{hpuseid})
-		and fid = #{hpuseid}
+		#{hpuserid})
+		and fid = #{hpuserid}
 		or uid =
-		#{hpuseid}
+		#{hpuserid}
 		)
 	</select>
 
 	<select id="selfGetPartTea" resultType="com.yc.ssm.entity.Homepage">
 		select * from homepage
 		where
-		hpuseid in (
+		hpuserid in (
 		select
 		distinct (uid)
 		from friends
 		where uid in
 		(select
 		fid from friends where
-		uid = #{hpuseid})
-		and fid = #{hpuseid}
+		uid = #{hpuserid})
+		and fid = #{hpuserid}
 		) or
-		hpuseid = #{hpuseid}
+		hpuserid = #{hpuserid}
 		order by
 		hpdate desc limit #{min},#{max}
 	</select>

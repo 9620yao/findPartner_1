@@ -7,10 +7,6 @@ function GetFinallyAid() {
 		"faid" : faid
 	},
 	function(data) {
-		// alert(data);
-		// alert(JSON.stringify(data)); //JSON.stringify()
-		// ,把json对象转换成json字符串
-		// alert(data.finalaid);
 		if (data.faid == "-1") {
 			$("#myfriend").show();
 			$(".updatepwd").show();// 修改密码按钮
@@ -81,9 +77,21 @@ function listSpeaks(currPage) {
 			|| JSON.stringify(data) == "{}") {
 			return false;
 		}
+		var options = {
+				alignment:"center", // 居中显示
+				currentPage: data.currPage, // 当前页数
+				totalPages: data.totalPage,// 总页数 注意不是总条数
+				pageUrl: function(type, page, current){
+					if (page==current) {
+						return "javascript:void(0)";
+					} else {
+						return "javascript:listSpeaks("+page+")";
+					}
+				}
+		};
+		var str = '';
 		for (var i = 0; i < data.rows.length; i++) {
-			div
-			.append('<div><img onclick="showuser(\''
+			str+=('<div><img onclick="showuser(\''
 					+ data.rows[i].speakman
 					+ '\')" class="picture" '
 					+ '" src="'
@@ -109,35 +117,23 @@ function listSpeaks(currPage) {
 									+ '" style="margin-left: 5%;"></div>');
 			comments(data.rows[i].comments);// 取到该说说下的所有评论
 		}
-
-		var pagination = "";
-		pagination += '<label>当前第' + currPage + ' 页，共'
-		+ data.totalPage + ' 页</label>';
-		pagination += '<a href="javascript:void(0)" onclick="listSpeaks(1)">首页</a>';
-		pagination += '<a href="javascript:void(0)" onclick="listSpeaks('
-			+ (data.currPage == 1 ? 1 : (data.currPage - 1))
-			+ ')">上一页</a>';
-		pagination += '<a href="javascript:void(0)" onclick="listSpeaks('
-			+ (data.currPage == data.totalPage ? data.currPage
-					: (data.currPage + 1)) + ')">下一页</a>';
-		pagination += '<a href="javascript:void(0)" onclick="listSpeaks('
-			+ data.totalPage + ')">尾页</a>';
-		$("#page")[0].innerHTML = pagination;
+		div.html(str);
+		$('#page').bootstrapPaginator(options);
 	}, "json");
 }
 listSpeaks(currPage);
 
-var ue = UE.getEditor('ueditor');
 
 //点击添加说说
 function addSpeak() {
 	var content = ue.getContentTxt();
-	alert(content);
 	$.post("speaks/" + faid, {
 		"content" : content
 	}, function(data) {
 		if (data) {
-			alert(data);
+			listSpeaks(1);// 刷新缓存
+			parent.location.reload();
+			clearmyedit();
 		}
 	}, "json")
 }

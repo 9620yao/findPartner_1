@@ -12,7 +12,7 @@ public class Homepage implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	private String hpid;// 用来存放说说/图片的编号
-	private String hpuseid;// 用来存放说说/图片发表人的编号
+	private String hpuserid;// 用来存放说说/图片发表人的编号
 	private String hpdate;// 用来存放说说/图片 的发表时间
 	private Users user;
 	private Speaks speak;
@@ -22,9 +22,9 @@ public class Homepage implements Serializable {
 	public Homepage() {
 	}
 
-	public Homepage(String hpid, String hpuseid, String hpdate) {
+	public Homepage(String hpid, String hpuserid, String hpdate) {
 		this.hpid = hpid;
-		this.hpuseid = hpuseid;
+		this.hpuserid = hpuserid;
 		this.hpdate = hpdate;
 	}
 
@@ -36,12 +36,12 @@ public class Homepage implements Serializable {
 		this.hpid = hpid;
 	}
 
-	public String getHpuseid() {
-		return hpuseid;
+	public String getHpuserid() {
+		return hpuserid;
 	}
 
-	public void setHpuseid(String hpuseid) {
-		this.hpuseid = hpuseid;
+	public void setHpuserid(String hpuserid) {
+		this.hpuserid = hpuserid;
 	}
 
 	public String getHpdate() {
@@ -86,7 +86,7 @@ public class Homepage implements Serializable {
 
 	@Override
 	public String toString() {
-		return "\nHomepage [hpid=" + hpid + ", hpuseid=" + hpuseid + ", hpdate=" + hpdate + ", user=" + user
+		return "\nHomepage [hpid=" + hpid + ", hpuserid=" + hpuserid + ", hpdate=" + hpdate + ", user=" + user
 				+ ", speak=" + speak + ", albumpic=" + albumpic + ", h_uuid=" + h_uuid + "]";
 	}
 
