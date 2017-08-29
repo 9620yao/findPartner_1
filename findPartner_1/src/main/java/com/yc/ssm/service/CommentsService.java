@@ -8,6 +8,6 @@ public interface CommentsService {
 
 	List<Comments> listComments(String callid);
 
-	void addComments(Comments comments);
+	boolean addComments(Comments comments);
 
 }

@@ -43,14 +43,16 @@
 			<!-- 显示说说 end -->
 		</div>
 		<!-- 分页 -->
-		<ul id="page"><ul>
+		<ul id="page">
+			<ul>
 	</div>
 	<!-- content end -->
 
 	<!-- Modal comment -->
 	<div class="modal fade" id="addcoment" tabindex="-1" role="dialog"
-		aria-labelledby="myModalLabel" aria-hidden="true">
-		<div class="modal-dialog">
+		aria-labelledby="myModalLabel" aria-hidden="true"
+		data-backdrop="static">
+		<div class="modal-dialog" style="width: 50%;">
 			<div class="modal-content">
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal"
@@ -61,12 +63,12 @@
 				</div>
 				<div id="comentInfo">
 					<div class="showcomment"">
-						<form id="faddcomment" action="comments/add" method="post">
-							<input name="strcomment" class="strcomment" type="hidden">
+						<form id="faddcomment">
 							<input name="callid" class="callid" type="hidden"> <input
-								name="detail" class="detail" type="hidden">
+								name="detail" class="detail" type="hidden"> <input
+								name="s_uuid" class="s_uuid" type="hidden">
 							<div class="democomment" contenteditable="true"></div>
-							<a onclick="Getdetail()" href="javascript:void(0)">提交</a>
+							<a href="javascript:Getdetail()">提交</a>
 						</form>
 					</div>
 				</div>

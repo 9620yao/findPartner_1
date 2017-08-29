@@ -31,7 +31,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<select id="GetPartTea" resultMap="listS" useCache="false"
 		flushCache="true">
-		select speakman uid,sid,s.* from speaks s
+		select speakman uid,sid,s_uuid c_uuid,s.* from speaks s
 		<where>
 			<if test="speakman!=null and speakman!=''">
 				speakman=#{speakman}
@@ -90,7 +90,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<id property="sid" column="sid" />
 		<collection property="user" column="{uid=uid}"
 			select="com.yc.ssm.mapper.UsersMapper.getuser" ofType="Users"></collection>
-		<collection property="comments" column="{callid=sid}"
+		<collection property="comments" column="{callid=sid,c_uuid=c_uuid}"
 			select="com.yc.ssm.mapper.CommentsMapper.getcom" ofType="Comments"></collection>
 	</resultMap>
 </mapper>

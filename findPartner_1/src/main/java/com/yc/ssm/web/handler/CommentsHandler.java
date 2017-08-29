@@ -10,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.yc.ssm.entity.Comments;
@@ -41,20 +40,18 @@ public class CommentsHandler {
 	/**
 	 * 添加评论
 	 * 
-	 * @param strcomment
-	 *            页面的请求地址
 	 * @param comments
 	 * @param sesssion
 	 * @return
 	 */
 	@RequestMapping(value = "add", method = RequestMethod.POST)
-	public String add(@RequestParam("strcomment") String strcomment, Comments comments, HttpSession sesssion) {
-		LogManager.getLogger().debug("我进来了 add()==== comments:" + comments + ",strcomment==>" + strcomment);
+	@ResponseBody
+	public boolean add(Comments comments, HttpSession sesssion) {
+		LogManager.getLogger().debug("我进来了 add()==== comments:" + comments);
 		// 评论人为登录用户
 		String comuserid = (String) sesssion.getAttribute(ServletUtil.USERAID);
 		comments.setComuserid(comuserid);
-		commentsService.addComments(comments);// 添加评论
-		return "redirect:" + strcomment.split("/findPartner")[1];// 根据传过来的添加界面，然后返回什么界面
+		return commentsService.addComments(comments);// 根据传过来的添加界面，然后返回什么界面
 	}
 
 }

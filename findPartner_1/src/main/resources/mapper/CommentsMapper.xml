@@ -8,17 +8,19 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select * from comments where callid = #{_parameter}
 	</select>
 
-	<insert id="addComments">
+	<insert id="addComments" parameterType="Comments">
 		insert into
-		comments(callid,detail,comuserid,comTime)
-		values(#{callid},#{detail},#{comuserid},now())
+		comments(callid,detail,comuserid,comTime,c_uuid)
+		values(#{callid},#{detail},#{comuserid},now(),#{c_uuid})
 	</insert>
 
 	<select id="getcom" resultMap="ComandRel">
-		select *,cid,comuserid uid from comments where
-		callid = #{callid} order by comTime desc
+		select *,cid,comuserid uid from
+		comments where c_uuid = #{c_uuid} and
+		callid = #{callid} order by
+		comTime desc
 	</select>
-	
+
 	<resultMap type="Comments" id="ComandRel">
 		<id property="cid" column="cid" />
 		<collection property="user" column="{uid=uid}"

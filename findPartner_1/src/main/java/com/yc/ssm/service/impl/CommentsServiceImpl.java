@@ -21,8 +21,8 @@ public class CommentsServiceImpl implements CommentsService {
 	}
 
 	@Override
-	public void addComments(Comments comments) {
-		commentsMapper.addComments(comments);
+	public boolean addComments(Comments comments) {
+		return commentsMapper.addComments(comments)>0;
 	}
 
 }

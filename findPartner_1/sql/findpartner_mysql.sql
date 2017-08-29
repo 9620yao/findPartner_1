@@ -162,10 +162,5 @@ select sid hpid,speakman hpuserid,s_uuid h_uuid,senddate hpdate from speaks unio
 select apid hpid,(select auid from album where abid = abid) hpuserid,
 ap_uuid h_uuid,apicdate hpdate from albumpic;
 
-select count(1) total,ceil(count(1) / 3) totalPage,
-2 currPage,3 pageSize, hpuserid,2 * 3 max,(2-1) * 3 min 
-from homepage where hpuserid= 3 
-select speakman uid,sid,s.* from speaks s WHERE speakman=3 order by senddate desc limit 0,5
-select speakman uid,sid,s.* from speaks s WHERE speakman=3 order by senddate desc limit 5,5
-select speakman uid,sid,s.* from speaks s WHERE speakman=3 order by senddate desc limit 10,5
-
+select * from comments
+delete from comments

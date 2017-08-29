@@ -99,22 +99,14 @@ function listSpeaks(currPage) {
 							|| data.rows[i].user.picture == "" ? "images/timg.jpg"
 									: data.rows[i].user.picture)
 									+ '"> '
-									+ '<a onclick="showuser(\''
-									+ data.rows[i].speakman
-									+ '\')" class="uname" href="javascript:void(0)" style="margin-left: 1%;">'
-									+ data.rows[i].user.nickname
-									+ '</a><br><span style="margin-left: 5%;">'
-									+ data.rows[i].senddate
-									+ '</span>'
+									+ '<a class="uname" href="javascript:showuser(\''
+									+ data.rows[i].speakman+ '\')">'+ data.rows[i].user.nickname
+									+ '</a><span class="time">'+ data.rows[i].senddate+ '</span>'
 									+ '<div value="onfocus=this.blur()" onfocus="this.blur()" class="demoEdit" contenteditable="true">'
-									+ data.rows[i].content
-									+ '</div><a style="margin-left: 23%;" href="javascript:void(0)"> </a>'
-									+ '<a onclick="addcomment(\''
-									+ data.rows[i].sid
-									+ '\')" href="javascript:void(0)" style="margin-left: 5%;" '
-									+ 'data-toggle="modal" data-target="#addcoment">评论</a></p></div><div class="comment'
-									+ data.rows[i].sid
-									+ '" style="margin-left: 5%;"></div>');
+									+ data.rows[i].content+ '</div><a class="del" href="javascript:void(0)"></a>'
+									+ '<a class="com" onclick="addcomment(\''+ data.rows[i].sid+ '\',\''+ data.rows[i].s_uuid+ '\')" href="javascript:void(0)"'
+									+ 'data-toggle="modal" data-target="#addcoment">评论</a></p></div><div class="dcom comment'
+									+ data.rows[i].sid+'"></div>');
 			comments(data.rows[i].comments);// 取到该说说下的所有评论
 		}
 		div.html(str);
@@ -139,16 +131,21 @@ function addSpeak() {
 }
 
 //点击说说的评论
-function addcomment(obj) {
+function addcomment(obj,uuid) {
 	$(".callid").attr("value", obj);
-	$(".strcomment").val(url);
+	$('.s_uuid').attr("value",uuid);
 }
 
 //评论点击提交
 function Getdetail() {
 	var text = $(".democomment").text();
-	$(".detail").attr("value", text);
-	$("#faddcomment").submit();
+	var callid = $(".callid").val();
+	var s_uuid = $('.s_uuid').val();
+	$.post("comments/add",{"detail":text,"callid":callid,"c_uuid":s_uuid},function(data){
+		if(data){
+			alert(data);
+		}
+	},"json");
 }
 
 //点击评论的回复
