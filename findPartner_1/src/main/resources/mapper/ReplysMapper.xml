@@ -9,8 +9,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<insert id="addReplys" parameterType="com.yc.ssm.entity.Replys">
 		insert into
-		replys(rcid,ruserid,rtargetid,rcontent,rtime)
-		values(#{rcid},#{ruserid},#{rtargetid},#{rcontent},now())
+		replys(rcid,ruserid,rtargetid,rcontent,rtime,r_uuido,r_uuidt)
+		values(#{rcid},#{ruserid},#{rtargetid},#{rcontent},now(),UUID(),#{r_uuidt})
 	</insert>
 
 	<select id="getreplys" resultMap="RepandRep">

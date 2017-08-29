@@ -26,7 +26,6 @@ public class SpeaksHandler {
 	@Autowired
 	private SpeaksService speaksService;
 
-
 	/**
 	 * 分页显示说说,记得把后面显示说说，修改该请求中来
 	 * 

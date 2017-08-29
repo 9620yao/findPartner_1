@@ -73,8 +73,7 @@ function listSpeaks(currPage) {
 		"faid" : faid
 	},
 	function(data) {
-		if (data == null || data == ""
-			|| JSON.stringify(data) == "{}") {
+		if (data == null || data == "") {
 			return false;
 		}
 		var options = {
@@ -91,25 +90,22 @@ function listSpeaks(currPage) {
 		};
 		var str = '';
 		for (var i = 0; i < data.rows.length; i++) {
-			str+=('<div><img onclick="showuser(\''
-					+ data.rows[i].speakman
-					+ '\')" class="picture" '
-					+ '" src="'
-					+ (data.rows[i].user.picture == null
-							|| data.rows[i].user.picture == "" ? "images/timg.jpg"
-									: data.rows[i].user.picture)
-									+ '"> '
-									+ '<a class="uname" href="javascript:showuser(\''
-									+ data.rows[i].speakman+ '\')">'+ data.rows[i].user.nickname
-									+ '</a><span class="time">'+ data.rows[i].senddate+ '</span>'
-									+ '<div value="onfocus=this.blur()" onfocus="this.blur()" class="demoEdit" contenteditable="true">'
-									+ data.rows[i].content+ '</div><a class="del" href="javascript:void(0)"></a>'
-									+ '<a class="com" onclick="addcomment(\''+ data.rows[i].sid+ '\',\''+ data.rows[i].s_uuid+ '\')" href="javascript:void(0)"'
-									+ 'data-toggle="modal" data-target="#addcoment">评论</a></p></div><div class="dcom comment'
-									+ data.rows[i].sid+'"></div>');
-			comments(data.rows[i].comments);// 取到该说说下的所有评论
+			str+='<div><img onclick="showuser(\''+ data.rows[i].speakman+ '\')" class="picture"';
+			if(data.rows[i].user.picture == null|| data.rows[i].user.picture == ""){
+				str+=' src="images/timg.jpg">';
+			}else{
+				str+=' src="'+ data.rows[i].user.picture+'">';
+			}
+			str+='<a class="uname" href="javascript:showuser(\''+ data.rows[i].speakman+ '\')">'+ data.rows[i].user.nickname+ '</a>';
+			str+='<span class="time">'+ data.rows[i].senddate+ '</span>';
+			str+='<div value="onfocus=this.blur()" onfocus="this.blur()" class="demoEdit" contenteditable="true">'+ data.rows[i].content+ '</div>';
+			str+='<a class="del" href="javascript:void(0)"></a>';
+			str+='<a class="com" onclick="addcomment(\''+ data.rows[i].sid+ '\',\''+ data.rows[i].s_uuid+ '\')" href="javascript:void(0)"'
+			+ 'data-toggle="modal" data-target="#addcoment">评论</a></p></div>';
+			str+='<div class="dcom comment'+ data.rows[i].sid+'"></div>';
 		}
 		div.html(str);
+		comments(data.rows);
 		$('#page').bootstrapPaginator(options);
 	}, "json");
 }

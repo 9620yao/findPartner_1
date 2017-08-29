@@ -113,7 +113,9 @@ CREATE table comments(
 );
 alter table comments AUTO_INCREMENT=1000;
 
-select * from replys;
+-- select * from comments;
+-- select * from replys;
+
 create table replys(
 	rid int primary key auto_increment, 
 	rcid varchar(20), 

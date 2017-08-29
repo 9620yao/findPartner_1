@@ -44,7 +44,7 @@
 		</div>
 		<!-- 分页 -->
 		<ul id="page">
-			<ul>
+		</ul>
 	</div>
 	<!-- content end -->
 
@@ -117,12 +117,9 @@
 	<script src="bootstrap-paginator/bootstrap-paginator.js"></script>
 
 	<script src="assets/js/amazeui.min.js"></script>
-	<script type="text/javascript" charset="utf-8"
-		src="rel/ueditor/ueditor.config.js"></script>
-	<script type="text/javascript" charset="utf-8"
-		src="rel/ueditor/ueditor.all.min.js"></script>
-	<script type="text/javascript" charset="utf-8"
-		src="rel/ueditor/lang/zh-cn/zh-cn.js"></script>
+	<script src="rel/ueditor/ueditor.config.js"></script>
+	<script src="rel/ueditor/ueditor.all.min.js"></script>
+	<script src="rel/ueditor/lang/zh-cn/zh-cn.js"></script>
 
 	<script type="text/javascript" src="rel/js/uedit/uedit.js"></script>
 	<script type="text/javascript" src="rel/js/speaks.js"></script>
