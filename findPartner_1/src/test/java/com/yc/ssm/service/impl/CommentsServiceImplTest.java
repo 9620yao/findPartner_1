@@ -6,21 +6,21 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.yc.ssm.entity.Replys;
-import com.yc.ssm.service.ReplysService;
+import com.yc.ssm.entity.Comments;
+import com.yc.ssm.mapper.CommentsMapper;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("classpath:spring.xml")
-public class ReplysServiceImplTest {
+public class CommentsServiceImplTest {
 
 	@Autowired
-	private ReplysService replysService;
-
+	private CommentsMapper commentsMapper;
+	
 	@Test
-	public void testListreplys() {
-		Replys replys = new Replys();
-		replys.setRcid("13");
-		System.out.println(replysService.listreplys(replys));
+	public void test() {
+		Comments comments = new Comments();
+		comments.setC_uuid("33557de7-8d60-11e7-a461-40167e873601");
+		comments.setCallid("26");
+		System.out.println(commentsMapper.getcom(comments));
 	}
-
 }

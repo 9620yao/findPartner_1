@@ -6,10 +6,8 @@ import com.yc.ssm.entity.Comments;
 
 public interface CommentsMapper {
 
-	List<Comments> listComments(String callid);
-
 	int addComments(Comments comments);
 
-	List<Comments> getcom();
+	List<Comments> getcom(Comments comments);
 
 }

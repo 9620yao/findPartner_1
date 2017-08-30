@@ -3,22 +3,17 @@
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.yc.ssm.mapper.CommentsMapper">
-	<select id="listComments" parameterType="string"
-		resultType="com.yc.ssm.entity.Comments">
-		select * from comments where callid = #{_parameter}
-	</select>
-
 	<insert id="addComments" parameterType="Comments">
 		insert into
 		comments(callid,detail,comuserid,comTime,c_uuid)
 		values(#{callid},#{detail},#{comuserid},now(),#{c_uuid})
 	</insert>
 
-	<select id="getcom" resultMap="ComandRel">
+	<select id="getcom" parameterType="Comments"  resultMap="ComandRel">
 		select *,cid,comuserid uid from
 		comments where c_uuid = #{c_uuid} and
 		callid = #{callid} order by
-		comTime desc
+		comTime asc
 	</select>
 
 	<resultMap type="Comments" id="ComandRel">

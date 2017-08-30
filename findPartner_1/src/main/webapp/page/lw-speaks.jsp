@@ -68,7 +68,7 @@
 								name="detail" class="detail" type="hidden"> <input
 								name="s_uuid" class="s_uuid" type="hidden">
 							<div class="democomment" contenteditable="true"></div>
-							<a href="javascript:Getdetail()">提交</a>
+							<a href="javascript:Getdetail()" class="btnclose">提交</a>
 						</form>
 					</div>
 				</div>
@@ -93,13 +93,12 @@
 					<span class="modal-title" id="myModalLabel">添加回复</span>
 				</div>
 				<div id="comentInfo">
-					<form id="rform" action="replys/add" method="post">
-						<input name="strreplys" class="strreplys" type="hidden"> <input
-							name="rcid" class="rcid" type="hidden"> <input
+					<form id="rform" method="post">
+						<input name="rcid" class="rcid" type="hidden"> <input
 							name="rtargetid" class="rtargetid" type="hidden"> <input
 							name="rcontent" class="rcontent" type="hidden">
 						<div class="democomment" contenteditable="true"></div>
-						<a onclick="Getrcontent()" href="javascript:void(0)">提交</a>
+						<a href="javascript:Getrcontent()" class="btnclose">提交</a>
 					</form>
 				</div>
 				<div class="modal-footer">

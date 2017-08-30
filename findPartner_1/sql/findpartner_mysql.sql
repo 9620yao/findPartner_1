@@ -116,6 +116,7 @@ alter table comments AUTO_INCREMENT=1000;
 -- select * from comments;
 -- select * from replys;
 
+
 create table replys(
 	rid int primary key auto_increment, 
 	rcid varchar(20), 
@@ -164,5 +165,5 @@ select sid hpid,speakman hpuserid,s_uuid h_uuid,senddate hpdate from speaks unio
 select apid hpid,(select auid from album where abid = abid) hpuserid,
 ap_uuid h_uuid,apicdate hpdate from albumpic;
 
-select * from comments
-delete from comments
+
+

@@ -16,13 +16,13 @@ public class ReplysServiceImpl implements ReplysService {
 	private ReplysMapper replysMapper;
 	
 	@Override
-	public List<Replys> listreplys(String listrcid) {
-		return replysMapper.listreplys(listrcid);
+	public List<Replys> listreplys(Replys replys) {
+		return replysMapper.getreplys(replys);
 	}
 
 	@Override
-	public void addReplys(Replys replys) {
-		replysMapper.addReplys(replys);
+	public boolean addReplys(Replys replys) {
+		return replysMapper.addReplys(replys)>0;
 	}
 
 }

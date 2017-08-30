@@ -3,44 +3,25 @@
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.yc.ssm.mapper.ReplysMapper">
-	<select id="listreplys" parameterType="string" resultType="com.yc.ssm.entity.Replys">
-		select * from replys where rcid = #{_parameter}
-	</select>
-
-	<insert id="addReplys" parameterType="com.yc.ssm.entity.Replys">
+	<insert id="addReplys" parameterType="Replys">
 		insert into
-		replys(rcid,ruserid,rtargetid,rcontent,rtime,r_uuido,r_uuidt)
-		values(#{rcid},#{ruserid},#{rtargetid},#{rcontent},now(),UUID(),#{r_uuidt})
+		replys(rcid,ruserid,rtargetid,rcontent,rtime)
+		values(#{rcid},#{ruserid},#{rtargetid},#{rcontent},now())
 	</insert>
 
-	<select id="getreplys" resultMap="RepandRep">
+	<select id="getreplys" parameterType="Replys" resultMap="RepandRep">
 		select *,rid,ruserid
 		uid,rtargetid puid
 		from replys where
 		rcid = #{rcid}
 	</select>
-	<select id="getRR" resultMap="RepandUs">
-		select *,rid,ruserid uid,rtargetid
-		puid
-		from replys
-		where
-		rcid =
-		#{rid}
-	</select>
+
 	<resultMap type="Replys" id="RepandRep">
 		<id property="rid" column="rid" />
-		<collection property="replys" column="rid" select="getRR"
-			ofType="Replys"></collection>
 		<collection property="user" column="{uid=uid}"
 			select="com.yc.ssm.mapper.UsersMapper.getuser" ofType="Users"></collection>
 		<collection property="puser" column="{uid=puid}"
 			select="com.yc.ssm.mapper.UsersMapper.getuser" ofType="Users"></collection>
 	</resultMap>
-	
-	<resultMap type="Replys" id="RepandUs">
-		<collection property="user" column="{uid=uid}"
-			select="com.yc.ssm.mapper.UsersMapper.getuser" ofType="Users"></collection>
-		<collection property="puser" column="{uid=puid}"
-			select="com.yc.ssm.mapper.UsersMapper.getuser" ofType="Users"></collection>
-	</resultMap>
+
 </mapper>

@@ -6,8 +6,8 @@ import com.yc.ssm.entity.Replys;
 
 public interface ReplysService {
 
-	List<Replys> listreplys(String listrcid);
+	List<Replys> listreplys(Replys replys);
 
-	void addReplys(Replys replys);
+	boolean addReplys(Replys replys);
 
 }

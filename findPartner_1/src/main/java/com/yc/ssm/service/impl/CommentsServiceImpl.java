@@ -16,8 +16,8 @@ public class CommentsServiceImpl implements CommentsService {
 	private CommentsMapper commentsMapper;
 	
 	@Override
-	public List<Comments> listComments(String callid) {
-		return commentsMapper.listComments(callid);
+	public List<Comments> listComments(Comments comments) {
+		return commentsMapper.getcom(comments);
 	}
 
 	@Override

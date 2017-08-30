@@ -32,9 +32,9 @@ public class CommentsHandler {
 	 */
 	@RequestMapping(value = "list", method = RequestMethod.POST)
 	@ResponseBody
-	public List<Comments> listComments(String sid, HttpServletRequest request) {
-		LogManager.getLogger().debug("我进来了 listComments==== callid:" + sid);
-		return commentsService.listComments(sid);// 所有的评论
+	public List<Comments> listComments(Comments comments, HttpServletRequest request) {
+		LogManager.getLogger().debug("我进来了 listComments==== comments:" + comments);
+		return commentsService.listComments(comments);// 所有的评论
 	}
 
 	/**

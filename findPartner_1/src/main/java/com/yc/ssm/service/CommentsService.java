@@ -6,7 +6,7 @@ import com.yc.ssm.entity.Comments;
 
 public interface CommentsService {
 
-	List<Comments> listComments(String callid);
+	List<Comments> listComments(Comments comments);
 
 	boolean addComments(Comments comments);
 
