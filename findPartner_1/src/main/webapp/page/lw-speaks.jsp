@@ -10,7 +10,6 @@
 <link rel="stylesheet" href="assets/css/app.css">
 <link rel="stylesheet" href="rel/css/speak.css">
 <link rel="stylesheet" href="bootstrap/3.3.4/css/bootstrap.min.css">
-<link rel="stylesheet" href="rel/css/indexcss.css">
 </head>
 <body id="blog">
 	<jsp:include page="/include/header.jsp" /><!-- 公共头部部分 -->

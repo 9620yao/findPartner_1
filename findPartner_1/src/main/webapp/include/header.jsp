@@ -33,13 +33,6 @@
 			<li><a class="updatepwd" href="page/lw-modifyPwd.jsp">修改密码</a></li>
 		</ul>
 		<span class="target"></span>
-		<form class="am-topbar-form am-topbar-right am-form-inline"
-			role="search">
-			<div class="am-form-group">
-				<input type="text" class="am-form-field am-input-sm"
-					placeholder="搜索">
-			</div>
-		</form>
 	</div>
 </nav>
 <hr>

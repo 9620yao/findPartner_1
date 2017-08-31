@@ -110,28 +110,32 @@ function hpspeak(obj){
 	}else{
 		hps+=' src="'+ obj.user.picture+'">';
 	}
-	showhp.append('<a class="uname" href="javascript:showuser(\''+ obj.speakman+ '\')">'+ obj.user.nickname+ '</a>');
-	showhp.append('<span class="time">'+ obj.senddate+ '</span>');
-	showhp.append('<div value="onfocus=this.blur()" onfocus="this.blur()" class="demoEdit" contenteditable="true">'+ obj.content+ '</div>');
-	showhp.append('<a class="del" href="javascript:void(0)"></a>');
-	showhp.append('<a class="com" onclick="addcomment(\''+ obj.sid+ '\',\''+ obj.s_uuid+ '\')" href="javascript:void(0)"'
-			+ 'data-toggle="modal" data-target="#addcoment">评论</a></p></div>');
-	showhp.append('<div class="dcom comment'+ obj.sid+'"></div>');
+	hps+='<a class="uname" href="javascript:showuser(\''+ obj.speakman+ '\')">'+ obj.user.nickname+ '</a>';
+	hps+='<span class="time">'+ obj.senddate+ '</span>';
+	hps+='<div value="onfocus=this.blur()" onfocus="this.blur()" class="demoEdit" contenteditable="true">'+ obj.content+ '</div>';
+	hps+='<a class="del" href="javascript:void(0)"></a>';
+	hps+='<a class="com" onclick="addcomment(\''+ obj.sid+ '\',\''+ obj.s_uuid+ '\')" href="javascript:void(0)"'
+			+ 'data-toggle="modal" data-target="#addcoment">评论</a></p></div>';
+	hps+='<div class="dcom comment'+ obj.sid+'"></div>';
+	showhp.append(hps);
 }
 
 function hpapic(obj) {
+	var hap=''
+	hap+='<div><img onclick="showuser(' + obj.user.uid+ ')" class="picture"';
 	if(obj.user.picture == null|| obj.user.picture == ""){
-		showhp.append('<div><img onclick="showuser(' + obj.user.uid+ ')" class="picture" src="images/timg.jpg">');
+		hap+=' src="images/timg.jpg">';
 	}else{
-		showhp.append('<div><img onclick="showuser(' + obj.user.uid+ ')" class="picture" src="'+obj.user.picture+'">');
+		hap+=' src="'+obj.user.picture+'">';
 	}
-	showhp.append('<a onclick="showuser(' + obj.user.uid+ ')" class="uname' + obj.user.uid+ '" href="javascript:void(0)">'+ obj.user.uid + "</a>");
-	showhp.append('<br><span  class="time">' + obj.apicdate+ "</span>");
-	showhp.append('<div class="demo-gallery"><ul id="lightgallery">'
-			+'<li data-src="' + obj.apic+ '"><a href="javascript:void(0)">'
-			+'<img src="' +obj.apic + '"/></a></li></ul></div>');
-	showhp.append('<p style="margin-left: 3%;">上传图片到《');
-	showhp.append('<a onclick="openpic(' +  obj.user.uid + ',' + obj.abid+ ')" href="javascript:void(0)">相册' + obj.abid+ '</a>》</p></div>');
+	hap+='<a class="uname" href="javascript:showuser(' + obj.user.uid+ ')">'+ obj.user.uid + "</a>";
+	hap+='<span  class="time">' + obj.apicdate+ "</span>";
+	hap+='<div class="demo-gallery"><ul id="lightgallery">'
+	+'<li data-src="' + obj.apic+ '"><a href="javascript:void(0)">'
+	+'<img src="' +obj.apic + '"/></a></li></ul></div>';
+	hap+='<p style="margin-left: 3%;">上传图片到《'
+	+'<a onclick="openpic(' +  obj.user.uid + ',' + obj.abid+ ')" href="javascript:void(0)">相册' + obj.abid+ '</a>》</p></div>';
+	showhp.append(hap);
 }
 
 function lightGallery() {
