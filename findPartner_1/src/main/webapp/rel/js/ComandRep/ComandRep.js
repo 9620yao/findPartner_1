@@ -4,7 +4,6 @@ function comments(data) {
 		if (data[i].comments == null || data[i].comments == ""||JSON.stringify(data[i].comments)=="{}") {
 			return false;
 		}
-		
 		for (var j = 0; j < data[i].comments.length; j++) {
 			if(data[i].comments[j].user.picture == null || data[i].comments[j].user.picture == ""){
 				$('.comment' + data[i].sid).append('<div><img onclick="showuser(\'' + data[i].comments[j].comuserid + '\')" class="picture" src="images/timg.jpg">');

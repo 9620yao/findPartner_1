@@ -3,11 +3,11 @@
 }
 
 .demo-gallery>ul>li {
-	float: left;
 	margin-bottom: 15px;
 	margin-right: 20px;
 	width: 200px;
 	list-style: none;
+	display: inline-block;
 }
 
 .demo-gallery>ul>li a {
@@ -16,7 +16,6 @@
 	display: block;
 	overflow: hidden;
 	position: relative;
-	float: left;
 }
 
 .demo-gallery>ul>li a>img {

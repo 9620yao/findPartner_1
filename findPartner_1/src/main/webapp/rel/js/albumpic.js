@@ -59,8 +59,7 @@ function listalbumpic() {
 		$("#imgnotnull").hide();
 		var apicStr = '';
 		for (var i = 0; i < data.length; i++) {
-			apicStr += '<li data-src="' + data[i].apic
-			+ '"><a href="javascript:void(0)">';
+			apicStr += '<li data-src="' + data[i].apic+ '"><a href="javascript:void(0)">';
 			apicStr += '<img src="' + data[i].apic + '"></a></li>';
 		}
 		$("#lightgallery")[0].innerHTML = apicStr;

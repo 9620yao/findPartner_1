@@ -52,12 +52,7 @@ function showUser(data) {
 function chgPic(obj) {
 	$(".pic").attr("src", window.URL.createObjectURL(obj.files[0]))
 }
-$(function() {
-	$("#head li a").on("click", function() {
-		$("#head li a").css("background-color", "white");
-		$(this).css("background-color", "green")
-	})
-});
+
 function updateInfo() {
 	var age = $("#age").val();
 	if ((age >= 6 && age <= 100) || age == "" || age == null) {

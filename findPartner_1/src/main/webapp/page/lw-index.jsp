@@ -10,7 +10,8 @@
 <link rel="stylesheet" href="assets/css/app.css">
 <link rel="stylesheet" href="rel/css/index.css">
 <link rel="stylesheet" href="bootstrap/3.3.4/css/bootstrap.min.css">
-<link rel="stylesheet" href="rel/css/indexcss.css">
+<link type="text/css" rel="stylesheet" href="album/css/lightgallery.css" />
+<link type="text/css" rel="stylesheet" href="album/css/demo-gallery.css" />
 </head>
 <body id="blog">
 	<jsp:include page="/include/header.jsp" /><!-- 公共头部部分 -->
@@ -19,7 +20,7 @@
 	<div class="am-g am-g-fixed blog-fixed">
 		<div class="am-u-md-8 am-u-sm-12">
 			<!-- 个人中心和他的主页 start -->
-			<div style="margin-top: 5%;" id="showspeak"></div>
+			<div style="margin-top: 5%;" id="showhp"></div>
 			<!-- 个人中心和他的主页  end -->
 
 			<!-- 分页显示数据 start -->
@@ -216,15 +217,16 @@
 	<script src="assets/js/jquery.min.js"></script>
 	<script src="bootstrap/3.3.4/js/bootstrap.min.js"></script>
 	<script src="assets/js/amazeui.min.js"></script>
-	<!-- <script src="rel/layer/jquery.js?v=1.83.min"></script> -->
-	<script src="rel/layer/layer.min.js"></script>
+	
+	<script type="text/javascript" src="album/js/lightgallery.min.js"></script>
+	<script type="text/javascript" src="album/js//jquery.mousewheel.min.js"></script>
+	<script type="text/javascript" src="album/js/lg-thumbnail.min.js"></script>
+	<script type="text/javascript" src="album/js/lg-fullscreen.min.js"></script>
 
 	<script type="text/javascript" src="rel/js/hpindex.js"></script>
 	<script type="text/javascript" src="rel/js/index/index.js"></script>
 
-	<script type="text/javascript" src="rel/js/indexpic.js"></script>
 	<script type="text/javascript" src="rel/js/indexcss.js"></script>
 	<script type="text/javascript" src="My97DatePicker/WdatePicker.js"></script>
-	<%-- <jsp:include page="/include/injs.jsp"></jsp:include> --%>
 </body>
 </html>
