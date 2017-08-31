@@ -1,9 +1,5 @@
 package com.yc.ssm.service.impl;
 
-import static org.junit.Assert.*;
-
-import java.util.List;
-
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,17 +17,10 @@ public class AlbumpicServiceImplTest {
 	private AlbumpicService albumpicService;
 	
 	@Test
-	public void testListApic() {
-		List<Albumpic> list = albumpicService.listApic("ab10000");
-		System.out.println(list);
-		assertNotNull(list);
+	public void TestListApic(){
+		Albumpic albumpic = new Albumpic();
+		albumpic.setAbid("2");
+		albumpicService.findAlbumpic(albumpic);
 	}
-	
-	/*@Test
-	public void testNewPic() {
-		boolean result = albumpicService.newpic("asf", "asdfa");
-		System.out.println(result);
-		assertNotNull(result);
-	}*/
-	
+
 }

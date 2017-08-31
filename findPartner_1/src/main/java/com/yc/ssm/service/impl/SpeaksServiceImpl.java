@@ -43,11 +43,8 @@ public class SpeaksServiceImpl implements SpeaksService {
 	}
 
 	@Override
-	public Speaks findSpeaks(String sid, String speakman) {
-		Map<String, String> map = new HashMap<String, String>();
-		map.put("sid", sid);
-		map.put("speakman", speakman);
-		return speaksMapper.findSpeaks(map);
+	public Speaks findSpeaks(Speaks speaks) {
+		return speaksMapper.findSpeaks(speaks);
 	}
 
 	@Override
@@ -56,13 +53,8 @@ public class SpeaksServiceImpl implements SpeaksService {
 	}
 
 	@Override
-	public List<Map<String,Object>> countSpeaks(String speakman) {
+	public List<Map<String, Object>> countSpeaks(String speakman) {
 		return speaksMapper.countSpeaks(speakman);
-	}
-
-	@Override
-	public List<Speaks> lists(String speakman) {
-		return speaksMapper.listSpeaks(speakman);
 	}
 
 }

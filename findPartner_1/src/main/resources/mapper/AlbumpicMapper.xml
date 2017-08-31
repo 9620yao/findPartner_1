@@ -3,30 +3,26 @@
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.yc.ssm.mapper.AlbumpicMapper">
-	<select id="listApic" parameterType="string" resultType="com.yc.ssm.entity.Albumpic">
+	<select id="listApic" parameterType="Albumpic" resultType="Albumpic">
 		select *
-		from albumpic where abid = #{_parameter}
+		from albumpic where abid = #{abid}
 	</select>
 
-	<insert id="addpic" parameterType="com.yc.ssm.entity.Albumpic">
+	<insert id="addpic" parameterType="Albumpic">
 		insert into
-		albumpic(abid,apic,apicdate,ap_uuid)
-		values(#{abid},#{apic},now(),UUID())
+		albumpic(abid,apic,apicdate,ap_uuid,uid)
+		values(#{abid},#{apic},now(),UUID(),#{uid})
 	</insert>
 
-	<select id="HpAlbumpic" parameterType="com.yc.ssm.entity.Albumpic"
-		resultType="com.yc.ssm.entity.Albumpic">
-		select *
-		from albumpic where abid = #{abid} and
-		apicdate =
-		#{apicdate}
+	<select id="HpAlbumpic" parameterType="Albumpic" resultMap="picanduser">
+		select *,uid id from albumpic where ap_uuid =#{ap_uuid} and apid =
+		#{apid}
 	</select>
 
-	<select id="findAlbumpic" parameterType="string"
-		resultType="com.yc.ssm.entity.Albumpic">
-		select *
-		from albumpic
-		where abid = #{_parameter}
-	</select>
+	<resultMap type="Albumpic" id="picanduser">
+		<id property="apid" column="apid"/>
+		<collection property="user" column="{uid=id}"
+			select="com.yc.ssm.mapper.UsersMapper.getuser" ofType="Users"></collection>
+	</resultMap>
 
 </mapper>

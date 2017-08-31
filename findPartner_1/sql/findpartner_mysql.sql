@@ -77,17 +77,17 @@ CREATE TABLE album(
 );
 alter table album AUTO_INCREMENT=1000;
 
- 
+
 create table albumpic(
 	apid int PRIMARY KEY auto_increment,
 	abid int, 
+	uid int,
 	apic VARCHAR(500), 
 	apiccontent VARCHAR(500), 
 	apicdate VARCHAR(100), 
 	ap_uuid VARCHAR(40)
 );
 alter table albumpic AUTO_INCREMENT=1000;
-
 
 CREATE TABLE words(
 	wid int PRIMARY KEY AUTO_INCREMENT, 
@@ -129,7 +129,6 @@ create table replys(
 );
 alter table replys AUTO_INCREMENT=1000;
 
-
 create table userpower(
 	upid int primary key AUTO_INCREMENT, 
 	upuid varchar(20), 
@@ -152,7 +151,6 @@ create table backadmin(
 alter table backadmin AUTO_INCREMENT=1000;
 
 -- create table homepage(
---	hid int primary key auto_increment,  
 --	hpid int, 
 --	hpuseid int, 
 --	hpdate VARCHAR(100), 
@@ -162,8 +160,8 @@ alter table backadmin AUTO_INCREMENT=1000;
 
 create or replace view homepage as
 select sid hpid,speakman hpuserid,s_uuid h_uuid,senddate hpdate from speaks union
-select apid hpid,(select auid from album where abid = abid) hpuserid,
-ap_uuid h_uuid,apicdate hpdate from albumpic;
+select apid hpid,uid hpuserid,ap_uuid h_uuid,apicdate hpdate from albumpic;
 
-
-
+select * from album
+select * from albumpic where apid = '25' and ap_uuid = 'c5a49d60-8e25-11e7-8887-40167e873601'
+select * from homepage where hpuserid = '2'

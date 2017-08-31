@@ -7,17 +7,20 @@
 <jsp:include page="/include/Icon.jsp" /><!-- 公共图标 -->
 <link rel="stylesheet" href="assets/css/amazeui.min.css">
 <link rel="stylesheet" href="assets/css/app.css">
-<link rel="stylesheet" href="rel/css/albumpic.css">
 <link rel="stylesheet" href="bootstrap/3.3.4/css/bootstrap.min.css">
-<link rel="stylesheet" href="rel/css/indexcss.css">
+<link type="text/css" rel="stylesheet" href="album/css/lightgallery.css" />
+<link type="text/css" rel="stylesheet" href="album/css/demo-gallery.css" />
+<link rel="stylesheet" type="text/css" media="all"
+	href="uploader/css/fileinput.css">
 </head>
 <body id="blog-article-sidebar">
 	<jsp:include page="/include/header.jsp" /><!-- 公共头部部分 -->
 
 	<!-- Modal -->
 	<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
-		aria-labelledby="myModalLabel" aria-hidden="true">
-		<div class="modal-dialog">
+		aria-labelledby="myModalLabel" aria-hidden="true"
+		data-backdrop="static">
+		<div class="modal-dialog" style="width: 85%;">
 			<div class="modal-content">
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal"
@@ -28,25 +31,13 @@
 				</div>
 				<!-- 添加图片 start -->
 				<div class="modal-body">
-					<form id="fnewpic" action="albumpic/newpic" method="post"
-						enctype="multipart/form-data">
-						<p>
-							<input id="pictrue" type="file" name="picData"
-								onchange="chgPic(this)" /> <input name="strpic" class="strpic"
-								type="hidden">
-						</p>
-						<p>
-							<img src="images/not_pic.jpg" class="pic" width="100"
-								height="100">
-						</p>
-						<p>
-							<a onclick="newpic()" href="javascript:void(0)">添加</a>
-						</p>
+					<form id="fnewpic" enctype="multipart/form-data">
+						<input id="picData" name="picData" type="file" multiple>
 					</form>
 				</div>
 				<!-- 添加图片 end -->
 				<div class="modal-footer">
-					<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+					<button type="button" class="btn btn-default" data-dismiss="modal">结束点这里</button>
 				</div>
 			</div>
 		</div>
@@ -70,11 +61,9 @@
 					<span>还没有图片哦~~~~~~~</span>
 				</div>
 				<!-- 展示相册下面的图片 -->
-				<div id="imgs" class="imgs">
-					<!-- <img src="images/1.jpg"> <img
-						src="images/2.jpg" layer-pname="代码笔记 - 2"> <img
-						src="images/3.jpg" layer-pname="代码笔记 - 3"> <img
-						src="images/4.jpg" layer-pname="代码笔记 - 4"> -->
+				<div class="demo-gallery">
+					<ul id="lightgallery">
+					</ul>
 				</div>
 			</div>
 		</div>
@@ -87,9 +76,16 @@
 	<script src="bootstrap/3.3.4/js/bootstrap.min.js"></script>
 
 	<script src="assets/js/amazeui.min.js"></script>
-	<script src="rel/layer/jquery.js?v=1.83.min"></script>
-	<script src="rel/layer/layer.min.js"></script>
 	<script src="rel/js/albumpic.js"></script>
 	<script type="text/javascript" src="rel/js/indexcss.js"></script>
+
+	<script type="text/javascript" src="uploader/js/fileinput.js"></script>
+	<script type="text/javascript" src="uploader/js/locales/zh.js"></script>
+	<script type="text/javascript" src="uploader/upload.js"></script>
+	
+	<script type="text/javascript" src="album/js/lightgallery.min.js"></script>
+	<script type="text/javascript" src="album/js//jquery.mousewheel.min.js"></script>
+	<script type="text/javascript" src="album/js/lg-thumbnail.min.js"></script>
+	<script type="text/javascript" src="album/js/lg-fullscreen.min.js"></script>
 </body>
 </html>

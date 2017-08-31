@@ -12,7 +12,7 @@ public interface SpeaksService {
 
 	PaginationBean<Speaks> listSpeaks(String speakman, String page, String rows);
 
-	Speaks findSpeaks(String sid, String speakman);
+	Speaks findSpeaks(Speaks speaks);
 
 	String findSid();
 
@@ -20,5 +20,4 @@ public interface SpeaksService {
 
 	List<Map<String, Object>> countSpeaks(String speakman);
 
-	List<Speaks> lists(String speakman);
 }

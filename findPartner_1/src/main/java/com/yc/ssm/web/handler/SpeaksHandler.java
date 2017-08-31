@@ -67,9 +67,9 @@ public class SpeaksHandler {
 
 	@RequestMapping(value = "hpspeaks", method = RequestMethod.POST)
 	@ResponseBody
-	public Speaks HomePageSpeaks(String sid, String speakman, HttpServletRequest request) {
-		LogManager.getLogger().debug("我进来了 listSpeaks==>sid=" + sid + ",speakman=" + speakman);
-		return speaksService.findSpeaks(sid, speakman);
+	public Speaks HomePageSpeaks(Speaks speaks, HttpServletRequest request) {
+		LogManager.getLogger().debug("我进来了 listSpeaks==>speaks=" + speaks);
+		return speaksService.findSpeaks(speaks);
 	}
 
 	@RequestMapping(value = "findunclear", method = RequestMethod.POST)

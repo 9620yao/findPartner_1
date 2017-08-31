@@ -10,6 +10,7 @@ public interface SpeaksMapper {
 
 	/**
 	 * 分页取到说说
+	 * 
 	 * @param map
 	 * @return
 	 */
@@ -23,14 +24,17 @@ public interface SpeaksMapper {
 	 */
 	int addSpeaks(Speaks speaks);
 
-	Speaks findSpeaks(Map<String, String> map);
+	/**
+	 * 定制以及查总数
+	 * @param speaks
+	 * @return
+	 */
+	Speaks findSpeaks(Speaks speaks);
 
 	String findSid();
 
 	List<Speaks> findByName(Speaks speaks);
 
 	List<Map<String, Object>> countSpeaks(String speakman);
-
-	List<Speaks> listSpeaks(String speakman);// 多余的测试查询
 
 }

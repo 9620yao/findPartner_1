@@ -8,7 +8,6 @@
 <link rel="stylesheet" href="assets/css/amazeui.min.css">
 <link rel="stylesheet" href="assets/css/app.css">
 <link rel="stylesheet" href="bootstrap/3.3.4/css/bootstrap.min.css">
-<link rel="stylesheet" href="rel/css/indexcss.css">
 </head>
 <body id="blog-article-sidebar">
 	<jsp:include page="/include/header.jsp" /><!-- 公共头部部分 -->
@@ -52,18 +51,14 @@
 	</div>
 	<!--模态框 end  -->
 
-
-	<!-- content srart data-am-figure="{  pureview: 'true' }" -->
 	<div class="am-g am-g-fixed blog-fixed blog-content">
-		<div style="margin-left: 2.5%; width: 60%;">
+		<div>
 			<span><span class="spanimg">我的</span>相册(<a
 				href="javascript:void(0)" class="spcount">0</a>)</span>
-			<hr style="height: 1px; border: none; border-top: 1px solid #555555;" />
+			<hr class="hr" />
 		</div>
-		<button class="addimgs" data-toggle="modal" data-target="#myModal"
-			style="width: 8%; margin-left: 5%;">创建相册</button>
-		<div id="container"
-			style="margin-top: 5%; font-size: 18px; margin-left: 5%;">
+		<button class="addimgs" data-toggle="modal" data-target="#myModal">创建相册</button>
+		<div id="container">
 			<!-- 如果用户没有相册  -->
 			<span>还没有相册哦~~~~~~~</span>
 		</div>

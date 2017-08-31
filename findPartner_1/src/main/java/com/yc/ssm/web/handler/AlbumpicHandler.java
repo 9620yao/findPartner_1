@@ -1,8 +1,7 @@
 package com.yc.ssm.web.handler;
 
+import java.io.File;
 import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -17,11 +16,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.yc.ssm.entity.Album;
 import com.yc.ssm.entity.Albumpic;
-import com.yc.ssm.service.AlbumService;
 import com.yc.ssm.service.AlbumpicService;
 import com.yc.ssm.util.ServletUtil;
+
+import net.coobird.thumbnailator.Thumbnails;
 
 @Controller("albumpicHandler")
 @RequestMapping("albumpic")
@@ -30,15 +29,13 @@ public class AlbumpicHandler {
 	@Autowired
 	private AlbumpicService albumpicService;
 
-	@Autowired
-	private AlbumService albumService;
-
 	@RequestMapping("list")
 	@ResponseBody
-	public List<Albumpic> listAlbumpic(HttpSession session) {
+	public List<Albumpic> listAlbumpic(Albumpic albumpic, HttpSession session) {
 		String abid = (String) session.getAttribute(ServletUtil.ALBUMABID);
 		LogManager.getLogger().debug(" listAlbumpic()进来了.....,abid: " + abid);
-		return albumpicService.listApic(abid);
+		albumpic.setAbid(abid);
+		return albumpicService.listApic(albumpic);
 	}
 
 	/**
@@ -49,51 +46,49 @@ public class AlbumpicHandler {
 	 * @param session
 	 * @return
 	 */
-	@RequestMapping(value = "newpic", method = RequestMethod.POST)
+	@RequestMapping(value = "add", method = RequestMethod.POST)
+	@ResponseBody
 	@Transactional
-	public String newpic(@RequestParam("picData") MultipartFile picData, @RequestParam("strpic") String strpic,
-			HttpSession session) {
+	public boolean add(@RequestParam("picData") MultipartFile picData, Albumpic albumpic, HttpSession session) {
 		String abid = (String) session.getAttribute(ServletUtil.ALBUMABID);
-		LogManager.getLogger().debug(" listAlbumpic()进来了.....,abid: " + abid + ",strpic=" + strpic);
+		String uid = (String) session.getAttribute(ServletUtil.USERAID);
+		LogManager.getLogger().debug(" listAlbumpic()进来了.....,abid: " + abid+",uid="+uid+",picData"+picData);
 		String picPath = null;
+		File dest = null;
 		if (picData != null && !picData.isEmpty()) {
 			try {
-				picData.transferTo(ServletUtil.getUploadFile(picData.getOriginalFilename()));
+				dest = ServletUtil.getUploadFile(picData.getOriginalFilename());
+				// 压缩图片并上传
+				Thumbnails.of(picData.getInputStream()).scale(1f).outputQuality(0.25f).toFile(dest);
 				picPath = ServletUtil.VIRTUAL_UPLOAD_DIR + "/" + picData.getOriginalFilename();
-			} catch (IllegalStateException | IOException e) {
-				e.printStackTrace();
-			}
-			LogManager.getLogger().debug("上传图片==》" + picPath);
-			// 取到系统时间
-			SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");// 设置日期格式
-			String date = df.format(new Date());// new Date()为获取当前系统时间
-			if (albumpicService.newpic(abid, picPath, date)) {// 添加成功
-				Album Album = albumService.fpByabid(abid);// 根据相册编号去取该相册
-				if (Album != null) {
-					String aheader = Album.getAheader();
-					// 当刚上传的图片的相册没有头图片的话上传该图片为相册头图片
-					if (aheader == null) {
-						albumService.updateAheader(abid, picPath);
-					}
+			} catch (Exception e) {
+				try {
+					picData.transferTo(dest);
+				} catch (IllegalStateException | IOException e1) {
+					e1.printStackTrace();
 				}
-				return "redirect:" + strpic.split("/findPartner")[1];
 			}
+			LogManager.getLogger().debug("上传图片地址==》" + picPath);
+			albumpic.setApic(picPath);
+			albumpic.setAbid(abid);
+			albumpic.setUid(uid);
+			return albumpicService.add(albumpic);
 		}
-		return "redirect:" + strpic.split("/findPartner")[1];
+		return false;
 	}
 
 	@RequestMapping("hpalbumpic")
 	@ResponseBody
-	public Albumpic HpAlbumpic(String abid, String apicdate, HttpSession session) {
-		LogManager.getLogger().debug(" listAlbumpic()进来了.....,abid: " + abid + ",apicdate:" + apicdate);
-		return albumpicService.HpAlbumpic(abid, apicdate);
+	public Albumpic HpAlbumpic(Albumpic albumpic, HttpSession session) {
+		LogManager.getLogger().debug(" listAlbumpic()进来了.....,albumpic: " + albumpic);
+		return albumpicService.HpAlbumpic(albumpic);
 	}
 
 	@RequestMapping("fByabid")
 	@ResponseBody
-	public boolean findAlbumpic(String abid, HttpSession session) {
-		LogManager.getLogger().debug(" listAlbumpic()进来了.....,abid: " + abid);
-		return albumpicService.findAlbumpic(abid);
+	public boolean findAlbumpic(Albumpic albumpic, HttpSession session) {
+		LogManager.getLogger().debug(" listAlbumpic()进来了.....,albumpic: " + albumpic);
+		return albumpicService.findAlbumpic(albumpic);
 	}
 
 }

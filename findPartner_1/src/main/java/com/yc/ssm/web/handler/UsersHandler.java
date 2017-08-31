@@ -1,5 +1,6 @@
 package com.yc.ssm.web.handler;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
@@ -21,6 +22,8 @@ import com.yc.ssm.entity.Users;
 import com.yc.ssm.service.LoginService;
 import com.yc.ssm.service.UsersService;
 import com.yc.ssm.util.ServletUtil;
+
+import net.coobird.thumbnailator.Thumbnails;
 
 @Controller("usersHandler")
 @RequestMapping("user")
@@ -53,13 +56,20 @@ public class UsersHandler {
 	@RequestMapping(value = "update", method = RequestMethod.POST)
 	public String modify(@RequestParam("picData") MultipartFile picData, Users users, HttpSession session) {
 		LogManager.getLogger().debug("picData==>" + picData, "，user==>" + users);
+		File dest = null;
 		if (picData != null && !picData.isEmpty()) {
 			String picPath = null;
 			try {
-				picData.transferTo(ServletUtil.getUploadFile(picData.getOriginalFilename()));
+				dest = ServletUtil.getUploadFile(picData.getOriginalFilename());
+				// 压缩图片并上传
+				Thumbnails.of(picData.getInputStream()).scale(1f).outputQuality(0.25f).toFile(dest);
 				picPath = ServletUtil.VIRTUAL_UPLOAD_DIR + "/" + picData.getOriginalFilename();
-			} catch (IllegalStateException | IOException e) {
-				e.printStackTrace();
+			} catch (Exception e) {
+				try {
+					picData.transferTo(dest);
+				} catch (IllegalStateException | IOException e1) {
+					e1.printStackTrace();
+				}
 			}
 			users.setPicture(picPath);
 			System.out.println("上传图片==》" + users);

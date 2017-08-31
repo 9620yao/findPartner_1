@@ -47,7 +47,7 @@ public class AlbumHandler {
 	 * @return
 	 */
 	@RequestMapping("newimgs")
-	public String NewImgs(@RequestParam("strimg") String strimg, Album Album, HttpSession session) {
+	public String add(@RequestParam("strimg") String strimg, Album Album, HttpSession session) {
 		String auid = (String) session.getAttribute(ServletUtil.USERAID);
 		LogManager.getLogger().debug("我是Album list() 我进来了 aaid:" + auid);
 		Album.setAuid(auid);

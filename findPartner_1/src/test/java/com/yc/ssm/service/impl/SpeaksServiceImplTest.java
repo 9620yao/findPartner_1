@@ -1,9 +1,6 @@
 package com.yc.ssm.service.impl;
 
 import static org.junit.Assert.assertNotEquals;
-import static org.junit.Assert.assertNotNull;
-
-import java.util.List;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -29,33 +26,9 @@ public class SpeaksServiceImplTest {
 		System.out.println(speaksService.listSpeaks("3", "1", "5"));
 	}
 
-	/**
-	 * 插入数据并取得插入编号测试
-	 */
-	@Test
-	public void insetSpeaks() {
-		Speaks speaks = new Speaks();
-		speaks.setSpeakman("3");
-		speaks.setContent("我是来测试的23333...");
-		speaksService.add(speaks);
-		System.out.println("添加的speaks:" + speaks);
-		speaks = speaksService.findSpeaks(speaks.getSid(), speaks.getSpeakman());
-		System.out.println("查找后speaks:" + speaks);
-	}
-
 	@Test
 	public void CountSpeaks() {
 		System.out.println(speaksService.countSpeaks("3"));
-	}
-
-	/**
-	 * 测试加载所有的信息，一次加载
-	 */
-	@Test
-	public void listSpeaks() {
-		List<Speaks> lss = speaksService.lists("3");
-		System.out.println(lss);
-		assertNotNull(lss);
 	}
 
 	/**

@@ -6,12 +6,12 @@ import com.yc.ssm.entity.Albumpic;
 
 public interface AlbumpicService {
 
-	List<Albumpic> listApic(String abid);// 取到相册下的图片
+	List<Albumpic> listApic(Albumpic albumpic);// 取到相册下的图片
 
-	boolean newpic(String abid, String picPath, String date);
+	boolean add(Albumpic albumpic);
 
-	Albumpic HpAlbumpic(String abid, String apicdate);
+	Albumpic HpAlbumpic(Albumpic albumpic);
 
-	boolean findAlbumpic(String abid);
+	boolean findAlbumpic(Albumpic albumpic);
 
 }

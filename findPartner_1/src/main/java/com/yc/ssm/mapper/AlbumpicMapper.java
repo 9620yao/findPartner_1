@@ -6,12 +6,10 @@ import com.yc.ssm.entity.Albumpic;
 
 public interface AlbumpicMapper {
 
-	List<Albumpic> listApic(String abid);
+	List<Albumpic> listApic(Albumpic albumpic);
 
 	int addpic(Albumpic albumpic);
 
 	Albumpic HpAlbumpic(Albumpic albumpic);
-
-	List<Albumpic> findAlbumpic(String abid);
 
 }

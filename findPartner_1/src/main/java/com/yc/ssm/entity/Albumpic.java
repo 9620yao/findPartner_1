@@ -16,7 +16,9 @@ public class Albumpic implements Serializable {
 	private String apic; // 图片
 	private String apiccontent; // 图片描述
 	private String apicdate; // 图片上传时间
-	private String ap_uuid; // 图片上传时间
+	private String ap_uuid; // 唯一标识符
+	private String uid; // 唯一标识符
+	private Users user;
 
 	public Albumpic() {
 	}
@@ -77,10 +79,26 @@ public class Albumpic implements Serializable {
 		this.ap_uuid = ap_uuid;
 	}
 
+	public String getUid() {
+		return uid;
+	}
+
+	public void setUid(String uid) {
+		this.uid = uid;
+	}
+
+	public Users getUser() {
+		return user;
+	}
+
+	public void setUser(Users user) {
+		this.user = user;
+	}
+
 	@Override
 	public String toString() {
 		return "\nAlbumpic [apid=" + apid + ", abid=" + abid + ", apic=" + apic + ", apiccontent=" + apiccontent
-				+ ", apicdate=" + apicdate + ", ap_uuid=" + ap_uuid + "]";
+				+ ", apicdate=" + apicdate + ", ap_uuid=" + ap_uuid + ", uid=" + uid + ", user=" + user + "]";
 	}
 
 }

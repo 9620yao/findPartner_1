@@ -16,32 +16,25 @@ public class AlbumpicServiceImpl implements AlbumpicService {
 	private AlbumpicMapper albumpicMapper;
 
 	@Override
-	public List<Albumpic> listApic(String abid) {
-		return albumpicMapper.listApic(abid);
+	public List<Albumpic> listApic(Albumpic albumpic) {
+		return albumpicMapper.listApic(albumpic);
 	}
 
 	@Override
-	public boolean newpic(String abid, String picPath, String date) {
-		Albumpic albumpic = new Albumpic();
-		albumpic.setAbid(abid);
-		albumpic.setApic(picPath);
-		albumpic.setApicdate(date);
+	public boolean add(Albumpic albumpic) {
 		return albumpicMapper.addpic(albumpic) > 0;
 	}
 
 	@Override
-	public Albumpic HpAlbumpic(String abid, String apicdate) {
-		Albumpic albumpic = new Albumpic();
-		albumpic.setAbid(abid);
-		albumpic.setApicdate(apicdate);
+	public Albumpic HpAlbumpic(Albumpic albumpic) {
 		return albumpicMapper.HpAlbumpic(albumpic);
 	}
 
 	@Override
-	public boolean findAlbumpic(String abid) {
-		List<Albumpic> list = albumpicMapper.findAlbumpic(abid);
+	public boolean findAlbumpic(Albumpic albumpic) {
+		List<Albumpic> list = albumpicMapper.listApic(albumpic);
 		if (list != null && list.size() > 0) {
-			return true;//该相册下有图片
+			return true;// 该相册下有图片
 		}
 		return false;
 	}

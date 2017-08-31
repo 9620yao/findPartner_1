@@ -38,10 +38,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			</if>
 		</where>
 		order by senddate desc limit
-		<if test="min==1">
-			0,${pageSize}
-		</if>
-		${min} ,${pageSize}
+		<choose>
+			<when test="min==1">0,${pageSize}</when>
+			<otherwise>${min},${pageSize}</otherwise>
+		</choose>
 	</select>
 
 	<insert id="addSpeaks" parameterType="Speaks" useGeneratedKeys="true"
@@ -55,9 +55,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select max(sid) sid from speaks
 	</select>
 
-	<select id="findSpeaks" parameterType="java.util.Map"
-		resultType="com.yc.ssm.entity.Speaks">
-		select * from speaks where
+	<select id="findSpeaks" parameterType="Speaks" resultMap="listS">
+		select *,speakman uid,sid,s_uuid c_uuid from speaks 
+		<where>
+			<if test="s_uuid!=null and s_uuid!=''">
+				s_uuid = #{s_uuid} and
+			</if>
+		</where>
 		sid = #{sid} and
 		speakman=#{speakman}
 	</select>
@@ -71,20 +75,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		</where>
 		group by speakman
 	</select>
+
 	<resultMap type="java.util.Map" id="listmap">
 		<result column="counts" property="counts" />
 		<result column="speakman" property="speakman" />
 	</resultMap>
-
-	<select id="listSpeaks" parameterType="string" resultMap="listS">
-		select *,speakman uid,sid from speaks
-		<where>
-			<if test="_parameter!=null and _parameter!=''">
-				speakman = #{_parameter}
-			</if>
-		</where>
-		order by senddate desc
-	</select>
 
 	<resultMap type="Speaks" id="listS">
 		<id property="sid" column="sid" />

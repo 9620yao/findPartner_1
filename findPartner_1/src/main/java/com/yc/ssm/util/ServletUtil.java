@@ -4,9 +4,9 @@ import java.io.File;
 import java.io.Serializable;
 
 public class ServletUtil implements Serializable {
-	
+
 	private static final long serialVersionUID = 1L;
-	
+
 	public static final String LOGIN_USER = "loginUser";// 登录用户
 	public static final String ERROR_MESSAGE = "errorMsg";
 	public static String DEPLOY_NAME;
@@ -14,8 +14,8 @@ public class ServletUtil implements Serializable {
 	public static final String USERAID = "useraid";
 	public static final String FINALAID = "finalaid";// 存放查看当前用户的用户编号
 	public static final String ALBUMABID = "albumabid";// 相册编号
-	
-	public static final String MODIF_ERROR = "errorpwd";//添加图片错误
+
+	public static final String MODIF_ERROR = "errorpwd";// 添加图片错误
 	public static String UPLOAD_DIR;
 	public static String VIRTUAL_UPLOAD_DIR = "/upload03/";
 
@@ -28,7 +28,6 @@ public class ServletUtil implements Serializable {
 			file.getParentFile().mkdirs();
 		}
 		return file;
-
 	}
 
 }

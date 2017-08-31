@@ -6,8 +6,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<resultMap type="PaginationBean" id="PaginationBeanMap">
 		<result property="currPage" column="currPage" />
 		<result property="pageSize" column="pageSize" />
-		<collection property="rows" column="{min=min,max=max,hpuserid=hpuserid}"
-			ofType="com.yc.ssm.entity.Homepage" select="GetPartTea" />
+		<collection property="rows"
+			column="{min=min,pageSize=pageSize,hpuserid=hpuserid}" ofType="Homepage"
+			select="GetPartTea" />
 	</resultMap>
 
 	<select id="pblist" parameterType="java.util.Map" resultMap="PaginationBeanMap"
@@ -18,26 +19,40 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		totalPage,${pBean.currPage}
 		currPage,${pBean.pageSize}
 		pageSize,#{hpuserid}
-		hpuserid,${pBean.currPage} *
-		${pBean.pageSize} max,(${pBean.currPage}-1)
-		* ${pBean.pageSize} min
+		hpuserid,
+		(${pBean.currPage}-1)*${pBean.pageSize} min,${pBean.pageSize} pageSize
 		from
 		homepage
 		where
 		hpuserid=#{hpuserid}
 	</select>
 
-	<select id="GetPartTea" resultType="com.yc.ssm.entity.Homepage">
-		select * from homepage where
+	<select id="GetPartTea" resultMap="Hpall">
+		select *,hpid id,h_uuid uuid,hpuserid uid from homepage where
 		hpuserid=#{hpuserid}
-		order by hpdate desc limit #{min},#{max}
+		order by
+		hpdate desc
+		limit
+		<choose>
+			<when test="min==1">0,#{pageSize}</when>
+			<otherwise>#{min},#{pageSize}</otherwise>
+		</choose>
 	</select>
+
+	<resultMap type="Homepage" id="Hpall">
+		<collection property="speak" column="{sid=id,s_uuid=uuid,speakman=uid}"
+			ofType="Speaks" select="com.yc.ssm.mapper.SpeaksMapper.findSpeaks"></collection>
+		<collection property="albumpic" column="{apid=id,ap_uuid=uuid}"
+			ofType="Albumpic" select="com.yc.ssm.mapper.AlbumpicMapper.HpAlbumpic"></collection>
+	</resultMap>
+
 
 	<resultMap type="PaginationBean" id="selfPaginationBeanMap">
 		<result property="currPage" column="currPage" />
 		<result property="pageSize" column="pageSize" />
-		<collection property="rows" column="{max=max,min=min,hpuserid=hpuserid}"
-			ofType="com.yc.ssm.entity.Homepage" select="selfGetPartTea" />
+		<collection property="rows"
+			column="{min=min,pageSize=pageSize,hpuserid=hpuserid}" ofType="Homepage"
+			select="selfGetPartTea" />
 	</resultMap>
 
 	<select id="selflist" parameterType="java.util.Map" resultMap="selfPaginationBeanMap"
@@ -48,42 +63,52 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		totalPage,${pBean.currPage}
 		currPage,${pBean.pageSize}
 		pageSize,#{hpuserid}
-		hpuserid,${pBean.currPage} *
-		${pBean.pageSize} max,(${pBean.currPage}-1)
-		* ${pBean.pageSize} min
+		hpuserid,${pBean.pageSize} pageSize,
+		(${pBean.currPage}-1)*${pBean.pageSize} min
 		from
 		homepage
 		where
-		hpuserid in (
+		hpuserid
+		in (
 		select distinct
 		(uid)
 		from friends
-		where uid in
+		where
+		uid in
 		(select
-		fid from friends where uid =
+		fid
+		from friends
+		where uid =
 		#{hpuserid})
-		and fid = #{hpuserid}
+		and fid =
+		#{hpuserid}
 		or uid =
 		#{hpuserid}
 		)
 	</select>
 
-	<select id="selfGetPartTea" resultType="com.yc.ssm.entity.Homepage">
-		select * from homepage
+	<select id="selfGetPartTea" resultMap="Hpall">
+		select *,hpid id,h_uuid uuid,hpuserid uid from homepage
 		where
 		hpuserid in (
 		select
 		distinct (uid)
-		from friends
+		from
+		friends
 		where uid in
 		(select
 		fid from friends where
 		uid = #{hpuserid})
-		and fid = #{hpuserid}
+		and
+		fid = #{hpuserid}
 		) or
 		hpuserid = #{hpuserid}
 		order by
-		hpdate desc limit #{min},#{max}
+		hpdate desc limit
+		<choose>
+			<when test="min==1">0,${pageSize}</when>
+			<otherwise>${min},${pageSize}</otherwise>
+		</choose>
 	</select>
 
 </mapper>
