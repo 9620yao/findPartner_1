@@ -126,7 +126,7 @@
 									<li>爱好：<input type="text" id="hobby" name="hobby"></li>
 									<li>工作：<input type="text" id="job" name="job"></li>
 									<li>公司：<input type="text" id="company" name="company"></li>
-									<li>学&nbsp;校：<input type="text" id="school" name="school"></li>
+									<li>学校：<input type="text" id="school" name="school"></li>
 									<li>现居地址：<input type="text" id="address" name="address"></li>
 									<li>家乡：<input type="text" id="hometown" name="hometown"></li>
 									<li>国籍：<input type="text" id="astate" name="astate"></li>
@@ -144,80 +144,18 @@
 				</div>
 			</div>
 			<!--模态框 end  -->
-
-			<!-- Modal comment -->
-			<div class="modal fade" id="addcoment" tabindex="-1" role="dialog"
-				aria-labelledby="myModalLabel" aria-hidden="true">
-				<div class="modal-dialog">
-					<div class="modal-content">
-						<div class="modal-header">
-							<button type="button" class="close" data-dismiss="modal"
-								aria-label="Close">
-								<span aria-hidden="true">&times;</span>
-							</button>
-							<span class="modal-title" id="myModalLabel">添加评论</span>
-						</div>
-						<div id="comentInfo">
-							<div class="showcomment"">
-								<form id="faddcomment" action="comments/add" method="post">
-									<input name="strcomment" class="strcomment" type="hidden">
-									<input name="callid" class="callid" type="hidden"> <input
-										name="detail" class="detail" type="hidden">
-									<div class="democomment" contenteditable="true"></div>
-									<a onclick="Getdetail()" href="javascript:void(0)">提交</a>
-								</form>
-							</div>
-						</div>
-						<div class="modal-footer">
-							<button type="button" class="btn btn-default"
-								data-dismiss="modal">取消</button>
-						</div>
-					</div>
-				</div>
-			</div>
-			<!--模态框 end comment -->
-
-			<!-- Modal reply -->
-			<div class="modal fade" id="addreply" tabindex="-1" role="dialog"
-				aria-labelledby="myModalLabel" aria-hidden="true">
-				<div class="modal-dialog">
-					<div class="modal-content">
-						<div class="modal-header">
-							<button type="button" class="close" data-dismiss="modal"
-								aria-label="Close">
-								<span aria-hidden="true">&times;</span>
-							</button>
-							<span class="modal-title" id="myModalLabel">添加回复</span>
-						</div>
-						<div id="comentInfo">
-							<form id="rform" action="replys/add" method="post">
-								<input name="strreplys" class="strreplys" type="hidden">
-								<input name="rcid" class="rcid" type="hidden"> <input
-									name="rtargetid" class="rtargetid" type="hidden"> <input
-									name="rcontent" class="rcontent" type="hidden">
-								<div class="democomment" contenteditable="true"></div>
-								<a onclick="Getrcontent()" href="javascript:void(0)">提交</a>
-							</form>
-						</div>
-						<div class="modal-footer">
-							<button type="button" class="btn btn-default"
-								data-dismiss="modal">取消</button>
-						</div>
-					</div>
-				</div>
-			</div>
-			<!--模态框 end reply -->
-
 		</div>
 	</div>
 	<!-- content end -->
+
+	<jsp:include page="/include/model.jsp" /><!-- 公共模特框 -->
 
 	<jsp:include page="/include/foot.jsp" /><!-- 公共底部部分 -->
 
 	<script src="assets/js/jquery.min.js"></script>
 	<script src="bootstrap/3.3.4/js/bootstrap.min.js"></script>
 	<script src="assets/js/amazeui.min.js"></script>
-	
+
 	<script type="text/javascript" src="album/js/lightgallery.min.js"></script>
 	<script type="text/javascript" src="album/js//jquery.mousewheel.min.js"></script>
 	<script type="text/javascript" src="album/js/lg-thumbnail.min.js"></script>
@@ -228,5 +166,6 @@
 
 	<script type="text/javascript" src="rel/js/indexcss.js"></script>
 	<script type="text/javascript" src="My97DatePicker/WdatePicker.js"></script>
+	<jsp:include page="/include/injs.jsp"></jsp:include><!-- 公共js -->
 </body>
 </html>

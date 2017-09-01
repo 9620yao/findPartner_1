@@ -118,6 +118,7 @@ function hpspeak(obj){
 			+ 'data-toggle="modal" data-target="#addcoment">评论</a></p></div>';
 	hps+='<div class="dcom comment'+ obj.sid+'"></div>';
 	showhp.append(hps);
+	objcom(obj);
 }
 
 function hpapic(obj) {
@@ -143,16 +144,3 @@ function lightGallery() {
 		$("#lightgallery").lightGallery();
 	});
 }
-
-function showuser(date) {
-	if (date != null) {
-		var url = "page/lw-index.jsp?aid=" + date;
-		window.open(url)
-	}
-}
-function openpic(speakman, date) {
-	if (date != null) {
-		var url = "page/albumpic.jsp?aid=" + speakman + "&abid=" + date;
-		window.open(url)
-	}
-};
