@@ -113,9 +113,6 @@ CREATE table comments(
 );
 alter table comments AUTO_INCREMENT=1000;
 
--- select * from comments;
--- select * from replys;
-
 
 create table replys(
 	rid int primary key auto_increment, 
@@ -162,6 +159,4 @@ create or replace view homepage as
 select sid hpid,speakman hpuserid,s_uuid h_uuid,senddate hpdate from speaks union
 select apid hpid,uid hpuserid,ap_uuid h_uuid,apicdate hpdate from albumpic;
 
-select * from album
-select * from albumpic where apid = '25' and ap_uuid = 'c5a49d60-8e25-11e7-8887-40167e873601'
-select * from homepage where hpuserid = '2'
+select * from comments;

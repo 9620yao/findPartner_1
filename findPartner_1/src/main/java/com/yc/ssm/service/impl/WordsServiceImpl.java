@@ -19,13 +19,9 @@ public class WordsServiceImpl implements WordsService {
 	@Autowired
 	private WordsMapper wordsMapper;
 
-	public void setWordsMapper(WordsMapper wordsMapper) {
-		this.wordsMapper = wordsMapper;
-	}
-
 	@Override
-	public void add(Words words) {
-		wordsMapper.addWords(words);
+	public boolean add(Words words) {
+		return wordsMapper.addWords(words) > 0;
 	}
 
 	@Override

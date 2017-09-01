@@ -8,9 +8,12 @@ import com.yc.ssm.entity.Words;
 
 public interface WordsService {
 
-	// List<Words> findWords(Words words);
-
-	void add(Words words);
+	/**
+	 * 添加留言
+	 * @param words
+	 * @return
+	 */
+	boolean add(Words words);
 
 	PaginationBean<Words> listWords(String waid, String page, String rows);
 

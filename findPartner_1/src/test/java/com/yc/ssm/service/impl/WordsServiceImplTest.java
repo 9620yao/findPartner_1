@@ -17,7 +17,7 @@ public class WordsServiceImplTest {
 
 	@Test
 	public void testListWords() {
-		System.out.println(WordsService.listWords("a10056", "1", "10"));
+		System.out.println(WordsService.listWords("2", "1", "5"));
 	}
 
 }

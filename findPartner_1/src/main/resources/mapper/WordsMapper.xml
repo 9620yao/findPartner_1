@@ -6,8 +6,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<resultMap type="PaginationBean" id="PaginationBeanMap">
 		<result property="currPage" column="currPage" />
 		<result property="pageSize" column="pageSize" />
-		<collection property="rows" column="{min=min,max=max,waid=waid}"
-			ofType="com.yc.ssm.entity.Words" select="GetPartTea" />
+		<collection property="rows"
+			column="{min=min,pageSize=pageSize,waid=waid}" ofType="Words" select="GetPartTea" />
 	</resultMap>
 
 	<select id="PbeanWords" parameterType="java.util.Map" resultMap="PaginationBeanMap"
@@ -18,8 +18,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		totalPage,${pBean.currPage}
 		currPage,${pBean.pageSize}
 		pageSize,#{waid}
-		waid,${pBean.currPage}*${pBean.pageSize}
-		max,(${pBean.currPage}-1)*${pBean.pageSize} min
+		waid,${pBean.pageSize}
+		pageSize,(${pBean.currPage}-1)*${pBean.pageSize} min
 		from
 		words
 		<where>
@@ -29,20 +29,34 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		</where>
 	</select>
 
-	<select id="GetPartTea" resultType="com.yc.ssm.entity.Words">
-		select * from words
+	<select id="GetPartTea" resultMap="allword">
+		select *,wid wid,w_uuid uuid,waid uid,wfrendid puid from words
 		<where>
 			<if test="waid!=null and waid!=''">
 				waid=#{waid}
 			</if>
 		</where>
-		order by wdate desc limit #{min},#{max}
+		order by wdate desc limit
+		<choose>
+			<when test="min==1">0,#{pageSize}</when>
+			<otherwise>#{min},#{pageSize}</otherwise>
+		</choose>
 	</select>
+	
+	<resultMap type="Words" id="allword">
+		<id property="wid" column="wid"/>
+		<collection property="comments" column="{callid=wid,c_uuid=uuid}"
+			select="com.yc.ssm.mapper.CommentsMapper.getcom" ofType="Comments"></collection>
+		<collection property="user" column="{uid=uid}"
+			select="com.yc.ssm.mapper.UsersMapper.getuser" ofType="Users"></collection>
+		<collection property="puser" column="{uid=puid}"
+			select="com.yc.ssm.mapper.UsersMapper.getuser" ofType="Users"></collection>
+	</resultMap>
 
 	<insert id="addWords" parameterType="Words">
 		insert into
-		Words(waid,wfrendid,wcontent,wdate)
-		values(#{waid},#{wfrendid},#{wcontent},now())
+		Words(waid,wfrendid,wcontent,wdate,w_uuid)
+		values(#{waid},#{wfrendid},#{wcontent},now(),UUID())
 	</insert>
 
 	<select id="findByName" parameterType="Words" resultType="Words">
@@ -60,6 +74,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		</where>
 		group by waid
 	</select>
+
 	<resultMap type="java.util.Map" id="listmap">
 		<result column="counts" property="counts" />
 		<result column="waid" property="waid" />

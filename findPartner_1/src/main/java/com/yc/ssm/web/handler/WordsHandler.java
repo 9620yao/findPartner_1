@@ -11,7 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.yc.ssm.entity.PaginationBean;
@@ -49,12 +48,12 @@ public class WordsHandler {
 	 * @return
 	 */
 	@RequestMapping(value = "add", method = RequestMethod.POST)
-	public String addWords(@RequestParam("strword") String strword, Words words, HttpSession session) {
-		LogManager.getLogger().debug("我进来了 addWords==>words:" + words);
+	@ResponseBody
+	public boolean addWords(Words words, HttpSession session) {
 		String wfrendid = (String) session.getAttribute(ServletUtil.USERAID);// 评论人为登录用户
 		words.setWfrendid(wfrendid);
-		wordsService.add(words);
-		return "redirect:" + strword.split("/findPartner")[1];
+		LogManager.getLogger().debug("我进来了 addWords==>words:" + words);
+		return wordsService.add(words);
 	}
 
 	@RequestMapping(value = "findunclear", method = RequestMethod.POST)

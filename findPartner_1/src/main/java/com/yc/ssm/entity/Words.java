@@ -16,14 +16,16 @@ public class Words implements Serializable {// 留言板
 	private String wcontent;
 	private String waddress;
 	private String wdate;
+	private String w_uuid;// 唯一标识符
+	private Users user;
+	private Users puser;
 	private List<Comments> comments;
-	private List<Replys> replys;
 
 	public Words() {
 	}
 
 	public Words(String wid, String waid, String wfrendid, String wcontent, String waddress, String wdate,
-			List<Comments> comments, List<Replys> replys) {
+			List<Comments> comments) {
 		this.wid = wid;
 		this.waid = waid;
 		this.wfrendid = wfrendid;
@@ -31,15 +33,6 @@ public class Words implements Serializable {// 留言板
 		this.waddress = waddress;
 		this.wdate = wdate;
 		this.comments = comments;
-		this.replys = replys;
-	}
-
-	public List<Replys> getReplys() {
-		return replys;
-	}
-
-	public void setReplys(List<Replys> replys) {
-		this.replys = replys;
 	}
 
 	public String getWid() {
@@ -98,10 +91,35 @@ public class Words implements Serializable {// 留言板
 		this.comments = comments;
 	}
 
+	public String getW_uuid() {
+		return w_uuid;
+	}
+
+	public void setW_uuid(String w_uuid) {
+		this.w_uuid = w_uuid;
+	}
+
+	public Users getUser() {
+		return user;
+	}
+
+	public void setUser(Users user) {
+		this.user = user;
+	}
+
+	public Users getPuser() {
+		return puser;
+	}
+
+	public void setPuser(Users puser) {
+		this.puser = puser;
+	}
+
 	@Override
 	public String toString() {
 		return "\nWords [wid=" + wid + ", waid=" + waid + ", wfrendid=" + wfrendid + ", wcontent=" + wcontent
-				+ ", waddress=" + waddress + ", wdate=" + wdate + ", comments=" + comments + ", replys=" + replys + "]";
+				+ ", waddress=" + waddress + ", wdate=" + wdate + ", w_uuid=" + w_uuid + ", user=" + user + ", puser="
+				+ puser + ", comments=" + comments + "]";
 	}
 
 }
