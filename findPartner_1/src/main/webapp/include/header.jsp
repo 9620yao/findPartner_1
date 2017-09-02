@@ -1,8 +1,34 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<!-- <nav class="navbar navbar-default navbar-fixed-top">
+	<div class="container-fluid">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle collapsed"
+				data-toggle="collapse" data-target="#navbar" aria-expanded="false"
+				aria-controls="navbar">
+				<span class="sr-only">Toggle navigation</span> <span
+					class="icon-bar"></span> <span class="icon-bar"></span> <span
+					class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand" href="javascript:void(0)">FindPartner</a>
+		</div>
+		<div id="navbar" class="navbar-collapse collapse">
+			<ul class="nav navbar-nav navbar-right">
+				<li><a href="javascript:void(0)">Dashboard</a></li>
+				<li><a href="javascript:void(0)">Settings</a></li>
+				<li><a href="javascript:void(0)">Profile</a></li>
+				<li><a href="javascript:void(0)">Help</a></li>
+			</ul>
+			<form class="navbar-form navbar-right">
+				<input class="form-control" placeholder="Search..." type="text">
+			</form>
+		</div>
+	</div>
+</nav> -->
 <header class="am-g am-g-fixed blog-fixed blog-text-center blog-header">
-	<div class="am-u-sm-8 am-u-sm-centered">
-		<h2 class="am-hide-sm-only">findPartner | 校园首个交互网站</h2>
+	<div class="am-u-sm-9 am-u-sm-centered" style="margin-top: 3%;margin-bottom: 5%;">
+		<img class="navbar-left" width="120" src="assets/i/friendpatner.jpg" alt="FriendPattner Logo"/>
+		<h1 class="am-hide-sm-only">FindPartner | 校园首个交互网站</h1>
 	</div>
 </header>
 <hr>
