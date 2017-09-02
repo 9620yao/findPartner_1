@@ -161,6 +161,7 @@
 	<script type="text/javascript" src="album/js/lg-thumbnail.min.js"></script>
 	<script type="text/javascript" src="album/js/lg-fullscreen.min.js"></script>
 
+	<script type="text/javascript" src="rel/js/index/first.js"></script>
 	<script type="text/javascript" src="rel/js/hpindex.js"></script>
 	<script type="text/javascript" src="rel/js/index/index.js"></script>
 

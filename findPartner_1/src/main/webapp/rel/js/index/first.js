@@ -1,12 +1,18 @@
-var url = window.location.href;
-var faid = url.split("?")[1].split("=")[1];
+function getUrlParam(name) {
+	var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
+	var r = window.location.search.substr(1).match(reg);  //匹配目标参数
+	if (r != null) return unescape(r[2]); return null; //返回参数值
+}
+
+var faid = getUrlParam('aid');
+
 GetFinallyAid();
 function GetFinallyAid() {
 	$.post("friend/finalAid", {
 		"faid" : faid
 	},function(data) {
 		if (data.faid == "-1") {
-			$("#myfriend").show();
+			$("#myspeaks").show();
 			$(".updatepwd").show();
 			$(".updatebtn").show();
 			$(".homepage").val("个人中心");
@@ -14,8 +20,6 @@ function GetFinallyAid() {
 			.attr("href", "page/lw-index.jsp?aid=" + faid);
 			$(".myfriends").attr("href",
 					"page/lw-friend.jsp?aid=" + faid);
-			$(".addfriend").attr("href",
-					"page/lw-findFriend.jsp?aid=" + faid);
 			$(".myspeaks").attr("href",
 					"page/lw-speaks.jsp?aid=" + faid);
 			$(".myword").attr("href", "page/message.jsp?aid=" + faid);

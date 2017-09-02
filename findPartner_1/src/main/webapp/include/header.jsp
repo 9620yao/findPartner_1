@@ -23,7 +23,7 @@
 			<li><a class="myword" href="page/message.jsp">留言</a></li>
 			<li><a class="myalbum" href="page/lw-img.jsp">相册</a></li>
 			<li><a class="myfriends" href="page/lw-friend.jsp">好友</a></li>
-			<li><a class="updatepwd" href="page/lw-modifyPwd.jsp">基本信息</a></li>
+			<li><a class="updatepwd" href="page/lw-info.jsp">基本信息</a></li>
 		</ul>
 		<span class="target"></span>
 	</div>

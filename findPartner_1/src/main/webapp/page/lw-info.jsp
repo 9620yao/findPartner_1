@@ -8,8 +8,7 @@
 <link rel="stylesheet" href="assets/css/amazeui.min.css">
 <link rel="stylesheet" href="assets/css/app.css">
 <link rel="stylesheet" href="bootstrap/3.3.4/css/bootstrap.min.css">
-<link rel="stylesheet" href="rel/css/dashboard.css">
-<link rel="stylesheet" href="rel/css/friend.css">
+<link rel="stylesheet" href="rel/css/indexcss.css">
 </head>
 <body id="blog-article-sidebar">
 	<jsp:include page="/include/header.jsp" /><!-- 公共头部部分 -->
@@ -20,7 +19,8 @@
 					<ol class="list-unstyled">
 						<li><a href="javascript:reload()">好友首页</a></li>
 						<li><a href="javascript:loadPage('page/seekfriend.jsp')">寻找好友</a></li>
-						<li><a href="javascript:getrel()">好友请求(<span class="rc">0</span>)</a></li>
+						<li><a href="javascript:getrel()">好友请求(<span class="rc">0</span>)
+						</a></li>
 						<li><a href="javascript:friendKnow()">可能认识的人</a></li>
 					</ol>
 				</div>
@@ -49,17 +49,13 @@
 			</div>
 		</div>
 	</div>
-	
+
 	<jsp:include page="/include/foot.jsp" /><!-- 公共底部部分 -->
 
 	<script src="assets/js/jquery.min.js"></script>
 	<script src="bootstrap/3.3.4/js/bootstrap.min.js"></script>
-	<script src="bootstrap-paginator/bootstrap-paginator.js"></script>
-
 	<script src="assets/js/amazeui.min.js"></script>
-	<script src="assets/js/pinto.min.js"></script>
-
-	<script src="rel/js/friend/friend.js"></script>
+	
 	<script type="text/javascript" src="rel/js/indexcss.js"></script>
 </body>
 </html>
