@@ -1,4 +1,5 @@
 var url = window.location.href;
+alert(url);
 var faid = url.split("?")[1].split("=")[1];
 GetFinallyAid();
 function GetFinallyAid() {

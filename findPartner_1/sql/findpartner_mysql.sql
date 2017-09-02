@@ -9,7 +9,7 @@ CREATE TABLE logining(
 	otherlogone varchar(40),
 	otherlogtwo varchar(40)
 );
-alter table logining AUTO_INCREMENT=1000;
+alter table logining AUTO_inCREMENT=1000;
 
 CREATE TABLE users(
 	uid int PRIMARY KEY auto_increment,	
@@ -31,7 +31,7 @@ CREATE TABLE users(
 	otheradminstwo VARCHAR(40),
 	FOREIGN KEY (ulid) REFERENCES logining(lid)
 );
-alter table users AUTO_INCREMENT=1000;
+alter table users AUTO_inCREMENT=1000;
 
 CREATE TABLE friends(
 	uid int, 
@@ -51,7 +51,7 @@ CREATE TABLE speaks(
 	s_uuid VARCHAR(40),
 	otherspeakstwo VARCHAR(40)
 );
-alter table speaks AUTO_INCREMENT=1000;
+alter table speaks AUTO_inCREMENT=1000;
 
 -- 日志
 CREATE TABLE journal(
@@ -62,7 +62,7 @@ CREATE TABLE journal(
 	otherspeaksone VARCHAR(40),
 	otherspeakstwo VARCHAR(40)
 );
-alter table journal AUTO_INCREMENT=1000;
+alter table journal AUTO_inCREMENT=1000;
 
 CREATE TABLE album(
 	abid int PRIMARY KEY auto_increment, 
@@ -75,7 +75,7 @@ CREATE TABLE album(
 	otheralbumone VARCHAR(40),
 	otheralbumtwo VARCHAR(40)
 );
-alter table album AUTO_INCREMENT=1000;
+alter table album AUTO_inCREMENT=1000;
 
 
 create table albumpic(
@@ -87,10 +87,10 @@ create table albumpic(
 	apicdate VARCHAR(100), 
 	ap_uuid VARCHAR(40)
 );
-alter table albumpic AUTO_INCREMENT=1000;
+alter table albumpic AUTO_inCREMENT=1000;
 
 CREATE TABLE words(
-	wid int PRIMARY KEY AUTO_INCREMENT, 
+	wid int PRIMARY KEY AUTO_inCREMENT, 
 	waid int,  
 	wfrendid int,  
 	wcontent VARCHAR(500), 
@@ -99,7 +99,7 @@ CREATE TABLE words(
 	w_uuid VARCHAR(40),
 	otheralbumtwo VARCHAR(40)
 );
-alter table words AUTO_INCREMENT=1000;
+alter table words AUTO_inCREMENT=1000;
 
 
 CREATE table comments(
@@ -111,7 +111,7 @@ CREATE table comments(
 	c_uuid VARCHAR(40),
 	othercommentstwo VARCHAR(40)     
 );
-alter table comments AUTO_INCREMENT=1000;
+alter table comments AUTO_inCREMENT=1000;
 
 
 create table replys(
@@ -124,20 +124,20 @@ create table replys(
 	r_uuido VARCHAR(40),
 	r_uuidt VARCHAR(40)
 );
-alter table replys AUTO_INCREMENT=1000;
+alter table replys AUTO_inCREMENT=1000;
 
 create table userpower(
-	upid int primary key AUTO_INCREMENT, 
+	upid int primary key AUTO_inCREMENT, 
 	upuid varchar(20), 
 	upower varchar(100) default '-0' check(upower in('-0','-1')), 
 	updata varchar(40), 
 	otherbackadminone VARCHAR(40),
 	otherbackadmintwo varchar(40)
 );
-alter table userpower AUTO_INCREMENT=1000;
+alter table userpower AUTO_inCREMENT=1000;
 
 create table backadmin(
-	buid int primary key AUTO_INCREMENT, 
+	buid int primary key AUTO_inCREMENT, 
 	baemail VARCHAR(20), 
 	baname VARCHAR(40), 
 	bapwd VARCHAR(40), 
@@ -145,7 +145,7 @@ create table backadmin(
 	otherbackadminone VARCHAR(40),
 	otherbackadmintwo VARCHAR(40)
 );
-alter table backadmin AUTO_INCREMENT=1000;
+alter table backadmin AUTO_inCREMENT=1000;
 
 -- create table homepage(
 --	hpid int, 
@@ -159,4 +159,20 @@ create or replace view homepage as
 select sid hpid,speakman hpuserid,s_uuid h_uuid,senddate hpdate from speaks union
 select apid hpid,uid hpuserid,ap_uuid h_uuid,apicdate hpdate from albumpic;
 
-select * from comments;
+select TB.uid,TB.C,u.nickname,u.picture from 
+	(select A.uid uid,count(uid) c from 
+		(select uid from friends where fid in
+			(select fid from friends where uid = '3' and fid in 
+				(select uid from friends where fid = '3')
+			) and uid in (select fid from friends where uid in 
+							(select fid from friends where uid = '3' and fid in 
+								(select uid from friends where fid = '3')
+							)
+						) and uid != '3' and uid not in 
+							(select fid from friends where uid = '3' and fid in 
+								(select uid from friends where fid = '3')
+							)
+						) A group by uid) TB,users u where TB.uid=u.uid
+
+	
+select * from friends		

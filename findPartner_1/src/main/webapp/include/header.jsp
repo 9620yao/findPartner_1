@@ -19,18 +19,11 @@
 		<ul class="am-nav am-nav-pills am-topbar-nav" id="head">
 			<li class="am-active"><a class="homepage"
 				href="page/lw-index.jsp">个人中心</a></li>
-			<li id="myfriend" class="am-dropdown" data-am-dropdown><a
-				class="am-dropdown-toggle" data-am-dropdown-toggle
-				href="javascript:void(0)">好友信息 <span class="am-icon-caret-down"></span>
-			</a>
-				<ul class="am-dropdown-content">
-					<li><a class="myfriends" href="page/lw-friend.jsp">我的好友</a></li>
-					<li><a class="addfriend" href="page/lw-findFriend.jsp">添加好友</a></li>
-				</ul></li>
 			<li><a class="myspeaks" href="page/lw-speaks.jsp">说说</a></li>
 			<li><a class="myword" href="page/message.jsp">留言</a></li>
 			<li><a class="myalbum" href="page/lw-img.jsp">相册</a></li>
-			<li><a class="updatepwd" href="page/lw-modifyPwd.jsp">修改密码</a></li>
+			<li><a class="myfriends" href="page/lw-friend.jsp">好友</a></li>
+			<li><a class="updatepwd" href="page/lw-modifyPwd.jsp">基本信息</a></li>
 		</ul>
 		<span class="target"></span>
 	</div>

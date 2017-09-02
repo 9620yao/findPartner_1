@@ -1,14 +1,15 @@
 package com.yc.ssm.service.impl;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.yc.ssm.entity.Friends;
+import com.yc.ssm.entity.PaginationBean;
+import com.yc.ssm.entity.Speaks;
 import com.yc.ssm.entity.Users;
 import com.yc.ssm.mapper.FriendMapper;
 import com.yc.ssm.service.FriendService;
@@ -17,11 +18,6 @@ import com.yc.ssm.service.FriendService;
 public class FriendsServiceImpl implements FriendService {
 	@Autowired
 	private FriendMapper friendMapper;
-
-	@Override
-	public List<Users> listFriends(String uid) {
-		return friendMapper.listFriendsInfo(uid);
-	}
 
 	@Override
 	public boolean insertFriend(String uid, String fid) {
@@ -36,24 +32,12 @@ public class FriendsServiceImpl implements FriendService {
 		return friendMapper.findFriendReq(uid);
 	}
 
+	/**
+	 * 排优显示，后续添加
+	 */
 	@Override
 	public List<Users> listIntroFriend(String uid) {
-		List<Users> users = friendMapper.findIntroFriend(uid);
-		List<Users> newUsers = new ArrayList<Users>();
-		List<Integer> nums = new ArrayList<Integer>();
-		if (users.size() > 3) {// 若数据大于3条则随机显示3条
-			while (nums.size() < 3) { // 生成3个
-				Random r = new Random();
-				int j = r.nextInt(users.size());
-				if (!nums.contains(j)) { // 判断不重复
-					nums.add(j);
-					newUsers.add(users.get(j));
-				}
-			}
-		} else {// 若数据小于3条则不随机，直接显示
-			newUsers = users;
-		}
-		return newUsers;
+		return friendMapper.findIntroFriend(uid);
 	}
 
 	@Override
@@ -64,6 +48,21 @@ public class FriendsServiceImpl implements FriendService {
 	@Override
 	public List<Map<String, Object>> listMaybeKnow(String uid) {
 		return friendMapper.findMaybeKnow(uid);
+	}
+
+	@Override
+	public PaginationBean<Friends> pfriends(String uid, String page, String rows) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		PaginationBean<Speaks> pBean = new PaginationBean<Speaks>();
+		if (page != null) {
+			pBean.setCurrPage(Integer.parseInt(page));
+		}
+		if (rows != null) {
+			pBean.setPageSize(Integer.parseInt(rows));
+		}
+		map.put("uid", uid);
+		map.put("pBean", pBean);
+		return friendMapper.pfriends(map);
 	}
 
 }

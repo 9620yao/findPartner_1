@@ -3,26 +3,69 @@
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.yc.ssm.mapper.FriendMapper">
-	<select id="listFriendsInfo" parameterType="string" resultType="Users">
-		select * from users u where u.uid in (select fid from FRIENDS where
-		uid=#{uid} and fid in(select uid from FRIENDS where fid=#{uid}))
+	<resultMap type="PaginationBean" id="PaginationBeanMap">
+		<result property="currPage" column="currPage" />
+		<result property="pageSize" column="pageSize" />
+		<collection property="rows" column="{min=min,pageSize=pageSize,uid=uid}"
+			ofType="Friends" select="Getpf" />
+	</resultMap>
+
+	<select id="pfriends" parameterType="java.util.Map" resultMap="PaginationBeanMap"
+		useCache="false" flushCache="true">
+		select
+		count(1) total,ceil(count(1) /
+		${pBean.pageSize})
+		totalPage,${pBean.currPage}
+		currPage,${pBean.pageSize}
+		pageSize,(${pBean.currPage}-1)*${pBean.pageSize}
+		min,${pBean.pageSize}
+		pageSize,#{uid} uid
+		from friends where uid=#{uid} and fid in(select uid
+		from friends where
+		fid=#{uid})
 	</select>
+
+	<select id="Getpf" resultMap="allfriend">
+		select *,fid fuid from FRIENDS where
+		uid=#{uid} and fid in(select uid
+		from
+		FRIENDS where
+		fid=#{uid}) limit
+		<choose>
+			<when test="min==0">0,#{pageSize}</when>
+			<otherwise>#{min},#{pageSize}</otherwise>
+		</choose>
+	</select>
+
+	<resultMap type="Friends" id="allfriend">
+		<result property="uid" column="uid" />
+		<collection property="user" column="{uid=fuid}"
+			select="com.yc.ssm.mapper.UsersMapper.getuser" ofType="Users"></collection>
+	</resultMap>
 
 	<insert id="addFriend" parameterType="java.util.Map">
 		insert into
 		friends(uid,fid) values(#{uid},#{fid})
 	</insert>
 
-	<select id="findFriendReq" parameterType="string" resultType="Users">
-		select * from users u where u.uid in (select uid from FRIENDS f where
-		f.fid=#{uid} and uid not in (select uid from FRIENDS f where
-		f.uid=#{uid}))
+	<select id="findFriendReq" parameterType="string" resultMap="allfriend">
+		select *,uid fuid from friends f where
+		f.fid=#{uid} and uid not in
+		(select fid
+		from
+		friends f where
+		f.uid=#{uid})
 	</select>
 
 	<select id="findIntroFriend" parameterType="string" resultType="Users">
-		select * from users u where u.uid not in (select f.fid from friends f
-		where f.uid=#{uid}) and u.uid!=#{uid} and u.address like '%'||(select
-		u.address from users u where u.uid=#{uid})||'%'
+		select uid,nickname,picture from users u where u.uid not in (select
+		f.fid from friends f
+		where f.uid=#{uid}) and u.uid!=#{uid} or
+		u.uid!=#{uid}
+		and u.address like '%'||(select
+		u.address from users u
+		where
+		u.uid=#{uid})||'%'
 	</select>
 
 	<select id="listCountReq" parameterType="string" resultType="int">
@@ -31,34 +74,26 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 
 	<select id="findMaybeKnow" parameterType="string" resultType="map">
-		SELECT TB.uid,TB.C,u.nickname,u.picture FROM (SELECT A.uid
-		uid,COUNT(uid)
-		c FROM (SELECT uid
-		FROM FRIENDS
-		WHERE FID IN
-		(SELECT FID
-		FROM FRIENDS
-		WHERE UID = #{uid}
-		AND FID IN (SELECT UID FROM FRIENDS
-		WHERE FID = #{uid}))
-		AND UID IN
-		(SELECT FID
-		FROM FRIENDS
-		WHERE UID IN
-		(SELECT FID
-		FROM FRIENDS
-		WHERE UID = #{uid}
-		AND FID IN (SELECT uid FROM
-		FRIENDS WHERE FID = #{uid})))
-		AND UID != #{uid}
-		AND uID NOT IN
-		(SELECT
-		FID
-		FROM FRIENDS
-		WHERE UID = #{uid}
-		AND FID IN (SELECT UID FROM FRIENDS
-		WHERE FID = #{uid}))) A GROUP BY
-		uid) TB,USERS u WHERE TB.uid=u.uid
+		select TB.uid,TB.C,u.nickname,u.picture pic from
+		(select A.uid
+		uid,count(uid) c from
+		(select uid from friends where fid in
+		(select fid
+		from friends where uid = #{uid} and fid in
+		(select uid from friends
+		where fid = #{uid})
+		) and uid in (select fid from friends where uid in
+		(select fid from friends where uid = #{uid} and fid in
+		(select uid from
+		friends where fid = #{uid})
+		)
+		) and uid != #{uid} and uid not in
+		(select
+		fid from friends where uid = #{uid} and fid in
+		(select uid from friends
+		where fid = #{uid})
+		)
+		) A group by uid) TB,users u where TB.uid=u.uid
 	</select>
 
 </mapper>

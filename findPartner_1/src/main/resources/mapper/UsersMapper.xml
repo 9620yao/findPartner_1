@@ -132,7 +132,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		and u.ulid = l.lid
 	</select>
 
-	<select id="getuser" resultType="com.yc.ssm.entity.Users">
+	<select id="getuser" resultType="Users">
 		select
 		uid,nickname,picture from
 		users where uid = #{uid}

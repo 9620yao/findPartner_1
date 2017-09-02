@@ -14,6 +14,7 @@ public class Friends implements Serializable {
 	private String uid; // 用户编号
 	private String fid; // 好友编号
 	private String sure; // 状态
+	private Users user;
 
 	public Friends() {
 	}
@@ -48,9 +49,17 @@ public class Friends implements Serializable {
 		this.sure = sure;
 	}
 
+	public Users getUser() {
+		return user;
+	}
+
+	public void setUser(Users user) {
+		this.user = user;
+	}
+
 	@Override
 	public String toString() {
-		return "\nFriends [uid=" + uid + ", fid=" + fid + ", sure=" + sure + "]";
+		return "\nFriends [uid=" + uid + ", fid=" + fid + ", sure=" + sure + ", user=" + user + "]";
 	}
 
 }

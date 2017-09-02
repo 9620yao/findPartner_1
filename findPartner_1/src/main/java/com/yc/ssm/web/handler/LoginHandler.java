@@ -98,10 +98,10 @@ public class LoginHandler {
 				// 初始化个人信息表
 				LogManager.getLogger().debug("注册成功后，当前用户login：" + login);
 				if (usersService.insertUsers(login)) {// 初始化users表
-					return "/page/lw-log.jsp";// 成功跳转到登录界面
+					return "lw-log";// 成功跳转到登录界面
 				}
 			}
-			return "/page/lw-re.jsp";// 失败跳转到注册界面
+			return "lw-re";// 失败跳转到注册界面
 		}
 	}
 

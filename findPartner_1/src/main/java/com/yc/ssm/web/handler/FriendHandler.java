@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.yc.ssm.entity.Friends;
+import com.yc.ssm.entity.PaginationBean;
 import com.yc.ssm.entity.Users;
 import com.yc.ssm.service.FriendService;
 import com.yc.ssm.service.UsersService;
@@ -26,7 +28,7 @@ public class FriendHandler {
 
 	@Autowired
 	private FriendService friendService;
-	
+
 	@Autowired
 	private UsersService userService;
 
@@ -38,10 +40,10 @@ public class FriendHandler {
 	 */
 	@RequestMapping(value = "list", method = RequestMethod.GET)
 	@ResponseBody
-	public List<Users> listFriends(HttpSession session) {
+	public PaginationBean<Friends> listFriends(Integer currPage, HttpSession session) {
 		LogManager.getLogger().debug("我进来了 listFriends");
 		String uid = (String) session.getAttribute(ServletUtil.USERAID);
-		return friendService.listFriends(uid);
+		return friendService.pfriends(uid, String.valueOf(currPage), "5");
 	}
 
 	/**
@@ -78,10 +80,10 @@ public class FriendHandler {
 	 * @param session
 	 * @return
 	 */
-	@RequestMapping(value = "reqAdd", method = RequestMethod.GET)
+	@RequestMapping(value = "reqadd", method = RequestMethod.GET)
 	@ResponseBody
 	public List<Users> friendReq(HttpSession session) {
-		LogManager.getLogger().debug("我进来了 friendReq ");
+		LogManager.getLogger().debug("我进来了 friendReq... ");
 		String uid = (String) session.getAttribute(ServletUtil.USERAID);
 		return friendService.listFrienfReq(uid);
 	}
@@ -92,9 +94,9 @@ public class FriendHandler {
 	 * @param session
 	 * @return
 	 */
-	@RequestMapping(value = "introFriend", method = RequestMethod.GET)
+	@RequestMapping(value = "intro", method = RequestMethod.GET)
 	@ResponseBody
-	public List<Users> listIntroFriend(HttpSession session) {
+	public List<Users> Intro(HttpSession session) {
 		LogManager.getLogger().debug("我进来了 listIntroFriend");
 		String uid = (String) session.getAttribute(ServletUtil.USERAID);
 		return friendService.listIntroFriend(uid);
@@ -149,10 +151,10 @@ public class FriendHandler {
 	 * @param session
 	 * @return
 	 */
-	@RequestMapping(value = "friendKnow", method = RequestMethod.GET)
+	@RequestMapping(value = "know", method = RequestMethod.GET)
 	@ResponseBody
-	public List<Map<String, Object>> listFriendKnow(HttpSession session) {
-		LogManager.getLogger().debug("我进来了 listFriendKnow");
+	public List<Map<String, Object>> know(HttpSession session) {
+		LogManager.getLogger().debug("我进来了 know()");
 		String uid = (String) session.getAttribute(ServletUtil.USERAID);
 		return friendService.listMaybeKnow(uid);
 	}

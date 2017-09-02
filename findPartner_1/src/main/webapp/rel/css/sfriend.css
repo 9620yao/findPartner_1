@@ -1,0 +1,13 @@
+.sdiv {
+	width: 20%;
+	margin-top: 2%;
+}
+.sdiv a{
+	display: inline-block;
+	margin-top: 1%;
+}
+.sdiv .pic{
+	width: 55px;
+	height: 55px;
+	border-radius: 50%
+}
