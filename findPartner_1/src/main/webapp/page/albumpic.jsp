@@ -76,9 +76,7 @@
 	<script src="bootstrap/3.3.4/js/bootstrap.min.js"></script>
 
 	<script src="assets/js/amazeui.min.js"></script>
-	<script src="rel/js/albumpic.js"></script>
-	<script type="text/javascript" src="rel/js/indexcss.js"></script>
-
+	
 	<script type="text/javascript" src="uploader/js/fileinput.js"></script>
 	<script type="text/javascript" src="uploader/js/locales/zh.js"></script>
 	<script type="text/javascript" src="uploader/upload.js"></script>
@@ -87,5 +85,9 @@
 	<script type="text/javascript" src="album/js//jquery.mousewheel.min.js"></script>
 	<script type="text/javascript" src="album/js/lg-thumbnail.min.js"></script>
 	<script type="text/javascript" src="album/js/lg-fullscreen.min.js"></script>
+	
+	<script type="text/javascript" src="rel/js/index/first.js"></script>
+	<script src="rel/js/albumpic.js"></script>
+	<script type="text/javascript" src="rel/js/indexcss.js"></script>
 </body>
 </html>

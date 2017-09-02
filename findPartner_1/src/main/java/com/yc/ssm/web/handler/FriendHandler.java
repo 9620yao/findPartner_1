@@ -128,7 +128,6 @@ public class FriendHandler {
 			}
 		}
 		return map;
-
 	}
 
 	/**

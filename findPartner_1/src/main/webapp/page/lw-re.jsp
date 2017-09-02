@@ -51,8 +51,7 @@
 			</h1>
 		</div>
 		<div class="log-re">
-			<a href="page/lw-log.jsp" style="display: block;"
-				class="am-btn am-btn-default am-radius log-button">登 录</a>
+			<a href="page/lw-log.jsp" class="am-btn am-btn-default am-radius log-button">登 录</a>
 		</div>
 	</header>
 
@@ -78,7 +77,9 @@
 					<br>
 					<div class="am-input-group am-radius am-animation-slide-left">
 						<input name="uname" type="text" class="am-radius" size="32"
-							data-validation-message="请输入您的真实姓名" placeholder="真实姓名" required />
+							data-validation-message="请输入您的真实姓名" placeholder="真实姓名" required /><span
+							class="am-input-group-label log-icon am-radius"><i
+							class="am-icon-user am-icon-sm am-icon-fw"></i>
 					</div>
 					<br>
 					<div class="am-input-group am-radius am-animation-slide-left">
@@ -86,7 +87,8 @@
 							style="width: 250px;">
 							<option value="男">男</option>
 							<option value="女">女</option>
-						</select>
+						</select><span class="am-input-group-label log-icon am-radius"><i
+							class="am-icon-user am-icon-sm am-icon-fw"></i>
 					</div>
 					<br>
 					<div
@@ -106,17 +108,13 @@
 							class="am-input-group-label log-icon am-radius"><i
 							class="am-icon-lock am-icon-sm am-icon-fw"></i></span>
 					</div>
-					<br>
-					<div>
-						<p>
-							<input name="vcode" type="text" class="Mail" placeholder="请输入验证码"
-								required="required" />
-						</p>
-						<p>
-							<a href="javascript:void(0)"
-								style="display: block; border: 1px solid #ffffff; width: 100px"
-								class="sendMail" onclick="sendMail()">发送邮件</a>
-						</p>
+					<br> <a href="javascript:sendMail()"
+						class="sendMail am-btn am-btn-primary am-btn-block am-btn-lg">发送邮件</a><br>
+					<div class="am-input-group am-animation-slide-left">
+						<input name="vcode" type="text" class="am-radius" size="32"
+							data-validation-message="请输入验证码" placeholder="验证码" required /> <span
+							class="am-input-group-label log-icon am-radius"><i
+							class="am-icon-user am-icon-sm am-icon-fw"></i>
 					</div>
 					<br>
 					<button
@@ -127,6 +125,8 @@
 			</div>
 		</div>
 	</div>
+
+	<jsp:include page="/include/foot.jsp" /><!-- 公共底部部分 -->
 
 	<script type="text/javascript" src="assets/js/jquery.min.js"></script>
 

@@ -51,8 +51,7 @@
 			</h1>
 		</div>
 		<div class="log-re">
-			<a href="page/lw-re.jsp"
-				class="am-btn am-btn-default am-radius log-button">注册</a>
+			<a href="page/lw-re.jsp" class="am-btn am-btn-default am-radius log-button">注册</a>
 		</div>
 	</header>
 
@@ -86,24 +85,11 @@
 					<button type="submit"
 						class="am-btn am-btn-primary am-btn-block am-btn-lg am-radius am-animation-slide-bottom log-animation-delay">登
 						录</button>
-					<p class="am-animation-slide-bottom log-animation-delay">
-						<a href="page/forgetPassword.jsp">忘记密码?</a>
-
-					</p>
-					<div
-						class="am-btn-group  am-animation-slide-bottom log-animation-delay-b">
-						<p>使用第三方登录</p>
-						<a href="#" class="am-btn am-btn-secondary am-btn-sm"><i
-							class="am-icon-github am-icon-sm"></i> QQ</a> <a href="#"
-							class="am-btn am-btn-primary am-btn-sm"><i
-							class="am-icon-stack-overflow am-icon-sm"></i> WeiXin</a>
-					</div>
 				</form>
 			</div>
 		</div>
 	</div>
-
-
+	<jsp:include page="/include/foot.jsp" /><!-- 公共底部部分 -->
 
 	<script src="assets/js/jquery.min.js"></script>
 

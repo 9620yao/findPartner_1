@@ -1,4 +1,5 @@
 var currPage = 1;
+showhomepage(currPage);
 function showhomepage(currPage) {
 	$.post("homepage/list",{
 		"currPage" : currPage,
@@ -17,28 +18,6 @@ function showhomepage(currPage) {
 		}
 		$("#page")[0].innerHTML = pagination;
 	}, "json")
-}
-function selfhomepage(currPage) {
-	$.post("homepage/selflist",{
-		"currPage" : currPage,
-		"faid" : faid
-	},
-	function(data) {
-		if (data == null || data == "") {
-			return false
-		}
-		homepage(data);
-		var pagination = "";
-		if (data.currPage == data.totalPage) {
-			pagination += '<div><a class="addmore" href="javascript:void(0)">已经到底部</a></div>'
-		} else {
-			pagination += '<div><a class="addmore" href="javascript:selfhomepage('+ (data.currPage + 1)+ ')">点击加载更多</a></div>'
-		}
-		$("#page")[0].innerHTML = pagination;
-	}, "json")
-}
-function showpage(){
-	
 }
 var showhp = $('#showhp');
 function homepage(data) {

@@ -12,41 +12,74 @@ function GetFinallyAid() {
 		"faid" : faid
 	},function(data) {
 		if (data.faid == "-1") {
-			$("#myspeaks").show();
-			$(".updatepwd").show();
-			$(".updatebtn").show();
 			$(".homepage").val("个人中心");
-			$(".homepage")
-			.attr("href", "page/lw-index.jsp?aid=" + faid);
+			$(".homepage").attr("href", "page/lw-index.jsp?aid=" + faid);
 			$(".myfriends").attr("href",
 					"page/lw-friend.jsp?aid=" + faid);
 			$(".myspeaks").attr("href",
 					"page/lw-speaks.jsp?aid=" + faid);
 			$(".myword").attr("href", "page/message.jsp?aid=" + faid);
 			$(".myalbum").attr("href", "page/lw-img.jsp?aid=" + faid);
-			$(".updatepwd").attr("href",
-					"page/lw-modifyPwd.jsp?aid=" + faid);
-			selfhomepage(currPage)
+			$(".uinfo").attr("href", "page/lw-info.jsp?aid=" + faid);
+			
+			$(".spanspeak").html("我的");
+			
+			$(".spanword").html("我的");
+			fhide($("#divword"));
+			
+			$(".spanimg").html("我的");
+			fshow($(".addimgs"));
+			
+			fshow($(".addimgbtn"));
+			fshow($(".newimgbtn"));
+
+			fshow($(".updatebtn"));
+			fshow($(".myfriends"));
+			fshow($(".uinfo"));
+			fshow($(".editdiv"));
 		} else {
-			$("#myfriend").hide();
-			$(".updatepwd").hide();
-			$(".updatebtn").hide();
 			$(".homepage").html("TA的主页");
-			$(".homepage").attr("href",
-					"page/lw-index.jsp?aid=" + data.faid);
+			$(".homepage").attr("href", "page/lw-index.jsp?aid=" + faid);
 			$(".myfriends").attr("href",
-					"page/lw-friend.jsp?aid=" + data.faid);
-			$(".addfriend").attr("href",
-					"page/lw-findFriend.jsp?aid=" + data.faid);
+					"page/lw-friend.jsp?aid=" + faid);
 			$(".myspeaks").attr("href",
-					"page/lw-speaks.jsp?aid=" + data.faid);
+					"page/lw-speaks.jsp?aid=" + faid);
 			$(".myword").attr("href",
-					"page/message.jsp?aid=" + data.faid);
+					"page/message.jsp?aid=" + faid);
 			$(".myalbum").attr("href",
-					"page/lw-img.jsp?aid=" + data.faid);
-			$(".updatepwd").attr("href",
-					"page/lw-modifyPwd.jsp?aid=" + data.faid);
-			showhomepage(currPage)
+					"page/lw-img.jsp?aid=" + faid);
+			$(".uinfo").attr("href", "page/lw-info.jsp?aid=" + faid);
+			
+			$(".spanspeak").html("TA的");
+			
+			$(".spanword").html("TA的");
+			fshow($("#divword"));
+			
+			$(".spanimg").html("TA的");
+			fhide($(".addimgs"));
+			
+			fhide($(".addimgbtn"));
+			fhide($(".newimgbtn"));
+
+			fhide($(".updatebtn"));
+			fhide($(".myfriends"));
+			fhide($(".uinfo"));
+			fhide($(".editdiv"));
 		}
 	}, "json")
+}
+
+function fshow(obj){
+	if(obj==null||obj==""){
+		return false;
+	}else{
+		obj.show();
+	}
+}
+function fhide(obj){
+	if(obj==null||obj==""){
+		return false;
+	}else{
+		obj.hide();
+	}
 }

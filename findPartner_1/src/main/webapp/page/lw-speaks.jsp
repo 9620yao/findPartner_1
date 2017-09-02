@@ -60,6 +60,7 @@
 	<script src="rel/ueditor/ueditor.all.min.js"></script>
 	<script src="rel/ueditor/lang/zh-cn/zh-cn.js"></script>
 
+	<script type="text/javascript" src="rel/js/index/first.js"></script>
 	<script type="text/javascript" src="rel/js/uedit/uedit.js"></script>
 	<script type="text/javascript" src="rel/js/speaks.js"></script>
 	<script type="text/javascript" src="rel/js/indexcss.js"></script>

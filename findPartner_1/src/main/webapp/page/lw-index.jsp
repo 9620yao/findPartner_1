@@ -33,7 +33,7 @@
 				<h2 class="blog-text-center blog-title">
 					<span>About ME</span>
 				</h2>
-				<img src="images/not_pic.jpg" class="pic" width="100" height="100">
+				<img src="images/not_pic.jpg" class="pic blog-entry-img">
 				<p>个人简介</p>
 				<!-- 显示个人信息 -->
 				<div id="myself">

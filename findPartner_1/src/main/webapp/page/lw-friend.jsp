@@ -57,8 +57,8 @@
 	<script src="bootstrap-paginator/bootstrap-paginator.js"></script>
 
 	<script src="assets/js/amazeui.min.js"></script>
-	<script src="assets/js/pinto.min.js"></script>
 
+	<script type="text/javascript" src="rel/js/index/first.js"></script>
 	<script src="rel/js/friend/friend.js"></script>
 	<script type="text/javascript" src="rel/js/indexcss.js"></script>
 </body>
