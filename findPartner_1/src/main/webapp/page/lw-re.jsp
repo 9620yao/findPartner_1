@@ -36,39 +36,33 @@
 	content="assets/i/app-icon72x72@2x.png">
 <meta name="msapplication-TileColor" content="#0e90d2">
 
-<link type="text/css" rel="stylesheet" href="easyui/themes/icon.css">
-<link type="text/css" rel="stylesheet"
-	href="easyui/themes/default/easyui.css">
 <link rel="stylesheet" href="assets/css/amazeui.min.css">
 <link rel="stylesheet" href="assets/css/app.css">
 <link rel="stylesheet" href="rel/css/register.css">
 </head>
 <body>
 	<header>
-		<div class="log-header" id="log-name">
-			<h1>
-				<a href="/">findPartner</a>
-			</h1>
-		</div>
 		<div class="log-re">
-			<a href="page/lw-log.jsp" class="am-btn am-btn-default am-radius log-button">登 录</a>
+			<a href="page/lw-log.jsp"
+				class="am-btn am-btn-default am-radius log-button">登 录</a>
 		</div>
 	</header>
 
+
 	<div class="log">
 		<div class="am-g">
-			<div
-				class="am-u-lg-3 am-u-md-6 am-u-sm-8 am-u-sm-centered log-content"
-				id="log-register">
+			<div class="am-u-lg-3 am-u-sm-centered log-content" id="log-register">
 				<h1 class="log-title am-animation-slide-top">findPartner</h1>
 				<br>
+				<div class="am-g am-alert msg" data-am-alert>
+					<button type="button" class="am-close">&times;</button>
+					<a href="javascript:void(0)" class="amsg alert-link">错误...</a>
+				</div>
 				<form class="am-form" id="log-form" action="login/register"
 					method="post">
-					<p>
-						<label style="color: red;">${emailError}&nbsp;</label>
-					</p>
+					<label style="color: red;">${emailError}&nbsp;</label>
 					<div class="am-input-group am-radius am-animation-slide-left">
-						<input name="email" type="email" id="doc-vld-email-2-1"
+						<input class="email" name="email" type="email" id="doc-vld-email-2-1"
 							class="am-radius" data-validation-message="请输入正确邮箱地址"
 							placeholder="邮箱" required /> <span
 							class="am-input-group-label log-icon am-radius"><i
@@ -79,15 +73,6 @@
 						<input name="uname" type="text" class="am-radius" size="32"
 							data-validation-message="请输入您的真实姓名" placeholder="真实姓名" required /><span
 							class="am-input-group-label log-icon am-radius"><i
-							class="am-icon-user am-icon-sm am-icon-fw"></i>
-					</div>
-					<br>
-					<div class="am-input-group am-radius am-animation-slide-left">
-						<select name="gender" id="gender" class="xla_k"
-							style="width: 250px;">
-							<option value="男">男</option>
-							<option value="女">女</option>
-						</select><span class="am-input-group-label log-icon am-radius"><i
 							class="am-icon-user am-icon-sm am-icon-fw"></i>
 					</div>
 					<br>
@@ -108,10 +93,14 @@
 							class="am-input-group-label log-icon am-radius"><i
 							class="am-icon-lock am-icon-sm am-icon-fw"></i></span>
 					</div>
-					<br> <a href="javascript:sendMail()"
-						class="sendMail am-btn am-btn-primary am-btn-block am-btn-lg">发送邮件</a><br>
+					<br>
+					<div>
+						<a href="javascript:sendMail()"
+							class="sendMail am-btn am-btn-primary am-btn-block">发送邮件</a>
+					</div>
+					<br>
 					<div class="am-input-group am-animation-slide-left">
-						<input name="vcode" type="text" class="am-radius" size="32"
+						<input name="vcode" type="text" class="vcode am-radius" size="32"
 							data-validation-message="请输入验证码" placeholder="验证码" required /> <span
 							class="am-input-group-label log-icon am-radius"><i
 							class="am-icon-user am-icon-sm am-icon-fw"></i>
@@ -129,10 +118,6 @@
 	<jsp:include page="/include/foot.jsp" /><!-- 公共底部部分 -->
 
 	<script type="text/javascript" src="assets/js/jquery.min.js"></script>
-
-	<script type="text/javascript" src="easyui/jquery.easyui.min.js"></script>
-	<script type="text/javascript" src="easyui/locale/easyui-lang-zh_CN.js"></script>
-
 	<script src="assets/js/amazeui.min.js"></script>
 	<script type="text/javascript" src="rel/js/login/rel.js"></script>
 	<script src="assets/js/app.js"></script>
