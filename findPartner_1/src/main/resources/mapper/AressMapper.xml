@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yc.ssm.mapper.AressMapper">
+	<select id="getas" parameterType="Aress" resultType="Aress">
+		select *
+		from aress where asid = #{asid}
+	</select>
+
+	<insert id="insertAs" parameterType="Aress" useGeneratedKeys="true"
+		keyProperty="asid">
+		insert into
+		aress(province,city,district)values(#{province},#{city},#{district})
+	</insert>
+
+	<select id="isAress" parameterType="Aress" resultType="Aress">
+		select *
+		from aress where province = #{province} and city = #{city} and
+		district =#{district}
+	</select>
+
+</mapper>

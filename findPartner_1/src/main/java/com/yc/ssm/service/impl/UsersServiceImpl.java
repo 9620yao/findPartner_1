@@ -28,13 +28,13 @@ public class UsersServiceImpl implements UsersService {
 	}
 
 	@Override
-	public Users listUsersInfo(String alid) {
-		return UsersMapper.findUsersInfo(alid);
+	public Users listUsersInfo(String uid) {
+		return UsersMapper.Userinfo(uid);
 	}
 
 	@Override
-	public Users listUsersInfoByAid(String aid) {
-		return UsersMapper.findUsersInfoByAid(aid);
+	public Users getUser(String uid) {
+		return UsersMapper.getUserinfo(uid);
 	}
 
 	@Override
@@ -53,6 +53,11 @@ public class UsersServiceImpl implements UsersService {
 	@Override
 	public List<Users> findUsersByAid(String aid) {
 		return UsersMapper.listUserByAid(aid);
+	}
+
+	@Override
+	public Users getuserByulid(Users users) {
+		return UsersMapper.getuserByulid(users);
 	}
 
 }

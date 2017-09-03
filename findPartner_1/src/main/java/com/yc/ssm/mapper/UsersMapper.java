@@ -17,15 +17,39 @@ public interface UsersMapper {
 	 */
 	int insertUsers(Login login);
 
-	Users findUsersInfo(String alid);
+	/**
+	 * 获得详细信息
+	 * 
+	 * @param uid
+	 * @return
+	 */
+	Users Userinfo(String uid);
 
+	/**
+	 * 修改个人信息
+	 * 
+	 * @param users
+	 * @return
+	 */
 	int updateUserInfo(Users users);
 
-	Users findUsersInfoByAid(String aid);
+	Users getUserinfo(String uid);
 
+	/**
+	 * 分页查询
+	 * 
+	 * @param pb
+	 * @return
+	 */
 	PaginationBean<Users> partUsers(PaginationBean<Users> pb);
 
 	List<Users> listUserByAid(String aid);
 
 	Users getuser();
+
+	/**
+	 * y用于登录操作
+	 * 
+	 */
+	Users getuserByulid(Users users);
 }

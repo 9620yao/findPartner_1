@@ -40,4 +40,9 @@ public class LoginServiceImpl implements LoginService {
 		loginMapper.newPwd(partner);
 	}
 
+	@Override
+	public boolean changLogin(Login login) {
+		return loginMapper.changLog(login) > 0;
+	}
+
 }

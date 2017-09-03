@@ -56,7 +56,7 @@ public class FriendHandler {
 	@ResponseBody
 	public Users findFriendsById(String uid) {
 		LogManager.getLogger().debug("我进来了 findFriendsById uid===>" + uid);
-		return userService.listUsersInfoByAid(uid);
+		return userService.getUser(uid);
 	}
 
 	/**

@@ -27,6 +27,8 @@ public class Users implements Serializable {
 	private String picture;
 	private String astate;
 	private Login login;
+	private Aress aressa;
+	private Aress aressh;
 
 	public Users() {
 
@@ -185,12 +187,29 @@ public class Users implements Serializable {
 		return serialVersionUID;
 	}
 
+	public Aress getAressa() {
+		return aressa;
+	}
+
+	public void setAressa(Aress aressa) {
+		this.aressa = aressa;
+	}
+
+	public Aress getAressh() {
+		return aressh;
+	}
+
+	public void setAressh(Aress aressh) {
+		this.aressh = aressh;
+	}
+
 	@Override
 	public String toString() {
-		return "\nUsers [uid=" + uid + ", ulid=" + ulid + ", nickname=" + nickname + ", age=" + age + ", birthday="
+		return "Users [uid=" + uid + ", ulid=" + ulid + ", nickname=" + nickname + ", age=" + age + ", birthday="
 				+ birthday + ", photo=" + photo + ", star=" + star + ", hobby=" + hobby + ", job=" + job + ", company="
 				+ company + ", school=" + school + ", address=" + address + ", hometown=" + hometown + ", picture="
-				+ picture + ", astate=" + astate + ", login=" + login + "]";
+				+ picture + ", astate=" + astate + ", login=" + login + ", aressa=" + aressa + ", aressh=" + aressh
+				+ "]";
 	}
 
 }

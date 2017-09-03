@@ -3,32 +3,52 @@
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.yc.ssm.mapper.LoginMapper">
-	<select id="fingPartner" parameterType="com.yc.ssm.entity.Login"
-		resultType="com.yc.ssm.entity.Login">
+	<select id="fingPartner" parameterType="Login" resultType="Login">
 		select * from logining where password=#{password} and
 		(email=#{email}
 		or phone=#{email})
 	</select>
 
-	<insert id="insertPar" parameterType="com.yc.ssm.entity.Login"
-		useGeneratedKeys="true" keyProperty="lid">
+	<insert id="insertPar" parameterType="Login" useGeneratedKeys="true"
+		keyProperty="lid">
 		insert into
 		logining(email,password,regdate,uname,gender)
 		values(#{email},#{password},now(),#{uname},#{gender})
 	</insert>
 
-	<select id="fingEmail" parameterType="com.yc.ssm.entity.Login"
-		resultType="com.yc.ssm.entity.Login">
-		select * from logining where email=#{email}
+	<select id="fingEmail" parameterType="Login" resultType="Login">
+		select *
+		from logining where email=#{email}
 	</select>
 
-	<update id="modifyPwd" parameterType="com.yc.ssm.entity.Login">
+	<update id="modifyPwd" parameterType="Login">
 		update LOGINING set
 		password=#{password} where lid=#{lid}
 	</update>
 
-	<update id="newPwd" parameterType="com.yc.ssm.entity.Login">
+	<update id="newPwd" parameterType="Login">
 		update LOGINING set
 		password=#{password} where email=#{email}
+	</update>
+
+	<select id="getlogin" parameterType="Login" resultType="Login">
+		select
+		lid,email,phone,uname,gender from logining where lid = #{lid}
+	</select>
+
+	<update id="changLog" parameterType="Login">
+		update logining
+		<set>
+			<if test="phone!=null and phone!=''">
+				phone= #{phone},
+			</if>
+			<if test="uname!=null and uname!=''">
+				uname= #{uname},
+			</if>
+			<if test="gender!=null and gender!=''">
+				gender= #{gender},
+			</if>
+		</set>
+		where lid=#{lid}
 	</update>
 </mapper>

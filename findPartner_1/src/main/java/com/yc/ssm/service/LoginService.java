@@ -15,5 +15,7 @@ public interface LoginService {
 	boolean updatePwd(Login login);
 
 	void updateNewPwd(Login login);
+	
+	boolean changLogin(Login login);
 
 }

@@ -10,33 +10,21 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		(#{lid},#{lid})
 	</insert>
 
-	<resultMap type="Users" id="UsersMap">
+	<resultMap type="Users" id="umap">
 		<id column="uid" property="uid" />
-		<result column="nickname" property="nickname" />
-		<result column="age" property="age" />
-		<result column="birthday" property="birthday" />
-		<result column="photo" property="photo" />
-		<result column="star" property="star" />
-		<result column="hobby" property="hobby" />
-		<result column="job" property="job" />
-		<result column="company" property="company" />
-		<result column="school" property="school" />
-		<result column="address" property="address" />
-		<result column="hometown" property="hometown" />
-		<result column="picture" property="picture" />
-		<result column="astate" property="astate" />
-		<association property="login" column="ulid" javaType="login">
-			<id column="ulid" property="lid" />
-			<result column="gender" property="gender" />
-			<result column="email" property="email" />
-			<result column="regdate" property="regdate" />
-		</association>
+		<association property="login" column="{lid=lid}"
+			select="com.yc.ssm.mapper.LoginMapper.getlogin"></association>
+		<association property="aressa" column="{asid=asida}"
+			select="com.yc.ssm.mapper.AressMapper.getas"></association>
+		<association property="aressh" column="{asid=asidh}"
+			select="com.yc.ssm.mapper.AressMapper.getas"></association>
 	</resultMap>
-	<select id="findUsersInfo" parameterType="string" resultMap="UsersMap"
+
+	<select id="Userinfo" parameterType="string" resultMap="umap"
 		useCache="false" flushCache="true">
-		select u.*,l.gender from users u,logining
-		l where u.ulid=l.lid and
-		u.ulid=#{lid}
+		select *,ulid lid,address asida,hometown
+		asidh from users where
+		uid=#{uid}
 	</select>
 
 	<update id="updateUserInfo" parameterType="Users">
@@ -85,57 +73,49 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		</where>
 	</update>
 
-	<select id="findUsersInfoByAid" parameterType="string"
-		resultMap="UsersMap">
-		select * from users u ,logining l where u.uid=#{uid} and
-		u.ulid = l.lid
+	<select id="Getpbuser" resultMap="umap">
+		select *,ulid lid,address asida,hometown
+		asidh from users where u.uid=#{uid} limit
+		<choose>
+			<when test="min==1">0,#{pageSize}</when>
+			<otherwise>#{min},#{pageSize}</otherwise>
+		</choose>
 	</select>
 
 	<!-- 分页查询 -->
-	<resultMap type="PaginationBean" id="PaginationBeanMap">
-		<id column="total" property="total"></id><!-- id表示主键 主键相同 结果相同 -->
-		<id column="totalPage" property="totalPage"></id>
-		<collection property="rows" ofType="Users">
-			<id column="uid" property="uid" />
-			<result column="nickname" property="nickname" />
-			<result column="age" property="age" />
-			<result column="birthday" property="birthday" />
-			<result column="star" property="star" />
-			<result column="hobby" property="hobby" />
-			<result column="job" property="job" />
-			<result column="picture" property="picture" />
-			<association property="Login" column="ulid" javaType="Login">
-				<id column="ulid" property="lid" />
-				<result column="gender" property="gender" />
-				<result column="email" property="email" />
-				<result column="regdate" property="regdate" />
-			</association>
-		</collection>
+	<resultMap type="PaginationBean" id="pbMap">
+		<result property="currPage" column="currPage" />
+		<result property="pageSize" column="pageSize" />
+		<collection property="rows" column="{min=min,pageSize=pageSize}"
+			ofType="Users" select="Getpbuser" />
 	</resultMap>
-	<select id="partUsers" parameterType="PaginationBean" resultMap="PaginationBeanMap">
-		select ${currPage} currPage,${pageSize} pageSize,
-		(select count(1) from
-		users u,logining
-		l where u.ulid=l.lid)total,
-		(select ceil(count(1) /
-		${pageSize}) from users u,logining
-		l where u.ulid=l.lid)totalPage,t.*
-		from ( select n.*,rownum rn from
-		(select u.*,l.* from users u,logining
-		l where u.ulid=l.lid) n where ${currPage} *${pageSize}>=rownum) t
-		where
-		rn>(${currPage}-1) * ${pageSize}
+
+	<select id="partUsers" parameterType="PaginationBean" resultMap="pbMap">
+		select
+		count(1) total,ceil(count(1) / ${pageSize})
+		totalPage,${currPage}
+		currPage,${pageSize}
+		pageSize,(${currPage}-1)*${pageSize}
+		min,${pageSize}
+		pageSize
+		from
+		users
 	</select>
 
-	<select id="listUserByAid" parameterType="string" resultMap="UsersMap">
-		select * from users u ,logining l where u.aid like '%'||#{uid}||'%'
-		and u.ulid = l.lid
+	<select id="listUserByAid" parameterType="string" resultMap="umap">
+		select *,ulid lid from users u where uid like '%'||#{uid}||'%'
 	</select>
 
-	<select id="getuser" resultType="Users">
+	<select id="getuser" parameterType="Users" resultType="Users">
 		select
 		uid,nickname,picture from
 		users where uid = #{uid}
+	</select>
+
+	<select id="getuserByulid" parameterType="Users" resultType="Users">
+		select
+		uid,nickname,picture from
+		users where ulid = #{ulid}
 	</select>
 
 </mapper>

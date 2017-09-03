@@ -24,5 +24,6 @@ public class UserpowerServiceImplTest {
 	public void pblist() {
 		System.out.println(userpowerService.pblist("2", "1"));
 	}
+	
 
 }

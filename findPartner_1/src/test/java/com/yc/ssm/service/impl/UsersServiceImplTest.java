@@ -34,11 +34,16 @@ public class UsersServiceImplTest {
 		login.setPhone("15675456193");
 		login.setUname("xiaowu");
 		boolean r = loginService.register(login);
-		System.out.println("login:"+login);
+		System.out.println("login:" + login);
 		boolean r2 = sersService.insertUsers(login);
-		System.out.println("r="+r+",r2="+r2);
+		System.out.println("r=" + r + ",r2=" + r2);
 		assertNotEquals(false, r);
 		assertNotEquals(false, r2);
+	}
+
+	@Test
+	public void getU() {
+		System.out.println(sersService.listUsersInfo("3"));
 	}
 
 }

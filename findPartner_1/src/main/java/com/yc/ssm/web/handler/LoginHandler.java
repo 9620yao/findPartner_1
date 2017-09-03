@@ -51,7 +51,9 @@ public class LoginHandler {
 		} else {
 			request.getSession().setAttribute(ServletUtil.LOGIN_USER, login);
 			request.getSession().setAttribute(ServletUtil.LOGINING_ID, login.getLid());
-			Users users = usersService.listUsersInfo(login.getLid());
+			Users users = new Users();
+			users.setUlid(login.getLid());
+			users = usersService.getuserByulid(users);
 			if (users != null) {
 				// 取到用户id放到session会话里面
 				aid = users.getUid();

@@ -12,12 +12,22 @@ public interface UsersService {
 
 	boolean modifyUserInfo(Users users);
 
-	Users listUsersInfo(String alid);
+	/**
+	 * 获得详细信息
+	 * 
+	 * @param alid
+	 * @return
+	 */
+	Users listUsersInfo(String uid);
 
-	Users listUsersInfoByAid(String aid);
-	
+	Users getUser(String aid);
+
 	PaginationBean<Users> listUsers(String rows, String page);
 
 	List<Users> findUsersByAid(String aid);
+	/**
+	 * 获取登录id
+	 */
+	Users getuserByulid(Users users);
 
 }

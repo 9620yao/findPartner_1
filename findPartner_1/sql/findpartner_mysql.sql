@@ -33,6 +33,15 @@ CREATE TABLE users(
 );
 alter table users AUTO_inCREMENT=1000;
 
+create table aress(
+	asid int PRIMARY KEY auto_increment,
+	province varchar(20),
+	city varchar(20),
+	district varchar(20)
+);
+alter table aress AUTO_inCREMENT=1000;
+
+
 CREATE TABLE friends(
 	uid int, 
 	fid int, 
@@ -159,20 +168,8 @@ create or replace view homepage as
 select sid hpid,speakman hpuserid,s_uuid h_uuid,senddate hpdate from speaks union
 select apid hpid,uid hpuserid,ap_uuid h_uuid,apicdate hpdate from albumpic;
 
-select TB.uid,TB.C,u.nickname,u.picture from 
-	(select A.uid uid,count(uid) c from 
-		(select uid from friends where fid in
-			(select fid from friends where uid = '3' and fid in 
-				(select uid from friends where fid = '3')
-			) and uid in (select fid from friends where uid in 
-							(select fid from friends where uid = '3' and fid in 
-								(select uid from friends where fid = '3')
-							)
-						) and uid != '3' and uid not in 
-							(select fid from friends where uid = '3' and fid in 
-								(select uid from friends where fid = '3')
-							)
-						) A group by uid) TB,users u where TB.uid=u.uid
 
-	
-select * from friends		
+
+select * from logining			
+select * from aress		
+delete from aress where asid = '1005'
