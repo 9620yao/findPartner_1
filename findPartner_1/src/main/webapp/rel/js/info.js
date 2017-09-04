@@ -82,8 +82,8 @@ function update() {
 	$('#gender').val($('.opdiv input[name="inlineRadioOptions"]:checked ').val());
 	$('.birthday').val($('.birthday1').val());
 	$('.uform').submit();
-	//$('.mgdiv').show();
-	//$('.mg').html("系统错误....");
+	/*$('.mgdiv').show();
+	$('.mg').html("系统错误....");*/
 }
 function loadPage(href) {
 	$.ajaxSetup({cache: false });
