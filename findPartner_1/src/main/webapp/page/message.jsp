@@ -59,9 +59,9 @@
 	<script src="bootstrap/3.3.4/js/bootstrap.min.js"></script>
 	<script src="bootstrap-paginator/bootstrap-paginator.js"></script>
 
-	<script charset="utf-8" src="rel/ueditor/ueditor.config.js"></script>
-	<script charset="utf-8" src="rel/ueditor/ueditor.all.min.js"></script>
-	<script charset="utf-8" src="rel/ueditor/lang/zh-cn/zh-cn.js"></script>
+	<script src="rel/ueditor/ueditor.config.js"></script>
+	<script src="rel/ueditor/ueditor.all.js"></script>
+	<script src="rel/ueditor/lang/zh-cn/zh-cn.js"></script>
 	<script src="assets/js/amazeui.min.js"></script>
 
 	<script type="text/javascript" src="rel/js/index/first.js"></script>

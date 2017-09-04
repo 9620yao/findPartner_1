@@ -168,8 +168,3 @@ create or replace view homepage as
 select sid hpid,speakman hpuserid,s_uuid h_uuid,senddate hpdate from speaks union
 select apid hpid,uid hpuserid,ap_uuid h_uuid,apicdate hpdate from albumpic;
 
-
-
-select * from logining			
-select * from aress		
-delete from aress where asid = '1005'

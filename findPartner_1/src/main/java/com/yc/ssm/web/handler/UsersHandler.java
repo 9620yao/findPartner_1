@@ -2,10 +2,10 @@ package com.yc.ssm.web.handler;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.websocket.server.PathParam;
 
@@ -62,24 +62,30 @@ public class UsersHandler {
 	@RequestMapping(value = "update", method = RequestMethod.POST)
 	public String modify(@RequestParam("picData") MultipartFile picData, Users users, HttpSession session) {
 		LogManager.getLogger().debug("picData==>" + picData, "，user==>" + users);
+		// 取到登录用户编号，并存到user用户中
+		users.setUid((String) session.getAttribute(ServletUtil.USERAID));
 		File dest = null;
 		if (picData != null && !picData.isEmpty()) {
 			String picPath = null;
 			try {
 				dest = ServletUtil.getUploadFile(picData.getOriginalFilename());
-				// 压缩图片并上传
+				// 1、压缩图片并上传
 				Thumbnails.of(picData.getInputStream()).scale(1f).outputQuality(0.25f).toFile(dest);
+				// 获取上传地址
 				picPath = ServletUtil.VIRTUAL_UPLOAD_DIR + "/" + picData.getOriginalFilename();
 			} catch (Exception e) {
+				// 2、压缩上传失败，采用springmvc自带的图片上传
 				try {
 					picData.transferTo(dest);
 				} catch (IllegalStateException | IOException e1) {
 					e1.printStackTrace();
 				}
 			}
+			// 上传图片的地址存到user
 			users.setPicture(picPath);
-			System.out.println("上传图片==》" + users);
+			LogManager.getLogger().debug("上传图片==》" + users);
 		}
+		// 修改图片
 		usersService.modifyUserInfo(users);
 		return "redirect:/page/lw-index.jsp?aid=" + users.getUid();
 	}
@@ -101,13 +107,19 @@ public class UsersHandler {
 			@PathParam("hdistrict") String hdistrict, Aress aress, Login login, Users users, HttpSession session) {
 		LogManager.getLogger().debug("aress" + aress + "Login=" + login + ",user==>" + users + ",hprovince=" + hprovince
 				+ ",hcity=" + hcity + ",hdistrict=" + hdistrict);
+		// 获取登录用户的编号
 		String uid = (String) session.getAttribute(ServletUtil.USERAID);
+		// 获取到家乡地址，并存在Aress中
 		Aress haress = new Aress(hprovince, hcity, hdistrict);
-		Map<String, Object> map = aressService.isAress(aress);
-		Map<String, Object> maph = aressService.isAress(haress);
+		Map<String, Object> map = new HashMap<String, Object>();
+		Map<String, Object> maph = new HashMap<String, Object>();
 		Integer asid = null;
 		Integer hasid = null;
+		// 1、首先修改log信息
 		if (partnerService.changLogin(login)) {// 修改成功
+			map = aressService.isAress(aress);
+			maph = aressService.isAress(haress);
+			// 2、修改user信息之前对地址进行确认，判断数据库是否存在该地址，若存在，返回地址编号。不存在，则添加，并获取插入的地址编号。
 			if ((boolean) map.get("idAress")) {// 不存在，则添加
 				aressService.insertAs(aress);
 				asid = aress.getAsid();
@@ -121,41 +133,15 @@ public class UsersHandler {
 				hasid = (Integer) maph.get("asid");
 			}
 			LogManager.getLogger().debug("asid=" + asid + ",hasid=" + hasid);
+			// 3、修改user表个人信息
 			if (asid != null && hasid != null) {
 				users.setAddress(String.valueOf(asid));
 				users.setHometown(String.valueOf(hasid));
 				users.setUid(uid);
-				usersService.modifyUserInfo(users);// 修改个人信息
+				usersService.modifyUserInfo(users);
 			}
 		}
 		return "redirect:/page/lw-info.jsp?aid=" + uid;
-	}
-
-	/**
-	 * 修改密码
-	 * 
-	 * @param strmdpwd
-	 * @param newPassword
-	 * @param partner
-	 * @param request
-	 * @return
-	 */
-	@RequestMapping(value = "mofifyPwd", method = RequestMethod.POST)
-	public String modifyPwd(@RequestParam("strmdpwd") String strmdpwd, @RequestParam("newPassword") String newPassword,
-			Login partner, HttpServletRequest request) {
-		LogManager.getLogger()
-				.debug("partner====>" + partner + ",newPassword==>" + newPassword + ",strmdpwd=" + strmdpwd);
-		if (partnerService.login(partner) == null) {
-			request.setAttribute(ServletUtil.MODIF_ERROR, "用户名或密码错误！！！");
-			return strmdpwd.split("/findPartner")[1];
-		} else {
-			partner.setPassword(newPassword);
-			String lid = (String) request.getSession().getAttribute(ServletUtil.LOGINING_ID);
-			partner.setLid(lid);
-			partnerService.updatePwd(partner);
-			return "lw-log";
-		}
-
 	}
 
 	@RequestMapping(value = "mlist", method = RequestMethod.POST)
@@ -186,20 +172,6 @@ public class UsersHandler {
 		String uid = (String) session.getAttribute(ServletUtil.USERAID);
 		LogManager.getLogger().debug("我进来byAid()   aid==>" + uid);
 		return usersService.listUsersInfo(uid);
-	}
-
-	// 显示个人信息，通过aid取到个人信息
-	@RequestMapping(value = "sure", method = RequestMethod.POST)
-	@ResponseBody
-	public boolean blSurePwd(String email, String password, HttpSession session) {
-		LogManager.getLogger().debug("我进来blSurePwd()   email==>" + email + ",password=" + password);
-		Login partner = new Login();
-		partner.setEmail(email);
-		partner.setPassword(password);
-		if (partnerService.login(partner) == null) {// 等于空说说密码或者账号错误
-			return false;
-		}
-		return true;
 	}
 
 }

@@ -1,3 +1,4 @@
+$('.mgdiv').hide();
 function loadInfo() {
 	$.post("user/uid", function(data) {
 		if (data == null || data == "") {
@@ -28,11 +29,14 @@ function loadInfo() {
 			autoSelect : false,
 			placeholder : true
 		});
-		ashowdistpicker(data.aressa.province, data.aressa.city,
-				data.aressa.district);
-		hshowdistpicker(data.aressh.province, data.aressh.city,
-				data.aressh.district);
-
+		if(data.aressa!=null&&data.aressa!=""){
+			ashowdistpicker(data.aressa.province, data.aressa.city,
+					data.aressa.district);
+		}
+		if(data.aressh!=null&&data.aressh!=""){
+			hshowdistpicker(data.aressh.province, data.aressh.city,
+					data.aressh.district);
+		}
 	}, "json")
 }
 loadInfo();
@@ -78,4 +82,13 @@ function update() {
 	$('#gender').val($('.opdiv input[name="inlineRadioOptions"]:checked ').val());
 	$('.birthday').val($('.birthday1').val());
 	$('.uform').submit();
+	//$('.mgdiv').show();
+	//$('.mg').html("系统错误....");
+}
+function loadPage(href) {
+	$.ajaxSetup({cache: false });
+	$(".other").load(href);
+}
+function reload(){
+	parent.location.reload();// 刷新缓存
 }

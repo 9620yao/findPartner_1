@@ -23,7 +23,7 @@
 				<div class="sidebar-module">
 					<ol class="list-unstyled">
 						<li><a href="javascript:reload()">基本资料</a></li>
-						<li><a href="javascript:void(0)">修改密码</a></li>
+						<li><a href="javascript:loadPage('page/info-modifyPwd.jsp')">修改密码</a></li>
 					</ol>
 				</div>
 			</div>
@@ -31,7 +31,8 @@
 				<!-- 中间第一模块刷 start -->
 				<div class="other">
 					<h3 class="hd page-header">基本资料</h3>
-					<form class="form-horizontal uform" action="user/change" method="post">
+					<form class="form-horizontal uform" action="user/change"
+						method="post">
 						<div>
 							<div class="form-group">
 								<label for="nickname" class="col-sm-1 control-label">昵称：</label>
@@ -82,13 +83,14 @@
 								<div class="col-sm-3 input-group date form_date" data-date=""
 									data-date-format="yyyy mm dd" data-link-field="dtp_input2"
 									data-link-format="yyyy-mm-dd">
-									<input class="form-control birthday1" type="text" readonly> <span
-										class="input-group-addon"><span
+									<input class="form-control birthday1" type="text" readonly>
+									<span class="input-group-addon"><span
 										class="glyphicon glyphicon-remove"></span></span> <span
 										class="input-group-addon"><span
 										class="glyphicon glyphicon-calendar"></span></span>
 								</div>
-								<input type="hidden" name="birthday" class="birthday" id="dtp_input2" value="1111-1-1" />
+								<input type="hidden" name="birthday" class="birthday"
+									id="dtp_input2" value="1111-1-1" />
 							</div>
 							<!-- 日期 end	 -->
 							<div class="form-group">
@@ -129,33 +131,42 @@
 							<!-- 省市县 start -->
 							<div class="form-group">
 								<label class="col-sm-1 control-label">家乡：</label>
-								<div class="col-sm-6 hometown" id="distpicker" data-toggle="distpicker">
-									<select class="col-sm-4 hprovince"></select> <select class="col-sm-4 hcity"></select>
-									<select class="col-sm-4 hdistrict"></select>
+								<div class="col-sm-6 hometown" id="distpicker"
+									data-toggle="distpicker">
+									<select class="col-sm-4 hprovince"></select> <select
+										class="col-sm-4 hcity"></select> <select
+										class="col-sm-4 hdistrict"></select>
 								</div>
-								<input name="hprovince" id="hprovince" type="hidden">
-								<input name="hcity" id="hcity" type="hidden">
-								<input name="hdistrict" id="hdistrict" type="hidden">
-								<input name="hometown" id="hometown" type="hidden">
+								<input name="hprovince" id="hprovince" type="hidden"> <input
+									name="hcity" id="hcity" type="hidden"> <input
+									name="hdistrict" id="hdistrict" type="hidden"> <input
+									id="hometown" type="hidden">
 							</div>
 							<!-- 省市县 end -->
 							<!-- 省市县 start -->
 							<div class="form-group">
 								<label class="col-sm-1 control-label">住址：</label>
-								<div class="col-sm-6 address" id="distpicker" data-toggle="distpicker">
-									<select class="col-sm-4 province"></select> <select class="col-sm-4 city"></select>
-									<select class="col-sm-4 district"></select>
+								<div class="col-sm-6 address" id="distpicker"
+									data-toggle="distpicker">
+									<select class="col-sm-4 province"></select> <select
+										class="col-sm-4 city"></select> <select
+										class="col-sm-4 district"></select>
 								</div>
-								<input name="province" id="province" type="hidden">
-								<input name="city" id="city" type="hidden">
-								<input name="district" id="district" type="hidden">
-								<input name="address" id="address" type="hidden">
+								<input name="province" id="province" type="hidden"> <input
+									name="city" id="city" type="hidden"> <input
+									name="district" id="district" type="hidden"> <input
+									id="address" type="hidden">
 							</div>
 							<!-- 省市县 end -->
 						</div>
+						<div class="form-group mgdiv">
+							<div class="alert alert-danger alert-dismissible" role="alert">
+								<span class="mg"></span>
+							</div>
+						</div>
 						<div class="form-group">
 							<div class="col-sm-offset-5 col-sm-5">
-								<a class="btn btn-default" href="javascript:update()">保存修改</a>
+								<span onclick="update()" class="btn btn-default btna">保存修改</span>
 							</div>
 						</div>
 					</form>
@@ -164,7 +175,6 @@
 			</div>
 		</div>
 	</div>
-
 	<jsp:include page="/include/foot.jsp" /><!-- 公共底部部分 -->
 
 	<script src="assets/js/jquery.min.js"></script>
@@ -177,9 +187,10 @@
 		src="bootstrap-datetimepicker-master/js/bootstrap-datetimepicker.min.js"></script>
 	<script
 		src="bootstrap-datetimepicker-master/js/bootstrap-datetimepicker.zh-CN.js"></script>
-	<script src="rel/js/info.js"></script>
 	<script src="bootstrap-datetimepicker-master/datetimepicker.js"></script>
 
+	<script type="text/javascript" src="rel/js/index/first.js"></script>
+	<script src="rel/js/info.js"></script>
 	<!-- <script type="text/javascript" src="rel/js/indexcss.js"></script> -->
 </body>
 </html>

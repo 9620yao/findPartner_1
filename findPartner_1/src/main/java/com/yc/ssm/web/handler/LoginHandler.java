@@ -4,6 +4,7 @@ import java.io.PrintWriter;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.apache.logging.log4j.LogManager;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -151,6 +152,51 @@ public class LoginHandler {
 		return "redirect:/page/lw-newPwd.jsp?email=" + email;
 	}
 
+	/**
+	 * 判断用户密码是否输入正确
+	 * 
+	 * @param login：传过来的login信息
+	 * @param session
+	 * @return
+	 */
+	@RequestMapping(value = "sure", method = RequestMethod.POST)
+	@ResponseBody
+	public boolean blSurePwd(Login login, HttpSession session) {
+		LogManager.getLogger().debug("我进来blSurePwd()   login" + login);
+		// 根据邮箱和密码确认用户是否存在，存在则说明密码正确。返回true.不存在说明密码不正确，放回false;
+		if (loginService.login(login) == null) {
+			return false;
+		}
+		return true;
+	}
+
+	/**
+	 * 修改密码
+	 * 
+	 * @param strmdpwd
+	 * @param newPassword
+	 * @param partner
+	 * @param request
+	 * @return
+	 */
+	@RequestMapping(value = "modifyPwd", method = RequestMethod.POST)
+	public String modifyPwd(@RequestParam("newPassword") String newPassword, Login partner, HttpSession session) {
+		LogManager.getLogger().debug("partner====>" + partner);
+		partner.setPassword(newPassword);
+		// 获取log表的主键
+		partner.setLid((String) session.getAttribute(ServletUtil.LOGINING_ID));
+		// 获取user用户编号
+		String uid = (String) session.getAttribute(ServletUtil.USERAID);
+		// 修改成功则跳转到登录页，并提示登录成功。失败则返回页面并提示异常
+		if (loginService.updatePwd(partner)) {
+			return "lw-log";
+		} else {
+			session.setAttribute(ServletUtil.MODIF_ERROR, "系统异常，请确认后操作.....");
+			return "redirect:/page/lw-newPwd.jsp?uid=" + uid;
+		}
+
+	}
+
 	@RequestMapping(value = "newPwd", method = RequestMethod.POST)
 	public String newPwd(@RequestParam("newemail") String newemail, @RequestParam("newpwd") String newpwd) {
 		LogManager.getLogger().debug("newemail==>" + newemail + "newpwd==>" + newpwd);
@@ -158,7 +204,7 @@ public class LoginHandler {
 		login.setEmail(newemail);
 		login.setPassword(newpwd);
 		loginService.updateNewPwd(login);
-		return "/page/lw-log.jsp";
+		return "lw-log";
 	}
 
 }

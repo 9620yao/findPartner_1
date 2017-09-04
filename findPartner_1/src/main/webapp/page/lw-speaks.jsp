@@ -57,7 +57,7 @@
 
 	<script src="assets/js/amazeui.min.js"></script>
 	<script src="rel/ueditor/ueditor.config.js"></script>
-	<script src="rel/ueditor/ueditor.all.min.js"></script>
+	<script src="rel/ueditor/ueditor.all.js"></script>
 	<script src="rel/ueditor/lang/zh-cn/zh-cn.js"></script>
 
 	<script type="text/javascript" src="rel/js/index/first.js"></script>

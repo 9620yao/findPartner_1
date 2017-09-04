@@ -52,10 +52,10 @@
 	</welcome-file-list>
 	<error-page>
 		<error-code>404</error-code>
-		<location>/page/lw-log.jsp</location>
+		<location>/page/error.jsp</location>
 	</error-page>
 	<error-page>
         <error-code>500</error-code>
-        <location>/page/lw-log.jsp</location>
+        <location>/page/error.jsp</location>
     </error-page>
 </web-app>

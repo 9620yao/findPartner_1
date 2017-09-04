@@ -1,1 +1,22 @@
-var url=window.location.href;var faid=url.split("?")[1].split("=")[1];if(faid!=null&&faid!=""){$(".homepage").attr("href","page/lw-index.jsp?aid="+faid);$(".myfriends").attr("href","page/lw-friend.jsp?aid="+faid);$(".addfriend").attr("href","page/lw-findFriend.jsp?aid="+faid);$(".myspeaks").attr("href","page/lw-speaks.jsp?aid="+faid);$(".myword").attr("href","page/message.jsp?aid="+faid);$(".myalbum").attr("href","page/lw-img.jsp?aid="+faid);$(".updatepwd").attr("href","page/lw-modifyPwd.jsp?aid="+faid)}$(".rback").attr("href","page/lw-index.jsp?aid="+faid);function strupdate(){$(".strmdpwd").val(url);var email=$("#email").val();var password=$("#password").val();$.post("user/sure",{"email":email,"password":password},function(data){if(data){$(".fmodifyPwd").submit()}else{alert("原密码错误！！！")}})};
+$(".mgdiv").hide();
+function strupdate() {
+	var email = $("#email").html();;
+	var password = $("#password").val();
+	var newPassword = $('#newPassword').val();
+	if(password==null ||password=="" || newPassword==null || newPassword==""){
+		$(".mgdiv").show();
+		$(".mgdiv").html("请输入密码...");
+	}else{
+		$.post("login/sure", {
+			"email" : email,
+			"password" : password
+		}, function(data) {
+			if (data) {
+				$(".fmodifyPwd").submit();
+			} else {
+				$(".mgdiv").show();
+				$(".mgdiv").html("原密码错误，请确认后操作...");
+			}
+		});
+	}
+};
