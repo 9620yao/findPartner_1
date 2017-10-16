@@ -81,14 +81,47 @@ function update() {
 	$('#hdistrict').val($(".hdistrict option:checked").text())
 	$('#gender').val($('.opdiv input[name="inlineRadioOptions"]:checked ').val());
 	$('.birthday').val($('.birthday1').val());
+	
+	// 在键盘按下并释放及提交后验证提交表单
+	$(".uform").validate({
+		rules: {
+			nickname: {
+				required: true,
+				maxlength:10
+			},
+			uname: {
+				required: true,
+				maxlength:10
+			},
+			phone:{
+				required : true,  
+				minlength : 11,   
+				isMobile : true  
+			}
+		},
+		messages: {
+			nickname: {
+				required: "请输入您的昵称"
+			},
+			uname: {
+				required: "请输入您的姓名"
+			},
+			phone:{
+				required : "请输入您的手机号码",     
+				isMobile : "请正确填写您的手机号码"   
+			}
+		}
+	});
 	$('.uform').submit();
 	/*$('.mgdiv').show();
 	$('.mg').html("系统错误....");*/
 }
-function loadPage(href) {
-	$.ajaxSetup({cache: false });
-	$(".other").load(href);
-}
-function reload(){
-	parent.location.reload();// 刷新缓存
-}
+
+
+//function loadPage(href) {
+//	$.ajaxSetup({cache: false });
+//	$(".other").load(href);
+//}
+//function reload(){
+//	parent.location.reload();// 刷新缓存
+//}
