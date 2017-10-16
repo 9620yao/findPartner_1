@@ -51,7 +51,8 @@
 			</h1>
 		</div>
 		<div class="log-re">
-			<a href="page/lw-re.jsp" class="am-btn am-btn-default am-radius log-button">注册</a>
+			<a href="page/lw-re.jsp"
+				class="am-btn am-btn-default am-radius log-button">注册</a>
 		</div>
 	</header>
 
@@ -63,9 +64,7 @@
 				<br>
 				<form class="am-form" id="log-form" action="login/login"
 					method="POST">
-					<p>
-						<label style="color: red;">${errorMsg}&nbsp;</label>
-					</p>
+					<div class="am-alert am-alert-danger emdiv" data-am-alert>${errorMsg}</div>
 					<div class="am-input-group am-radius am-animation-slide-left">
 						<input type="email" id="doc-vld-email-2-1" name="email"
 							class="am-radius" data-validation-message="请输入正确邮箱地址"
@@ -95,5 +94,13 @@
 
 	<script src="assets/js/amazeui.min.js"></script>
 	<script src="assets/js/app.js"></script>
+	<script type="text/javascript">
+		var msg = $('.emdiv').html();
+		if(msg==null||msg==""){
+			$('.emdiv').hide();
+		}else{
+			$('.emdiv').show();
+		}
+	</script>
 </body>
 </html>
